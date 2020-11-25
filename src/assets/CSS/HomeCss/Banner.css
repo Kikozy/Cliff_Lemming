@@ -1,0 +1,83 @@
+/*banner style start*/
+#Content {
+    padding-top: 0;
+}
+
+.backImg {
+    width: 100%;
+    height: 80vh;
+    background: url(../../IMAGE/Home/BackC.png);
+    background-size: cover;
+    z-index: -1;
+}
+
+.backWord {
+    position: fixed;
+    left: 50%;
+    margin-left: -30%;
+    line-height: 60rem;
+    font-size: 12VW;
+    font-weight: bold;
+}
+
+.aboutBox {
+    position: absolute;
+    z-index: 1;
+    background-color: rgba(71, 100, 122, 0.3);
+    width: 30vw;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -40%);
+    line-height: 4vw;
+    text-align: center;
+    border-radius: 5%;
+    box-shadow:0px 5px 5px rgba(0,0,0,.5);
+    color: white;
+    /* 毛玻璃效果 */
+    backdrop-filter: blur(20px) saturate(150%);
+    transition: background-color ease .7s,box-shadow ease .7s,width ease .7s,backdrop-filter ease .5s;
+}
+
+.aboutBox:hover {
+    box-shadow: 0 0 40px rgba(0,0,0,.5);
+    background-color: rgba(71, 100, 122, 0.3);
+    backdrop-filter: blur(5px) saturate(100%);
+    width: 31%;
+}
+
+.logo {
+    width: 30%;
+    border-radius: 50%;
+    margin-top: -30px;
+    box-shadow: 0 0 30px rgba(50, 69, 85, 0.8);
+}
+
+.Name {
+    font-size: 2vw;
+}
+
+.Poem {
+    color: white;
+    font-size: 3vw;
+    padding-bottom: 10%;
+}
+
+.clouds img {
+    position: absolute;
+    bottom: 0;
+    max-width: 100%;
+    /* #云的移动速度# */
+    animation: animation calc(8s * var(--i)) linear infinite;
+}
+
+/* #云移动的开始到结尾位置# */
+@keyframes animation {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/*banner style end*/

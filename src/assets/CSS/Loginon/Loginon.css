@@ -1,0 +1,86 @@
+body {
+    overflow-x: hidden;
+    /*禁用横向滚动条*/
+    width: 100%;
+    height: 100%;
+}
+
+.loginIn {
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-image: url("../../IMAGE/Loginon/loginB.png");
+}
+
+.loginB1 {
+    /*css图层穿透！！！！！*/
+    -webkit-pointer-events: none;
+    -moz-pointer-events: none;
+    -ms-pointer-events: none;
+    -o-pointer-events: none;
+    pointer-events: none; /*这个最有用！*/
+    float: left;
+    z-index: 50;
+    right: 0px;
+    width: 50%;
+    height: 50%;
+    transform: scale(1);
+    background-size: cover;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-image: url("../../IMAGE/Loginon/loginB1.png");
+}
+
+.loginInBox {
+    position: absolute;
+    width: 30vw;
+    height: 60vh;
+    top: 22vh;
+    right: 28vw;
+    background-color: rgba(61, 61, 61, 0.8);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0px 5px 5px #000000;
+    transform: translateY(0px);
+}
+
+.goback {
+    border-radius: 10px;
+    cursor: pointer;
+    top: 2rem;
+    left: -50px;
+    position: absolute;
+    background-color: #2a4a34;
+    width: 5rem;
+    height: 2rem;
+    box-shadow: 0 0px 0px rgba(0, 0, 0, .5);
+    transition: left ease .7s,box-shadow ease .7s;
+}
+
+.goback:hover{
+    left: -60px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, .5);
+}
+
+.el-icon-arrow-left {
+    position: absolute;
+    top: .4rem;
+    font-size: 1.2rem;
+    color: #cfcfcf;
+}
+
+.Login_logon{
+    margin: 1rem 2rem;
+}
+
+
+
+.Login_logon *{
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #000000;
+}
+.active{
+    color: #cfcfcf;
+}
+
