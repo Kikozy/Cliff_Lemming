@@ -23,7 +23,7 @@
 
 <script>
 //导入外部JS
-import loginon from '../../assets/JS/Loginon/Loginon.js'
+import '../../assets/JS/Loginon/Loginon.js'
 
 export default {
   methods:{
