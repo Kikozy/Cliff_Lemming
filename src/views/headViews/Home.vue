@@ -29,9 +29,9 @@
         <div class="blogNews">
           <ul class="blogList">
 
-            <li>
+            <li @click="get_info">
               <div id="hole"></div>
-              <div class="title"><h1>标题</h1></div>
+              <div class="title"><h1>123</h1></div>
               <div class="content"><p id="blogP">内容</p></div>
             </li>
 
@@ -47,7 +47,19 @@
 
 <script>
 export default {
-  name: "Home"
+  name: "Home",
+  methods:{
+    get_info(){
+    this.$axios.get('/api/api/cliff/home')
+    .then((res)=>{
+      console.log(res.data);
+    })
+      .catch((err)=>{
+        console.log('获取列表失败',err)
+      })
+    }
+  }
+
 }
 </script>
 

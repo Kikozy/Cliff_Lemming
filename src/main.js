@@ -3,11 +3,12 @@ import App from './App.vue'
 import router from './router'
 import axios from 'axios'
 import './plugins/element.js'
+import '../vue.config.js'
 // 共同初始化包
 import './assets/CSS/Common.css'
 import './assets/CSS/scrollbar.css'
 
-// Vue.prototype.$axios = axios    //全局注册，使用方法为:this.$axios
+Vue.prototype.$axios = axios    //全局注册，使用方法为:this.$axios
 // Vue.prototype.qs = qs           //全局注册，使用方法为:this.qs
 
 Vue.config.productionTip = false
