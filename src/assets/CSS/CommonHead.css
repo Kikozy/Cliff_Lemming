@@ -8,52 +8,63 @@ a {
     position: fixed;
     width: 100%;
     height: 4rem;
-    background-color: rgba(71, 100, 122, 0.3);
-    box-shadow: 0px 5px 5px rgba(71, 100, 122, 0.3);
-    backdrop-filter: blur(20px);
+    background-color: rgba(59, 67, 76, 0.4);
+    box-shadow: 0px 5px 5px rgba(59, 67, 76, 0.4);
+    backdrop-filter: blur(50px);
 }
 
 .headTop * {
     float: left;
 }
 
-.itemHtml {
-    float: right;
-}
+/*.itemHtml {*/
+/*    float: right;*/
+/*}*/
 
-.itemHtml ul li {
-    line-height: 4rem;
-    padding-right: 2rem;
-}
+/*.itemHtml>ul>li {*/
+/*    margin-top: 1rem;*/
+/*    margin-right: 2rem;*/
+/*    background-color: #47647a;*/
+/*    border-radius: 10px;*/
+/*    padding: 5px;*/
+/*    transform: translateY(0);*/
+/*    transition: transform ease .3s;*/
+/*}*/
 
-.active{
-    color: white;
-}
+/*.itemHtml>ul>li:hover{*/
+/*    transform: translateY(5px);*/
+/*}*/
 
-.loginBar {
-    cursor: pointer;
-    font-weight: bold;
-    text-align: center;
-    margin: .3%;
-    height: 60%;
-    padding-top: 1%;
-    /*position: relative;*/
-    width: 70px;
-    border-radius: 10px;
-    background-color: #2a4a34;
-    transform: translateY(0px);
-    transition: transform ease .3s;
-}
 
-.loginBar:hover{
-    transform: translateY(-5px);
-}
 
-.loginBar a{
-    color: #cfcfcf;
-    width: 100%;
-    height: 100%;
-}
+/*.active{*/
+/*    color: green;*/
+/*}*/
+
+/*.loginBar {*/
+/*    cursor: pointer;*/
+/*    font-weight: bold;*/
+/*    text-align: center;*/
+/*    margin: .3%;*/
+/*    height: 60%;*/
+/*    padding-top: 1%;*/
+/*    !*position: relative;*!*/
+/*    width: 70px;*/
+/*    border-radius: 10px;*/
+/*    background-color: #2a4a34;*/
+/*    transform: translateY(0px);*/
+/*    transition: transform ease .3s;*/
+/*}*/
+
+/*.loginBar:hover{*/
+/*    transform: translateY(-5px);*/
+/*}*/
+
+/*.loginBar a{*/
+/*    color: #cfcfcf;*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*}*/
 /*====================天气模块样式=======================*/
 /*.weatherBar {*/
 /*    margin: .2%;*/
@@ -87,80 +98,80 @@ a {
 /*    font-weight: bold;*/
 /*}*/
 /*====================天气模块样式=======================*/
-/*musicStart*/
-.musicBar {
-    margin: .2%;
-    height: 90%;
-    width: 200px;
-    border-radius: 10px;
-    background-color: #47647a;
-    transform: translateY(0px);
-    transition: transform ease .3s;
-}
-.musicBar:hover{
-    transform: translateY(5px);
-}
-.musicBox {
-    margin: 10px 10px;
-}
-.Mpic{
-    top: 0px;
-    position: absolute;
-    background-color: white;
-    border-radius: 50%;
-    height: 100%;
-    width: 30%;
-    float: left;
-    box-shadow: 0px 5px 5px rgba(0,0,0,.5);
-}
+/*!*musicStart*!*/
+/*.musicBar {*/
+/*    margin: .2%;*/
+/*    height: 90%;*/
+/*    width: 200px;*/
+/*    border-radius: 10px;*/
+/*    background-color: #47647a;*/
+/*    transform: translateY(0px);*/
+/*    transition: transform ease .3s;*/
+/*}*/
+/*.musicBar:hover{*/
+/*    transform: translateY(5px);*/
+/*}*/
+/*.musicBox {*/
+/*    margin: 10px 10px;*/
+/*}*/
+/*.Mpic{*/
+/*    top: 0px;*/
+/*    position: absolute;*/
+/*    background-color: white;*/
+/*    border-radius: 50%;*/
+/*    height: 100%;*/
+/*    width: 30%;*/
+/*    float: left;*/
+/*    box-shadow: 0px 5px 5px rgba(0,0,0,.5);*/
+/*}*/
 
-.MusicControl{
-    position: absolute;
-    right: 50px;
-}
-.Mname{
-    background-color: #2a4a34;
-}
-.Mcontrol{
-    background-color: #cfcfcf;
-}
-.Mcontrol *{
-    cursor: pointer;
-}
-.Mhide{
-    display: none;
-}
-.Mtime{
-    position: absolute;
-    background-color: pink;
-    width: 100px;
-    height: 4px;
-    bottom: 0px;
-    right: 20px;
+/*.MusicControl{*/
+/*    position: absolute;*/
+/*    right: 50px;*/
+/*}*/
+/*.Mname{*/
+/*    background-color: #2a4a34;*/
+/*}*/
+/*.Mcontrol{*/
+/*    background-color: #cfcfcf;*/
+/*}*/
+/*.Mcontrol *{*/
+/*    cursor: pointer;*/
+/*}*/
+/*.Mhide{*/
+/*    display: none;*/
+/*}*/
+/*.Mtime{*/
+/*    position: absolute;*/
+/*    background-color: pink;*/
+/*    width: 100px;*/
+/*    height: 4px;*/
+/*    bottom: 0px;*/
+/*    right: 20px;*/
 
-}
-/*musicEnd*/
-
-
+/*}*/
+/*!*musicEnd*!*/
 
 
-/*用户留言开始*/
-.userMsgBar {
-    margin: .2%;
-    height: 90%;
-    width: 70px;
-    border-radius: 10px;
-    background-color: #47647a;
-    transform: translateY(0px);
-    transition: transform ease .3s;
-}
-
-.userMsgBar:hover{
-    transform: translateY(-5px);
-}
 
 
-.userMsgBox {
-    margin: 10px 10px;
-}
-/*用户留言结束*/
+/*!*用户留言开始*!*/
+/*.userMsgBar {*/
+/*    margin: .2%;*/
+/*    height: 90%;*/
+/*    width: 70px;*/
+/*    border-radius: 10px;*/
+/*    background-color: #47647a;*/
+/*    transform: translateY(0px);*/
+/*    transition: transform ease .3s;*/
+/*}*/
+
+/*.userMsgBar:hover{*/
+/*    transform: translateY(-5px);*/
+/*}*/
+
+
+/*.userMsgBox {*/
+/*    margin: 10px 10px;*/
+/*}*/
+/*!*用户留言结束*!*/

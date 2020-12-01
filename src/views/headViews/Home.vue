@@ -28,13 +28,13 @@
       <div class="HContent w">
         <div class="blogNews">
           <ul class="blogList">
-
-            <li @click="get_info">
-              <div id="hole"></div>
-              <div class="title"><h1>123</h1></div>
-              <div class="content"><p id="blogP">内容</p></div>
-            </li>
-
+            <transition-group name="showUp">
+              <li v-for="(item,index) in data" v-bind:key="index">
+                <div id="hole"></div>
+                <div class="title"><h1>{{ item.title }}</h1></div>
+                <div class="content"><p id="blogP">{{ item.content }}</p></div>
+              </li>
+            </transition-group>
           </ul>
         </div>
         <div class="infoMe">
@@ -46,24 +46,36 @@
 </template>
 
 <script>
-export default {
-  name: "Home",
-  methods:{
-    get_info(){
-    this.$axios.get('/api/api/cliff/home')
-    .then((res)=>{
-      console.log(res.data);
-    })
-      .catch((err)=>{
-        console.log('获取列表失败',err)
-      })
-    }
-  }
+//导入需要的包
+import {request} from "@/network/requests";
 
+export default {
+  data() {
+    return {
+      data: []
+    }
+  },
+  created() {
+    request({
+      // url:'http://127.0.0.1:5000/api/cliff/home'
+      url: '/home'
+    }).then(res => {
+      console.log(res.data);
+      this.data = res.data
+    }).catch(err => {
+      console.log('===jianshu ERR===',err)
+    })
+  }
 }
 </script>
 
 <style scoped>
 @import "../../assets/CSS/HomeCss/Banner.css";
 @import "../../assets/CSS/HomeCss/Blog.css";
+
+/*vue动画*/
+.showUp-enter{
+  transform: translateY(100px);
+}
+
 </style>
