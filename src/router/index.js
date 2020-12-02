@@ -8,6 +8,7 @@ import Loginon from '../views/headViews/Loginon.vue'
 import About from '../views/headViews/About.vue'
 import Login from "@/components/Loginon/Login";
 import Logon from "@/components/Loginon/Logon";
+import LCCenter from '@/views/LemControlCenter/LCCenter.vue'
 
 
 // router报错解决
@@ -33,6 +34,7 @@ const routes = [
     // }
 
     //重定向，当访问/路径时，自动跳转到/home
+    // 主页
     {path: '/', redirect: '/home'},
     {
         path: '/',
@@ -44,6 +46,7 @@ const routes = [
         ]
     },
     //默认重定向路径
+    // 登录
     {path:'/loginon', redirect: '/login'},
     {
         path: '/loginon',
@@ -52,7 +55,9 @@ const routes = [
             {path:'/login',component: Login},
             {path:'/logon',component: Logon}
             ]
-    }
+    },
+    // 控制
+    {path:'/lccenter',component: LCCenter}
 ]
 
 const router = new VueRouter({

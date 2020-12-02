@@ -16,6 +16,9 @@
       <li>
         <router-link to="/test">Test</router-link>
       </li>
+      <li>
+        <router-link to="/lccenter">Center</router-link>
+      </li>
     </ul>
   </div>
 </template>
