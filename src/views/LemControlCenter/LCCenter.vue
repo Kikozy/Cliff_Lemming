@@ -1,16 +1,21 @@
 <template>
   <div class="center">
     <div class="center_left_box">
-      <h1>控制中心</h1>
+      <h1 class="centerTitle">控制中心</h1>
+      <div><h1>数据信息</h1></div>
       <div><h1>用户管理</h1></div>
       <div><h1>文章管理</h1></div>
       <div><h1>音乐管理</h1></div>
-      <div><h1>其他</h1></div>
-      <div><h1>其他</h1></div>
-      <div><h1>其他</h1></div>
-      <div><h1>其他</h1></div>
-      <div><h1>其他</h1></div>
-      <div><h1>其他</h1></div>
+      <div><h1>-</h1></div>
+      <div><h1>-</h1></div>
+      <div><h1>-</h1></div>
+      <div><h1>-</h1></div>
+      <div><h1>-</h1></div>
+      <div><h1>-</h1></div>
+      <div><h1>-</h1></div>
+      <div><h1>-</h1></div>
+
+
     </div>
 
   </div>
@@ -23,18 +28,39 @@ export default {
 </script>
 
 <style scoped>
+.centerTitle {
+  text-align: center;
+  font-size: 2rem;
+}
+
 .center {
   background-color: pink;
   width: 100%;
-  height: 100%;
+  height: 100rem;
 }
 
-.center_left_box{
+.center_left_box {
   border-radius: 10px;
-  box-shadow: 10px 5px 20px rgba(0,0,0,0.5);
+  position: fixed;
+  overflow-y: scroll;
+  float: left;
+  box-shadow: 10px 5px 20px rgba(0, 0, 0, 0.5);
+  margin: 1rem;
   width: 15rem;
-  height: 100%;
+  height: 45rem;
   background-color: #617b88;
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+  display: none;
+  background-color: #617b88;
+}
+
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb {
+  display: none;
+  background-color: #cfcfcf;
 }
 
 
