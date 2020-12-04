@@ -1,11 +1,25 @@
 <template>
   <div class="center">
     <div class="center_left_box">
+      <div id="admin_toback" @click="center_toback">
+        <i class="el-icon-arrow-left">Home</i>
+      </div>
       <h1 class="centerTitle">控制中心</h1>
-      <div><h1>数据信息</h1></div>
-      <div><h1>用户管理</h1></div>
-      <div><h1>文章管理</h1></div>
-      <div><h1>音乐管理</h1></div>
+      <router-link to="/lemming_admin/data_info">
+        <div><h1>数据信息</h1></div>
+      </router-link>
+      <router-link to="/lemming_admin/users_admin">
+        <div><h1>用户管理</h1></div>
+      </router-link>
+      <router-link to="/lemming_admin/article_admin">
+        <div><h1>文章管理</h1></div>
+      </router-link>
+      <router-link to="/lemming_admin/userMsg_admin">
+        <div><h1>留言管理</h1></div>
+      </router-link>
+      <router-link to="/lemming_admin/music_admin">
+        <div><h1>音乐管理</h1></div>
+      </router-link>
       <div><h1>-</h1></div>
       <div><h1>-</h1></div>
       <div><h1>-</h1></div>
@@ -14,20 +28,35 @@
       <div><h1>-</h1></div>
       <div><h1>-</h1></div>
       <div><h1>-</h1></div>
-
-
     </div>
-
+    <div class="center_right_info">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "LCCenter"
+  name: "LCCenter",
+  methods: {
+    center_toback() {
+      this.$router.push('/')
+    }
+  }
 }
 </script>
 
 <style scoped>
+#admin_toback {
+  position: fixed;
+  z-index: 1;
+  left: 11rem;
+  top: -.5rem;
+  width: 5rem;
+  height: 2rem;
+  background-color: #4d626c;
+}
+
 .centerTitle {
   text-align: center;
   font-size: 2rem;

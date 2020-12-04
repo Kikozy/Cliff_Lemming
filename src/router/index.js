@@ -8,7 +8,13 @@ import Loginon from '../views/headViews/Loginon.vue'
 import About from '../views/headViews/About.vue'
 import Login from "@/components/Loginon/Login";
 import Logon from "@/components/Loginon/Logon";
+
 import LCCenter from '@/views/LemControlCenter/LCCenter.vue'
+import Data_info from '@/components/adminControls/data_info.vue'
+import Music_admin from '@/components/adminControls/music_admin.vue'
+import Usermsg_admin from '@/components/adminControls/userMsg_admin.vue'
+import Users_admin from '@/components/adminControls/users_admin.vue'
+import Article_admin from '@/components/adminControls/article_admin.vue'
 
 
 // router报错解决
@@ -20,19 +26,6 @@ VueRouter.prototype.push = function push(location) {
 Vue.use(VueRouter)
 // 路由
 const routes = [
-    // {
-    //   path: '/about',
-    //   component: About
-    // },
-    // {
-    //   path: '/about',
-    //   name: 'About',
-    //   // route level code-splitting
-    //   // this generates a separate chunk (about.[hash].js) for this route
-    //   // which is lazy-loaded when the route is visited.
-    //   component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-    // }
-
     //重定向，当访问/路径时，自动跳转到/home
     // 主页
     {path: '/', redirect: '/home'},
@@ -57,7 +50,16 @@ const routes = [
             ]
     },
     // 控制
-    {path:'/lccenter',component: LCCenter}
+    {path:'/lemming_admin/lccenter',redirect: '/lemming_admin/data_info'},
+    {path:'/lemming_admin/lccenter',component: LCCenter,
+        children: [
+            {path: '/lemming_admin/data_info',component: Data_info},
+            {path:'/lemming_admin/music_admin',component: Music_admin},
+            {path:'/lemming_admin/userMsg_admin',component: Usermsg_admin},
+            {path: '/lemming_admin/article_admin',component: Article_admin},
+            {path: '/lemming_admin/users_admin',component: Users_admin}
+        ]
+    }
 ]
 
 const router = new VueRouter({
