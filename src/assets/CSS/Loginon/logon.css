@@ -1,24 +1,9 @@
 .logonInput {
-    /*background-color: pink;*/
     position: absolute;
-    top: 60%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    margin-left: 20%;
+    margin-top: 25%;
+
 }
-
-/*.input {*/
-/*    box-shadow: 0 5px 5px rgba(0, 0, 0, .5);*/
-/*    padding-left: 1rem;*/
-/*    font-weight: bold;*/
-/*    font-size: 1rem;*/
-/*    margin-bottom: 5rem;*/
-/*    margin-top: 0rem;*/
-/*    border: 0px;*/
-/*    width: 15rem;*/
-/*    height: 3rem;*/
-/*    border-radius: 10px;*/
-/*}*/
-
 .logonBtn {
     font-weight: bold;
     font-size: 1rem;

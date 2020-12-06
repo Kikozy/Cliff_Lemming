@@ -4,7 +4,11 @@ body {
     width: 100%;
     height: 100%;
 }
-
+/*隐藏滚动条*/
+::-webkit-scrollbar {
+  display: none;
+  background-color: #cfcfcf;
+}
 .loginIn {
     width: 100%;
     height: 100vh;
@@ -54,10 +58,10 @@ body {
     width: 5rem;
     height: 2rem;
     box-shadow: 0 0px 0px rgba(0, 0, 0, .5);
-    transition: left ease .7s,box-shadow ease .7s;
+    transition: left ease .7s, box-shadow ease .7s;
 }
 
-.goback:hover{
+.goback:hover {
     left: -60px;
     box-shadow: 0 3px 5px rgba(0, 0, 0, .5);
 }
@@ -69,18 +73,40 @@ body {
     color: #cfcfcf;
 }
 
-.Login_logon{
-    margin: 1rem 2rem;
+.Login_logon {
+    margin: 1rem 3rem;
+    float: left;
 }
 
-
-
-.Login_logon *{
+.logBar {
+    border-radius: 10px;
+    padding: .5rem;
+    float: left;
+    background-color: #cfcfcf;
     font-size: 2.5rem;
     font-weight: bold;
     color: #000000;
-}
-.active{
-    color: #cfcfcf;
+    transform: translateY(0px);
+    transition: transform ease .3s;
 }
 
+.logBar:hover {
+    transform: translateY(-3px);
+}
+
+.logonBar {
+    position: absolute;
+    z-index: -1;
+    right: 14rem;
+    top: 1.5rem;
+}
+
+.active1 {
+    z-index: 1;
+    color: #cfcfcf;
+    background-color: #2a4a34;
+}
+
+.showLog{
+
+}

@@ -10,8 +10,12 @@
         <a href="javascript:;">
           <img class="logo" src="../../assets/IMAGE/Home/HeadB.png"/>
           <h4 class="Name">Lemming</h4>
-          <div class="Poem">
-            <h6>念去去、千里烟波<br/>暮霭沉沉楚天阔</h6>
+          <div class="bannerInfo">
+            <ul>
+              <li><div>博客</div></li>
+              <li><div>信息</div></li>
+              <li><div>其他</div></li>
+            </ul>
           </div>
         </a>
       </div>

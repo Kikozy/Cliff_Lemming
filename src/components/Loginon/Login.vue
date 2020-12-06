@@ -2,7 +2,7 @@
   <div class="LoginForm">
     <div class="loginInput">
       <!--  登录表单   -->
-      <el-form class="Login-el">
+      <form class="Login" action="">
 <!--        <el-form-item id="username" label="账号" prop="name">-->
           <input class="username input" type="text" name="username" placeholder="用户名">
 <!--        </el-form-item>-->
@@ -12,7 +12,7 @@
 <!--        <el-form-item>-->
           <input class="loginBtn" type="submit" value="登录">
 <!--        </el-form-item>-->
-      </el-form>
+      </form>
     </div>
   </div>
 
@@ -20,7 +20,17 @@
 
 <script>
 export default {
-  name: "Login"
+  name: "Login",
+  data(){
+    return{
+      login_url:''
+    }
+  },
+  methods:{
+    get_post_login(){
+      this.login_url=''
+    }
+  }
 }
 </script>
 

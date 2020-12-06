@@ -45,7 +45,7 @@ export default {
     request({
       url: '/music'
     }).then(res => {
-      console.log(res.data)
+      // console.log(res.data)
       this.music_data = res.data
     }).catch(err => {
       console.log('===music ERR===', err)
@@ -123,7 +123,7 @@ export default {
   height: 90%;
   width: 200px;
   border-radius: 10px;
-  background-color: #617B88;
+  background-color: #617b88;
   transform: translateY(0px);
   transition: transform ease .3s;
 }
@@ -184,7 +184,7 @@ export default {
   border-radius: 5px;
   width: 300px;
   height: 400px;
-  background-color: #395163;
+  background-color: #04617f;
   opacity: 10;
   box-shadow: 0 5px 5px rgba(0, 0, 0, .5);
 

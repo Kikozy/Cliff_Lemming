@@ -1,9 +1,7 @@
 .loginInput{
-    /*background-color: pink;*/
     position: absolute;
-    top: 60%;
-    left: 50%;
-    transform: translate(-50%,-50%);
+    margin-left: 20%;
+    margin-top: 40%;
 }
 
 

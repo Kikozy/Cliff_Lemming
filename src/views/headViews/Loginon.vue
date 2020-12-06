@@ -10,11 +10,18 @@
         <i class="el-icon-arrow-left">Home</i>
       </div>
       <div class="Login_logon">
-        <router-link :class="{active}" @click="active =! active" id="loginbtn" to="/login">Login</router-link>
-        <span style="color: #cfcfcf">/</span>
-        <router-link id="logonbtn" to="/logon">Logon</router-link>
+        <div class="logBar loginBar" @click="active(1)" :class="{active1:style===1}">
+          <router-link id="loginbtn" to="/login">Login</router-link>
+        </div>
+        <div class="logBar logonBar" @click="active(2)" :class="{active1:style===2}">
+          <router-link id="logonbtn" to="/logon">Logon</router-link>
+        </div>
       </div>
-      <router-view/>
+          <!--定义组件动画-->
+      <transition name="showUp">
+          <router-view/>
+      </transition>
+
     </div>
   </div>
 </template>
@@ -27,10 +34,13 @@
 export default {
   data() {
     return {
-      active: false
+      style: 1,
     }
   },
   methods: {
+    active(index) {
+      this.style = index;
+    },
     goback() {
       this.$router.push('/')
     }
@@ -40,4 +50,20 @@ export default {
 
 <style scoped>
 @import "../../assets/CSS/Loginon/Loginon.css";
+
+/*定义组件动画start*/
+
+.showUp-leave {
+  opacity: 0;
+}
+.showUp-enter {
+  transform: translateX(50px);
+  opacity: 0;
+}
+/*进入和离开执行的时间*/
+.showUp-enter-active, .showUp-leave-active {
+  transition: all .5s;
+}
+/*定义组件动画end*/
+
 </style>

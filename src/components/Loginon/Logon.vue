@@ -1,8 +1,8 @@
 <template>
 <div class="LogonForm">
     <div class="logonInput">
-      <!--  登录表单   -->
-      <form  class="Logon-el" action="http://127.0.0.1:5000/api/cliff/login" method="post">
+      <!-- 注册表单   -->
+      <form  class="Logon" :action=logon_url method="post">
 <!--        <el-form-item id="username" label="账号" prop="name">-->
           <input class="username input" type="text" name = 'username' placeholder="用户名">
 <!--        </el-form-item>-->
@@ -16,7 +16,7 @@
           <input class="email input" type="text" name = 'mail' placeholder="邮箱">
 <!--        </el-form-item>-->
 <!--        <el-form-item>-->
-          <input class="logonBtn" type="submit" value="注册">
+          <input class="logonBtn" type="submit" value="注册" @click="get_post_logon">
 <!--        </el-form-item>-->
       </form>
     </div>
@@ -25,7 +25,17 @@
 
 <script>
 export default {
-
+  // 隐藏表单跳转链接
+  data(){
+    return {
+      logon_url:'不要乱搞哥哥！'
+    }
+  },
+  methods:{
+    get_post_logon(){
+      this.logon_url='http://127.0.0.1:5000/api/cliff/user_register'
+    }
+  }
 }
 </script>
 

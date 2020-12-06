@@ -23,7 +23,7 @@
 .aboutBox {
     position: absolute;
     z-index: 1;
-    background-color: rgba(162, 164, 165,.4);
+    background-color: rgba(140, 158, 168, .4);
     width: 30vw;
     top: 40%;
     left: 50%;
@@ -56,11 +56,34 @@
     font-size: 2vw;
 }
 
-.Poem {
-    color: white;
-    font-size: 3vw;
-    padding-bottom: 10%;
+.bannerInfo{
+    background-color: #00b1ff;
 }
+
+.bannerInfo>ul>li{
+    margin-left: 2.5%;
+    margin-top: 5%;
+    margin-bottom: 2.5%;
+    border-radius: 10px;
+    float: left;
+     background-image: linear-gradient( rgba(0,0,0,0), #8c9ea8);
+    width: 30%;
+    height: 7rem;
+    box-shadow: 0 0px 0px #000000;
+    transform: translateY(0px);
+    transition: transform ease .3s, box-shadow ease .3s;
+}
+.bannerInfo>ul>li:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 5px 5px rgba(0,0,0,.4);
+}
+
+
+
+
+
+
+
 
 .clouds img {
     position: absolute;

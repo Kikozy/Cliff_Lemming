@@ -17,7 +17,7 @@ export default {
     height: 90%;
     width: 70px;
     border-radius: 10px;
-    background-color: #617B88;
+    background-color:#617b88;
     transform: translateY(0px);
     transition: transform ease .3s;
 }
