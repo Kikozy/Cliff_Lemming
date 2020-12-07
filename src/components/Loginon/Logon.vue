@@ -1,45 +1,77 @@
 <template>
-<div class="LogonForm">
+  <div class="LogonForm">
     <div class="logonInput">
       <!-- 注册表单   -->
-      <form  class="Logon" :action=logon_url method="post">
-<!--        <el-form-item id="username" label="账号" prop="name">-->
-          <input class="username input" type="text" name = 'username' placeholder="用户名">
-<!--        </el-form-item>-->
-<!--        <el-form-item label="密码" prop="name">-->
-          <input class="password input" type="password" name = 'password' placeholder="密码">
-<!--        </el-form-item>-->
-<!--        <el-form-item label="确认密码" prop="name">-->
-          <input class="repassword input" type="password" name = 'repassword' placeholder="确认密码">
-<!--        </el-form-item>-->
-<!--        <el-form-item label="邮箱" prop="name">-->
-          <input class="email input" type="text" name = 'mail' placeholder="邮箱">
-<!--        </el-form-item>-->
-<!--        <el-form-item>-->
-          <input class="logonBtn" type="submit" value="注册" @click="get_post_logon">
-<!--        </el-form-item>-->
+      <form class="Logon" :action=logon_url method="post">
+        <input class="username input" type="text" name='username' placeholder="用户名">
+        <input class="password input" type="password" name='password' placeholder="密码">
+        <span class="hidden movestyle" id="matchPassword">两次密码不一致！💤</span>
+        <!--当输入完成后自动执行函数-->
+        <input class="repassword input" type="password" name='repassword' placeholder="确认密码" @keyup="matchPassword">
+        <input class="email input" type="text" name='mail' placeholder="邮箱" @keyup="matchMail">
+        <input class="logonBtn isErr" id="isErr" type="submit" value="注册" disabled="ture" @click="get_post_logon">
+        <span class="hidden movestyle" id="matchMail">请输入正确的邮箱格式！💤</span>
       </form>
     </div>
   </div>
 </template>
 
 <script>
+import {post_url} from "@/network/post_base_url";
+import $ from "jquery";
+
 export default {
   // 隐藏表单跳转链接
-  data(){
+  data() {
     return {
-      logon_url:'不要乱搞哥哥！'
+      back: '',
+      logon_url: '不要乱搞哥哥！'
     }
   },
-  methods:{
-    get_post_logon(){
-      this.logon_url='http://127.0.0.1:5000/api/cliff/user_register'
+
+  methods: {
+    // 判断两次密码是否正确
+    matchPassword() {
+      var mail = $("input[name='mail']").val();
+      var password = $("input[name='password']").val();
+      var repassword = $("input[name='repassword']").val();
+      // var mail = $("input[name='mail']").val();
+      if (password != repassword) {
+        $("#matchPassword").removeClass('hidden')
+      }
+      if (password === repassword) {
+        $("#matchPassword").addClass('hidden')
+      }
+      if (password === repassword && mail.indexOf('@') >= 0 && mail.indexOf('.') >= 0) {
+        $("#isErr").removeClass('isErr');
+        $("#isErr").attr("disabled", false);
+      }
+    },
+    // 判断邮箱格式是否正确
+    matchMail() {
+      var password = $("input[name='password']").val();
+      var repassword = $("input[name='repassword']").val();
+      var mail = $("input[name='mail']").val();
+      // 如果mail里面是没有@和.com这个字符将执行下面，（xxx >= 0则是判断里面有）
+      if (mail.indexOf('@') <= 0 && mail.indexOf('.') <= 0) {
+        $("#matchMail").removeClass('hidden')
+      }
+      if (mail.indexOf('@') >= 0 && mail.indexOf('.') >= 0) {
+        $("#matchMail").addClass('hidden')
+      }
+      if (password === repassword && mail.indexOf('@') >= 0 && mail.indexOf('.') >= 0) {
+        $("#isErr").removeClass('isErr')
+        $("#isErr").attr("disabled", false);
+      }
+    },
+
+    get_post_logon() {
+      this.logon_url = post_url() + '/user_register'
     }
   }
 }
 </script>
 
 <style scoped>
-  @import '../../assets/CSS/Loginon/logon.css';
-  /*@import '../../assets/CSS/IconFont/iconfont.css';*/
+@import '../../assets/CSS/Loginon/logon.css';
 </style>

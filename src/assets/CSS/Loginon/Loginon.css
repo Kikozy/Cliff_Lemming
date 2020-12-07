@@ -105,6 +105,7 @@ body {
     z-index: 1;
     color: #cfcfcf;
     background-color: #2a4a34;
+    box-shadow: 0 5px 5px rgba(0,0,0,.5);
 }
 
 .showLog{

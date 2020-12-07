@@ -13,7 +13,7 @@
 
 <script>
 import MusicBar from "@/components/Head/MusicBar";
-import Login from "@/components/Head/login";
+import Login from "@/components/Head/loginBar";
 import userMsgBar from "@/components/Head/userMsgBar";
 import itemHtml from "@/components/Head/itemHtml";
 

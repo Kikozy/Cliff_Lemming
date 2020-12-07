@@ -24,6 +24,7 @@ export default {
 
 .userMsgBar:hover{
     transform: translateY(-5px);
+
 }
 
 
