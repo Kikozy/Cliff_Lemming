@@ -63,12 +63,12 @@ export default {
 }
 
 .center {
-  background-color: pink;
-  width: 100%;
-  height: 100rem;
+  /*background-color: pink;*/
+  /*width: 100%;*/
 }
 
 .center_left_box {
+  z-index: 999;
   border-radius: 10px;
   position: fixed;
   overflow-y: scroll;
@@ -77,7 +77,7 @@ export default {
   margin: 1rem;
   width: 15rem;
   height: 45rem;
-  background-color: #617b88;
+  background-color: #ffffff;
 }
 
 ::-webkit-scrollbar {
@@ -95,7 +95,7 @@ export default {
 
 .center_left_box div {
   cursor: pointer;
-  background-color: #1e4655;
+  background-color: #959595;
   width: 10rem;
   height: 4rem;
   border-radius: 10px;
@@ -111,10 +111,16 @@ export default {
 }
 
 .center_left_box div h1 {
-  color: #cfcfcf;
+  color: #000000;
   padding: 1rem;
   float: right;
   font-size: 1.5rem;
   text-align: center;
+}
+
+.center_right_info {
+  background-color: #0077aa;
+  width: 100%;
+  margin-left: 17rem;
 }
 </style>

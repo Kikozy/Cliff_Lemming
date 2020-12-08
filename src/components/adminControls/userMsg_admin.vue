@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: "userMsg_admin"
+
 }
 </script>
 

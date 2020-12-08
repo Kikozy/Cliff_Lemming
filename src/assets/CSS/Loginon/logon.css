@@ -25,6 +25,20 @@
 /*    display: none;*/
 /*}*/
 
+#matchUsername{
+    position: absolute;
+    width: 15rem;
+    top:2.5rem;
+    right: -5rem;
+    z-index: -1;
+    font-weight: bold;
+    color: #000000;
+    background-color: pink;
+    padding: .5rem;
+    border-radius: 10px;
+    float: right;
+}
+
 #matchPassword {
     /*font-size: 1rem;*/
     position: absolute;
@@ -52,9 +66,6 @@
     float: right;
 }
 
-.isErr{
-    /*background-color: red;*/
-}
 
 .movestyle {
     animation: move .5s;

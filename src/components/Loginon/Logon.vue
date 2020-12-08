@@ -3,7 +3,8 @@
     <div class="logonInput">
       <!-- 注册表单   -->
       <form class="Logon" :action=logon_url method="post">
-        <input class="username input" type="text" name='username' placeholder="用户名">
+        <input class="username input" type="text" name='username' placeholder="用户名" @keyup="matchUsername">
+        <span class="hidden movestyle" id="matchUsername">请输入用户名（至少4位）！💤</span>
         <input class="password input" type="password" name='password' placeholder="密码">
         <span class="hidden movestyle" id="matchPassword">两次密码不一致！💤</span>
         <!--当输入完成后自动执行函数-->
@@ -32,35 +33,53 @@ export default {
   methods: {
     // 判断两次密码是否正确
     matchPassword() {
+      var username = $("input[name='username']").val();
       var mail = $("input[name='mail']").val();
       var password = $("input[name='password']").val();
       var repassword = $("input[name='repassword']").val();
       // var mail = $("input[name='mail']").val();
-      if (password != repassword) {
-        $("#matchPassword").removeClass('hidden')
+      if (password !== repassword) {
+        $("#matchPassword").removeClass('hidden');
+        $("#isErr").attr("disabled", true);
       }
       if (password === repassword) {
-        $("#matchPassword").addClass('hidden')
+        $("#matchPassword").addClass('hidden');
       }
-      if (password === repassword && mail.indexOf('@') >= 0 && mail.indexOf('.') >= 0) {
-        $("#isErr").removeClass('isErr');
+      if (username.length >= 0 && password === repassword && mail.indexOf('@') >= 0 && mail.indexOf('.') >= 0) {
         $("#isErr").attr("disabled", false);
       }
     },
     // 判断邮箱格式是否正确
     matchMail() {
+      var username = $("input[name='username']").val();
       var password = $("input[name='password']").val();
       var repassword = $("input[name='repassword']").val();
       var mail = $("input[name='mail']").val();
       // 如果mail里面是没有@和.com这个字符将执行下面，（xxx >= 0则是判断里面有）
       if (mail.indexOf('@') <= 0 && mail.indexOf('.') <= 0) {
-        $("#matchMail").removeClass('hidden')
+        $("#matchMail").removeClass('hidden');
+        $("#isErr").attr("disabled", true);
       }
       if (mail.indexOf('@') >= 0 && mail.indexOf('.') >= 0) {
-        $("#matchMail").addClass('hidden')
+        $("#matchMail").addClass('hidden');
       }
-      if (password === repassword && mail.indexOf('@') >= 0 && mail.indexOf('.') >= 0) {
-        $("#isErr").removeClass('isErr')
+      if (username.length >= 4 && password === repassword && mail.indexOf('@') >= 0 && mail.indexOf('.') >= 0) {
+        $("#isErr").attr("disabled", false);
+      }
+    },
+    matchUsername() {
+      var username = $("input[name='username']").val();
+      var password = $("input[name='password']").val();
+      var repassword = $("input[name='repassword']").val();
+      var mail = $("input[name='mail']").val();
+      if (username.length >= 4) {
+        $("#matchUsername").addClass('hidden');
+      }
+      if (username.length < 4) {
+        $("#matchUsername").removeClass('hidden');
+        $("#isErr").attr("disabled", true);
+      }
+      if (username.length >= 4 && password === repassword && mail.indexOf('@') >= 0 && mail.indexOf('.') >= 0) {
         $("#isErr").attr("disabled", false);
       }
     },

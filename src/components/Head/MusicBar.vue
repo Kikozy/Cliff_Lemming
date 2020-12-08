@@ -20,7 +20,7 @@
         <ul class="Mul">
           <li class="Mli" v-for="(music,index) in music_data">
             <span class="songNum">{{ index + 1 }}</span>
-            <span class="songName">{{ music.song_name }}</span>
+            <span class="songName">{{ music.name }}</span>
             <span class="singer">{{ music.singer }}</span>
           </li>
         </ul>
@@ -43,7 +43,7 @@ export default {
   },
   created() {
     request({
-      url: '/music'
+      url: '/muisic_info'
     }).then(res => {
       // console.log(res.data)
       this.music_data = res.data
