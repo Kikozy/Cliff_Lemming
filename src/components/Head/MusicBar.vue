@@ -10,7 +10,8 @@
           <p class="Mplay">播放</p>
         </div>
       </div>
-      <audio id="audio" src="http://music.163.com/song/media/outer/url?id=1441939268.mp3"></audio>
+      <audio id="audio"
+             src="https://ws.stream.qqmusic.qq.com/C400002Qq3Fj2TRUxW.m4a?guid=8138497182&vkey=8B04D38AAC3377BACEFB991B1C7200CADB769895BC6970FA608E14CAEC264C73471AF3323E36806689BBD1D04B0876CDA7D5705B06A378B7&uin=0&fromtag=66"></audio>
       <div class="Mtime">
         <div class="Mbar"></div>
       </div>
@@ -73,7 +74,8 @@ export default {
         $('.Mpic').animate({
           top: '0px',
         }, 500)
-      }if (audio.ended) {
+      }
+      if (audio.ended) {
         //暂停音乐
         audio.pause();
         //暂停后隐藏暂停按钮
@@ -179,15 +181,15 @@ export default {
 }
 
 .Mlist {
+  z-index: -1;
   margin-top: 38px;
   padding: .5rem;
-  border-radius: 5px;
+  border-radius: 10px;
   width: 300px;
   height: 400px;
-  background-color: #04617f;
+  background-color: #617b88;
   opacity: 10;
-  box-shadow: 0 5px 5px rgba(0, 0, 0, .5);
-
+  box-shadow: 0 5px 5px rgba(0, 0, 0, .3);
 }
 
 .Mul {
@@ -226,7 +228,7 @@ export default {
   padding: 5px;
   box-shadow: 0 0 0 #000000;
   transform: translateY(0px);
-  transition: background-color ease .5s, transform ease .5s, box-shadow ease .5s;
+  transition: background-color ease .3s, transform ease .3s, box-shadow ease .3s;
 }
 
 .songName:hover {

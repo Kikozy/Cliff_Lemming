@@ -20,11 +20,11 @@ export default {
   cursor: pointer;
   font-weight: bold;
   text-align: center;
-  margin: .3%;
-  height: 60%;
-  padding-top: 1%;
+  margin: .5rem;
+  /*height: 60%;*/
+  padding:1rem;
   /*position: relative;*/
-  width: 70px;
+  /*width: 70px;*/
   border-radius: 10px;
   background-color: #305747;
   transform: translateY(0px);

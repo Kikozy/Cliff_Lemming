@@ -24,14 +24,13 @@ export default {
     Login,
     MusicBar
   },
-  methods: {
-
-  }
+  methods: {}
 }
 </script>
 <style scoped>
 /* scoped是局部使用 */
 /*导入外部css*/
 @import '../assets/CSS/CommonHead.css';
+
 
 </style>

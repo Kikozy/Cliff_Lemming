@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="Music_data">
-      <el-table :data="music_data" border="width:100%">
+      <el-table :data="music_data" border style="width: 100%">
         <el-table-column type="index" label="序号" width="50"></el-table-column>
         <el-table-column prop="id" label="id" width="50"></el-table-column>
         <el-table-column prop="name" label="歌名" width="100"></el-table-column>
@@ -29,6 +29,7 @@ import {request} from "@/network/requests";
 export default {
   name: "music_admin",
   data() {
+    this.$forceUpdate();
     return {
       music_data: []
     }
@@ -38,15 +39,19 @@ export default {
       url: "/muisic_info"
     }).then(res => {
       this.music_data = res.data
+      console.log(res)
     }).catch(err => {
       console.log('===musicControl Err!!===', err)
     })
-  }
+    this.$forceUpdate();
+  },
+
 }
 </script>
 
 <style scoped>
 .BaseStyle {
+  z-index: 888;
   cursor: pointer;
   color: #cfcfcf;
   font-weight: bold;

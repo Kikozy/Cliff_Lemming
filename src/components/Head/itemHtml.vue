@@ -31,25 +31,35 @@ export default {
 
 <style scoped>
 .itemHtml {
+  background-color: pink;
   float: right;
+  margin:.2rem;
+  padding: 1rem;
+  border-radius: 10px;
+  background-color: rgba(207, 207, 207, 0.2);
+  box-shadow: 0px 5px 5px rgba(73, 73, 73, 0.5);
+  backdrop-filter: blur(50px);
 }
-li{
-  margin-top: 1rem;
-  margin-right: 2rem;
+
+li {
+  margin-left: 1rem;
   background-color: #617B88;
   border-radius: 10px;
   padding: 5px;
   transform: translateY(0);
   transition: transform ease .3s;
 }
-li>*{
+
+li > * {
   color: #cfcfcf;
 }
+
 .itemHtml > ul > li:hover {
   transform: translateY(5px);
 }
+
 .active {
   /*color: black;*/
-  background-color:  #305747;
+  background-color: #305747;
 }
 </style>
