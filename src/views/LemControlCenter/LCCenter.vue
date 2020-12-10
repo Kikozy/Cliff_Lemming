@@ -30,7 +30,7 @@
       <div><h1>-</h1></div>
     </div>
     <div class="center_right_info">
-      <router-view></router-view>
+      <router-view v-if="isRouteAlive"/>
     </div>
   </div>
 </template>
@@ -38,9 +38,25 @@
 <script>
 export default {
   name: "LCCenter",
+  provide() {
+    return {
+      reload: this.reload
+    }
+  },
+  data() {
+    return {
+      isRouteAlive: true
+    }
+  },
   methods: {
     center_toback() {
       this.$router.push('/')
+    },
+    reload() {
+      this.isRouteAlive = false
+      this.$nextTick(() => {
+        this.isRouteAlive = true
+      })
     }
   }
 }

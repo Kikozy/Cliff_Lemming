@@ -10,7 +10,7 @@ body {
   background-color: #cfcfcf;
 }
 .loginIn {
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     background-size: cover;
     background-image: url("../../IMAGE/Loginon/loginB.png");
@@ -44,25 +44,26 @@ body {
     background-color: rgba(61, 61, 61, 0.8);
     border-radius: 20px;
     backdrop-filter: blur(10px);
-    box-shadow: 0px 5px 5px #000000;
+    box-shadow: 1px 1px 2px rgba(255, 255, 255, 0.1) inset,3px 4px 5px rgba(0, 0, 0, .5);
     transform: translateY(0px);
 }
 
 .goback {
+    z-index: 888;
     border-radius: 10px;
     cursor: pointer;
-    top: 2rem;
-    left: -50px;
+    top: 7%;
+    left: -3rem;
     position: absolute;
     background-color: #2a4a34;
     width: 5rem;
     height: 2rem;
-    box-shadow: 0 0px 0px rgba(0, 0, 0, .5);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .5);
     transition: left ease .7s, box-shadow ease .7s;
 }
 
 .goback:hover {
-    left: -60px;
+    left: -3.5rem;
     box-shadow: 0 3px 5px rgba(0, 0, 0, .5);
 }
 
@@ -74,20 +75,21 @@ body {
 }
 
 .Login_logon {
-    margin: 1rem 3rem;
-    float: left;
+    margin-top: 4%;
+    margin-left: 12%;
 }
 
 .logBar {
-    border-radius: 10px;
-    padding: .5rem;
+    border-radius: 10pt;
+    padding: 2%;
     float: left;
     background-color: #cfcfcf;
-    font-size: 2.5rem;
+    font-size: 2.5em;
     font-weight: bold;
     color: #000000;
     transform: translateY(0px);
     transition: transform ease .3s;
+
 }
 
 .logBar:hover {
@@ -97,15 +99,16 @@ body {
 .logonBar {
     position: absolute;
     z-index: -1;
-    right: 11rem;
-    top: 1.5rem;
+    margin-top: 3%;
+    margin-left: 10%;
 }
 
 .active1 {
     z-index: 1;
     color: #cfcfcf;
-    background-color: #2a4a34;
+    background-color: rgba(42, 74, 52, .6);
     box-shadow: 0 5px 5px rgba(0,0,0,.5);
+    backdrop-filter: blur(20px);
 }
 
 

@@ -2,7 +2,8 @@
   <div>
     <div class="userTable">
       <!--      :default-sort 默认排序为-->
-      <el-table :data="User_data_info" border style="width: 100%" :default-sort="{prop: 'id', order: 'descending'}">
+      <el-table :data="User_data_info" border style="width: 100%"
+                :default-sort="{prop: 'id', order: 'descending'}">
         <el-table-column fixed type="index" label="序号" width="50"></el-table-column>
         <!--        sortable需要排序的-->
         <el-table-column prop="datetime" label="日期" width="100" sortable></el-table-column>
@@ -10,11 +11,11 @@
         <el-table-column prop="username" label="用户名" width="120"></el-table-column>
         <el-table-column prop="password" label="密码" width="120"></el-table-column>
         <el-table-column prop="mail" label="邮箱" width="200"></el-table-column>
-        <el-table-column class="isdelete" prop="isdelete" label="是否注销" width="120" sortable></el-table-column>
+        <el-table-column prop="isdelete" label="是否注销" width="120" sortable></el-table-column>
         <el-table-column label="操作" width="150">
           <template slot-scope="scope">
-            <el-button type="text" size="small">注销</el-button>
-            <el-button type="text" size="small">删除信息</el-button>
+            <el-button type="text" size="small" @click="post_id_fakedel(scope.row.id)">注销</el-button>
+            <el-button type="text" size="small" @click="post_id_realdel(scope.row.id)">删除信息</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -28,22 +29,47 @@
 <script>
 import {request} from "@/network/requests";
 
+
+
 export default {
   name: "users_admin",
+  inject: ['reload'],
   data() {
     return {
-      User_data_info: []
+      User_data_info: [],
     }
   },
-  methods: {},
+  methods: {
+    post_id_fakedel(id) {
+      request({
+        url: '/users_del_fake',
+        params: {id}
+      }).then(res => {
+        this.reload()
+      }).catch(err => {
+        console.log('ERR', err)
+      })
+    }
+    ,
+    post_id_realdel(id) {
+      request({
+        url: '/users_del_real',
+        params: {id}
+      }).then(res => {
+        this.reload()
+      }).catch(err => {
+        console.log('ERR', err)
+      })
+    }
+  },
   created() {
     request({
       url: '/users_info_toshow'
     }).then(res => {
-      this.User_data_info = res.data
-      console.log(res)
+      this.User_data_info = res.data;
+      // console.log(res)
     }).catch(err => {
-      console.log(err)
+      console.log(err);
     })
   }
 }
@@ -63,6 +89,6 @@ export default {
 }
 
 .el-table .delete {
-  background: #55a532;
+  background: #55a532 !important;
 }
 </style>

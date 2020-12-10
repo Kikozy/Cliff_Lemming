@@ -5,13 +5,14 @@
       <form class="Logon" :action=logon_url method="post">
         <input class="username input" type="text" name='username' placeholder="用户名" @keyup="matchUsername">
         <span class="hidden movestyle" id="matchUsername">请输入用户名（至少4位）！💤</span>
-        <input class="password input" type="password" name='password' placeholder="密码">
+        <input class="password input" type="password" name='password' placeholder="密码" @keyup="matchPassword">
         <span class="hidden movestyle" id="matchPassword">两次密码不一致！💤</span>
         <!--当输入完成后自动执行函数-->
         <input class="repassword input" type="password" name='repassword' placeholder="确认密码" @keyup="matchPassword">
         <input class="email input" type="text" name='mail' placeholder="邮箱" @keyup="matchMail">
-        <input class="logonBtn isErr" id="isErr" type="submit" value="注册" disabled="ture" @click="get_post_logon">
         <span class="hidden movestyle" id="matchMail">请输入正确的邮箱格式！💤</span>
+        <input class="logonBtn isErr" id="isErr" type="submit" value="注册" disabled="ture" @click="get_post_logon">
+
       </form>
     </div>
   </div>
@@ -37,7 +38,6 @@ export default {
       var mail = $("input[name='mail']").val();
       var password = $("input[name='password']").val();
       var repassword = $("input[name='repassword']").val();
-      // var mail = $("input[name='mail']").val();
       if (password !== repassword) {
         $("#matchPassword").removeClass('hidden');
         $("#isErr").attr("disabled", true);

@@ -125,7 +125,9 @@ export default {
   height: 90%;
   width: 200px;
   border-radius: 10px;
-  background-color: #617b88;
+  background-color: rgba(97, 123, 136, .7);
+  backdrop-filter: blur(10px);
+  box-shadow: 1px 1px 2px rgba(255, 255, 255, 0.1) inset, 1px 1px 5px rgba(0, 0, 0, .5);
   transform: translateY(0px);
   transition: transform ease .3s;
 }
@@ -177,7 +179,6 @@ export default {
   height: 4px;
   bottom: 0px;
   right: 20px;
-
 }
 
 .Mlist {
@@ -187,9 +188,8 @@ export default {
   border-radius: 10px;
   width: 300px;
   height: 400px;
-  background-color: #617b88;
-  opacity: 10;
-  box-shadow: 0 5px 5px rgba(0, 0, 0, .3);
+  background-color: rgba(97, 123, 136, .7);
+  box-shadow: 1px 1px 2px rgba(255, 255, 255, 0.05) inset, 1px 1px 5px rgba(0, 0, 0, .5);
 }
 
 .Mul {

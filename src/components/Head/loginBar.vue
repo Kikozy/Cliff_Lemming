@@ -1,6 +1,6 @@
 <template>
-  <div class="loginBar">
-    <a @click="goLoginon">登录</a>
+  <div class="loginBar" @click="goLoginon">
+    <a>登录</a>
   </div>
 </template>
 
@@ -22,11 +22,13 @@ export default {
   text-align: center;
   margin: .5rem;
   /*height: 60%;*/
-  padding:1rem;
+  padding: 1rem;
   /*position: relative;*/
   /*width: 70px;*/
   border-radius: 10px;
-  background-color: #305747;
+  background-color: rgba(48,87,71,.8);
+  backdrop-filter: blur(10px);
+  box-shadow: 1px 1px 2px rgba(255, 255, 255, 0.05) inset, 1px 1px 5px rgba(0, 0, 0, .5);
   transform: translateY(0px);
   transition: transform ease .3s;
 }
@@ -36,7 +38,7 @@ export default {
 }
 
 .loginBar a {
-  color: #cfcfcf;
+  color: #ffffff;
   width: 100%;
   height: 100%;
 }

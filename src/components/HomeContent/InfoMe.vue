@@ -15,7 +15,7 @@ export default {
 <style scoped>
 .infoMe {
   position: sticky;
-  top: 5vw;
+  top: 10%;
   border-radius: 20px;
   float: right;
   width: 27%;

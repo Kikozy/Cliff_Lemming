@@ -7,7 +7,11 @@
       <itemHtml/>
     </div>
     <!--    子路由显示占位符    -->
-    <router-view/>
+    <!--     keep-alive 保持状态（避免重复渲染）-->
+    <keep-alive>
+      <router-view/>
+    </keep-alive>
+
   </div>
 </template>
 
