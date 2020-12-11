@@ -1,7 +1,7 @@
 <template>
   <div class="itemHtml">
-    <ul class="htmlList" v-for="(val,index) in router">
-      <li :class="active==index?'active':''"  @click="isclick(index)"  v-for="(value,key) in val">
+    <ul class="htmlList" v-for="val in router">
+      <li :class="{'active':active==key}" @click="isclick(key)" v-for="(value,key) in val">
         <router-link :to="value">{{ key }}</router-link>
       </li>
     </ul>
@@ -13,21 +13,46 @@ export default {
   name: "itemHtml",
   data() {
     return {
-      active:'0', // 设置初始值为第一个按钮
+      active: 'Home',
+      // 设置初始值为第一个按钮
       router: [{'Home': '/home'},
         {'About': '/about'},
-        {'TimeLine': '/timeLine'},
+        {'Timeline': '/timeline'},
         {'Lemming': '/lemming'},
         {'Test': '/test'},
         {'Center': '/lemming_admin/lccenter'}]
     }
   },
-  methods:{
-    isclick(index){
+  methods: {
+    isclick(key) {
+      this.active = this.$route.name
       // 被点击后将index传进来赋值为点击的第几个
-      this.active = index;
+      switch (key) {
+        case 'Home':
+          this.$router.push('/home')
+          break
+        case 'About':
+          this.$router.push('/about')
+          break
+        case 'Timeline':
+          this.$router.push('/timeline')
+          break
+        case 'Test':
+          this.$router.push('/test')
+          break
+        case 'Lemming':
+          this.$router.push('/lemming')
+          break
+        case 'Center':
+          this.$router.push('/lemming_admin/lccenter')
+          break
+      }
     }
+  },
+  mounted() {
+    this.active = this.$route.name
   }
+
 }
 </script>
 

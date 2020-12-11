@@ -3,15 +3,23 @@
     <div class="musicBox">
       <div class="Mpic">图片</div>
       <div class="MusicControl">
-        <div class="Mname">音乐名称</div>
-        <br>
-        <div class="Mcontrol" @click="play">
-          <p class="Mpause Mhide">暂停</p>
-          <p class="Mplay">播放</p>
+        <div class="Mname">{{ music_url['name'] }}-{{ music_url['singer'] }}</div>
+        <!--        <br>-->
+        <div class="Mcontrol">
+          <div @click="Mlast">
+            <p class="Mlast">上一首</p>
+          </div>
+          <div @click="Mplay">
+            <p class="Mpause Mhide">暂停</p>
+            <p class="Mplay">播放</p>
+          </div>
+          <div @click="Mnext">
+            <p class="Mnext">下一首</p>
+          </div>
         </div>
       </div>
       <audio id="audio"
-             src="https://ws.stream.qqmusic.qq.com/C400002Qq3Fj2TRUxW.m4a?guid=8138497182&vkey=8B04D38AAC3377BACEFB991B1C7200CADB769895BC6970FA608E14CAEC264C73471AF3323E36806689BBD1D04B0876CDA7D5705B06A378B7&uin=0&fromtag=66"></audio>
+             :src="music_url['url']"></audio>
       <div class="Mtime">
         <div class="Mbar"></div>
       </div>
@@ -38,26 +46,46 @@ import {request} from "@/network/requests";
 export default {
   data() {
     return {
+      timer: "0",
+      num: 1,
+      music_url: [],
       show: false,
-      music_data: []
+      music_data: [],
     }
   },
   created() {
     request({
       url: '/muisic_info'
     }).then(res => {
-      // console.log(res.data)
-      this.music_data = res.data
+      // 设置音乐的初始值
+      this.music_url = ({
+        name: res.data[0][0]['name'],
+        singer: res.data[0][0]['singer'],
+        url: res.data[0][0]['play_url']
+      })
+      this.music_data = res.data[0]
     }).catch(err => {
       console.log('===music ERR===', err)
     })
   },
   methods: {
-    play() {
-      //如果音乐暂停
+    Mlast() {
+      let num = this.num--
+      if (num <= 0) {
+        this.num = this.music_data.length - 1
+      }
+      this.music_url = ({
+        name: this.music_data[num]['name'],
+        singer: this.music_data[num]['singer'],
+        url: this.music_data[num]['play_url']
+      })
+      // console.log(audio.duration) //获取歌曲时间
+
       if (audio.paused) {
-        //播放音乐
+        // 播放音乐
         audio.play();
+        // 自动播放
+        $('#audio').attr('autoplay', "autoplay")
         //播放后隐藏播放按钮
         $('.Mcontrol>p').toggleClass('Mhide');
         //滑出图片
@@ -65,7 +93,48 @@ export default {
           top: '10px',
           //动画时间0.5s
         }, 500);
-      } else {
+      }
+      this.$options.methods.Mended();
+    },
+    Mnext() {
+      let num = this.num++ //接收累加后的值
+      if (num > this.music_data.length - 2) {
+        this.num = 0
+      }
+      this.music_url = ({
+        name: this.music_data[num]['name'],
+        singer: this.music_data[num]['singer'],
+        url: this.music_data[num]['play_url']
+      })
+      if (audio.paused) {
+        // 播放音乐
+        audio.play();
+        // 自动播放
+        $('#audio').attr('autoplay', "autoplay")
+        //播放后隐藏播放按钮
+        $('.Mcontrol>p').toggleClass('Mhide');
+        //滑出图片
+        $('.Mpic').animate({
+          top: '10px',
+          //动画时间0.5s
+        }, 500);
+      }
+      this.$options.methods.Mended();
+    },
+    Mplay() {
+      //如果音乐暂停
+      if (audio.paused) {
+        //播放音乐
+        audio.play();
+        this.$options.methods.Mtime();
+        //播放后隐藏播放按钮
+        $('.Mcontrol>p').toggleClass('Mhide');
+        //滑出图片
+        $('.Mpic').animate({
+          top: '10px',
+          //动画时间0.5s
+        }, 500);
+      } else if (audio.played) {
         //暂停音乐
         audio.pause();
         //暂停后隐藏暂停按钮
@@ -75,17 +144,22 @@ export default {
           top: '0px',
         }, 500)
       }
-      if (audio.ended) {
-        //暂停音乐
-        audio.pause();
-        //暂停后隐藏暂停按钮
-        $('.Mcontrol>p').toggleClass('Mhide')
-        $('.Mpic').animate({
-          top: '0px',
-          //动画时间0.5s
-        }, 500);
-      }
+      this.$options.methods.Mended();
     },
+    Mended() {
+      var Music2 = document.getElementById("audio")
+      Music2.addEventListener('ended', function () {
+        this.num++
+      })
+    },
+    Mtime() {
+      let num = 0;
+      let audio_time = audio.duration //获取歌曲时间
+      setInterval(()=>{
+        num++;
+        $(".Mbar").css('width',num,'%');
+      },1000)
+    }
   }
 }
 </script>
@@ -152,15 +226,31 @@ export default {
 }
 
 .MusicControl {
+  width: 10rem;
+  z-index: -1;
+  right: 0;
   position: absolute;
-  right: 50px;
 }
+
 
 .Mname {
-  background-color: #2a4a34;
+  overflow: hidden; /*自动隐藏文字*/
+  text-overflow: ellipsis; /*文字隐藏后添加省略号*/
+  white-space: nowrap; /*强制不换行*/
+  width: 9em; /*不允许出现半汉字截断*/
+  font-size: .8em;
+  height: 1rem;
+  color: #cfcfcf;
+  font-weight: bold;
+  float: right;
+  margin-left: 4vw;
+  animation: move ease .5;
 }
 
+
 .Mcontrol {
+  float: right;
+  margin-top: .5rem;
   background-color: #cfcfcf;
 }
 
@@ -174,11 +264,16 @@ export default {
 
 .Mtime {
   position: absolute;
-  background-color: pink;
+  background-color: #cfcfcf;
   width: 100px;
-  height: 4px;
+  height: 2px;
   bottom: 0px;
   right: 20px;
+}
+.Mbar{
+  width: 1px;
+  height: 100%;
+  background-color: #55a532;
 }
 
 .Mlist {

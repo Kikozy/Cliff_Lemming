@@ -4,14 +4,8 @@
       <el-table :data="music_data" border style="width: 100%">
         <el-table-column type="index" label="序号" width="50"></el-table-column>
         <el-table-column prop="datetime" label="日期" width="100"
-                         :filters="[{ text: '2020-12-08', value: '2020-12-08' }, { text: '2020-12-10', value: '2020-12-10' }]"
+                         :filters="datetime"
                          :filter-method="filterTag" :formatter="formatter">
-          <template slot-scope="scope">
-            <el-tag
-                :type="scope.row.datetime === '2020-12-8' ? 'primary' : 'success'"
-                close-transition>{{ scope.row.datetime }}
-            </el-tag>
-          </template>
         </el-table-column>
         <el-table-column prop="id" label="id" width="50"></el-table-column>
         <el-table-column prop="name" label="歌名" width="100"></el-table-column>
@@ -41,7 +35,7 @@ export default {
   data() {
     // this.$forceUpdate();
     return {
-      datetime:[],
+      datetime: [],
       music_data: []
     }
   },
@@ -57,8 +51,11 @@ export default {
     request({
       url: "/muisic_info"
     }).then(res => {
-      this.music_data = res.data;
-      console.log(res);
+      // console.log(res)
+      this.music_data = res.data[0];
+      for (let i = 0; i < res.data[1].length; i++) { // 循环添加内容
+        this.datetime.push({value: res.data[1][i][0], text: res.data[1][i][0]})  // 筛选的日期
+      }
     }).catch(err => {
       console.log('===musicControl Err!!===', err)
     })
