@@ -7,14 +7,14 @@
         <!--        <br>-->
         <div class="Mcontrol">
           <div @click="Mlast">
-            <p class="Mlast">上一首</p>
+            <p class="Mlast iconfont icon-xiayishou"></p>
           </div>
           <div @click="Mplay">
-            <p class="Mpause Mhide">暂停</p>
-            <p class="Mplay">播放</p>
+            <p class="Mpause Mhide iconfont icon-zantingtingzhi"></p>
+            <p class="Mplay iconfont icon-bofang"></p>
           </div>
           <div @click="Mnext">
-            <p class="Mnext">下一首</p>
+            <p class="Mnext iconfont icon-Nextsong"></p>
           </div>
         </div>
       </div>
@@ -27,7 +27,7 @@
     <transition name="showList">
       <div class="Mlist" v-if="show">
         <ul class="Mul">
-          <li class="Mli" v-for="(music,index) in music_data">
+          <li class="Mli" v-for="(music,index) in music_data" @click="Mlistplay(index)">
             <span class="songNum">{{ index + 1 }}</span>
             <span class="songName">{{ music.name }}</span>
             <span class="singer">{{ music.singer }}</span>
@@ -46,12 +46,15 @@ import {request} from "@/network/requests";
 export default {
   data() {
     return {
-      timer: "0",
       num: 1,
       music_url: [],
       show: false,
       music_data: [],
     }
+  },
+  // 如果js需要调vue的方法
+  mounted() {
+    window.Mnext = this.Mnext; // 将vue方法赋值给window，js直接调方法
   },
   created() {
     request({
@@ -69,96 +72,141 @@ export default {
     })
   },
   methods: {
-    Mlast() {
-      let num = this.num--
-      if (num <= 0) {
-        this.num = this.music_data.length - 1
-      }
+    Mlistplay(index) {
+      let timer;
+      this.num = index;
       this.music_url = ({
-        name: this.music_data[num]['name'],
-        singer: this.music_data[num]['singer'],
-        url: this.music_data[num]['play_url']
-      })
-      // console.log(audio.duration) //获取歌曲时间
-
-      if (audio.paused) {
-        // 播放音乐
-        audio.play();
-        // 自动播放
-        $('#audio').attr('autoplay', "autoplay")
-        //播放后隐藏播放按钮
-        $('.Mcontrol>p').toggleClass('Mhide');
-        //滑出图片
-        $('.Mpic').animate({
-          top: '10px',
-          //动画时间0.5s
-        }, 500);
-      }
-      this.$options.methods.Mended();
-    },
-    Mnext() {
-      let num = this.num++ //接收累加后的值
-      if (num > this.music_data.length - 2) {
-        this.num = 0
-      }
-      this.music_url = ({
-        name: this.music_data[num]['name'],
-        singer: this.music_data[num]['singer'],
-        url: this.music_data[num]['play_url']
+        name: this.music_data[index]['name'],
+        singer: this.music_data[index]['singer'],
+        url: this.music_data[index]['play_url']
       })
       if (audio.paused) {
-        // 播放音乐
         audio.play();
-        // 自动播放
-        $('#audio').attr('autoplay', "autoplay")
-        //播放后隐藏播放按钮
-        $('.Mcontrol>p').toggleClass('Mhide');
-        //滑出图片
+        $('.Mplay').addClass('Mhide');
+        $('.Mpause').removeClass('Mhide');
+        $('#audio').attr('autoplay', 'autoplay');
         $('.Mpic').animate({
           top: '10px',
-          //动画时间0.5s
         }, 500);
+        timer = setInterval(function () {
+          if (audio.ended) {
+            console.log('ended!!')
+            clearInterval(timer)
+          } else {
+            let ratio = audio.currentTime / audio.duration;
+            $('.Mbar').css('width', ratio * 100, '%')
+          }
+        }, 100)
       }
-      this.$options.methods.Mended();
+      // 监听是否播放完毕！！
+      let audioEnded = document.getElementById("audio");
+      audioEnded.onended = function () {
+        Mnext()
+      };
     },
     Mplay() {
-      //如果音乐暂停
+      let timer;
       if (audio.paused) {
-        //播放音乐
         audio.play();
-        this.$options.methods.Mtime();
-        //播放后隐藏播放按钮
-        $('.Mcontrol>p').toggleClass('Mhide');
+        $('.Mplay').addClass('Mhide');
+        $('.Mpause').removeClass('Mhide');
         //滑出图片
         $('.Mpic').animate({
           top: '10px',
           //动画时间0.5s
         }, 500);
-      } else if (audio.played) {
-        //暂停音乐
+        timer = setInterval(function () {
+          //currentTime返回播放的当前位置（以秒计）
+          //duration获取总时长（秒）
+          let ratio = audio.currentTime / audio.duration;
+          $('.Mbar').css('width', ratio * 100, '%')
+        }, 100)
+      } else {
         audio.pause();
-        //暂停后隐藏暂停按钮
-        $('.Mcontrol>p').toggleClass('Mhide')
-        //滑入图片
+        $('.Mpause').addClass('Mhide');
+        $('.Mplay').removeClass('Mhide');
+        //滑出图片
         $('.Mpic').animate({
           top: '0px',
-        }, 500)
+          //动画时间0.5s
+        }, 500);
       }
-      this.$options.methods.Mended();
+      // 监听是否播放完毕！！
+      let audioEnded = document.getElementById("audio");
+      audioEnded.onended = function () {
+        Mnext()
+      };
     },
-    Mended() {
-      var Music2 = document.getElementById("audio")
-      Music2.addEventListener('ended', function () {
-        this.num++
+    Mnext() {
+      let num = this.num++;
+      let timer;
+      if (num > this.music_data.length - 2) {
+        this.num = 0;
+      }
+      this.music_url = ({
+        name: this.music_data[num]['name'],
+        singer: this.music_data[num]['singer'],
+        url: this.music_data[num]['play_url']
       })
+      if (audio.paused) {
+        audio.play();
+        $('.Mplay').addClass('Mhide');
+        $('.Mpause').removeClass('Mhide');
+        $('#audio').attr('autoplay', 'autoplay');
+        $('.Mpic').animate({
+          top: '10px',
+        }, 500);
+        timer = setInterval(function () {
+          if (audio.ended) {
+            console.log('ended!!')
+            clearInterval(timer)
+          } else {
+            let ratio = audio.currentTime / audio.duration;
+            $('.Mbar').css('width', ratio * 100, '%')
+          }
+        }, 100)
+      }
+      // 监听是否播放完毕！！
+      let audioEnded = document.getElementById("audio");
+      audioEnded.onended = function () {
+        Mnext()
+      };
     },
-    Mtime() {
-      let num = 0;
-      let audio_time = audio.duration //获取歌曲时间
-      setInterval(()=>{
-        num++;
-        $(".Mbar").css('width',num,'%');
-      },1000)
+    Mlast() {
+      let num = this.num--;
+      let timer;
+      if (num <= 0) {
+        // 如果上一首音乐小于等于0的话，num跳转到歌曲最后一首
+        this.num = this.music_data.length - 1;
+      }
+      this.music_url = ({
+        name: this.music_data[num]['name'],
+        singer: this.music_data[num]['singer'],
+        url: this.music_data[num]['play_url'],
+      });
+      if (audio.paused) {
+        audio.play();
+        $('.Mplay').addClass('Mhide');
+        $('.Mpause').removeClass('Mhide');
+        $('#audio').attr('autoplay', 'autoplay');
+        $('.Mpic').animate({
+          top: '10px',
+        }, 500);
+        timer = setInterval(function () {
+          if (audio.ended) {
+            console.log('ended!!')
+            clearInterval(timer)
+          } else {
+            let ratio = audio.currentTime / audio.duration;
+            $('.Mbar').css('width', ratio * 100, '%');
+          }
+        }, 100)
+      }
+      // 监听是否播放完毕！！
+      let audioEnded = document.getElementById("audio");
+      audioEnded.onended = function () {
+        Mnext()
+      };
     }
   }
 }
@@ -251,12 +299,19 @@ export default {
 .Mcontrol {
   float: right;
   margin-top: .5rem;
-  background-color: #cfcfcf;
 }
 
 .Mcontrol * {
   cursor: pointer;
+  margin-right: .7rem;
+  color: #cfcfcf;
+  transition: ease color .3s;
 }
+
+.Mcontrol *:hover {
+  color: #666666;
+}
+
 
 .Mhide {
   display: none;
@@ -270,10 +325,11 @@ export default {
   bottom: 0px;
   right: 20px;
 }
-.Mbar{
-  width: 1px;
+
+.Mbar {
+  width: 0px;
   height: 100%;
-  background-color: #55a532;
+  background-color: #666666;
 }
 
 .Mlist {

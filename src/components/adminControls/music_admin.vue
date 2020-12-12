@@ -12,9 +12,9 @@
         <el-table-column prop="singer" label="歌手" width="100"></el-table-column>
         <el-table-column prop="play_url" label="播放地址" width="600"></el-table-column>
         <el-table-column label="操作" width="100">
-          <template>
-            <el-button type="text" size="small">修改</el-button>
-            <el-button type="text" size="small">删除</el-button>
+          <template slot-scope="scope">
+            <el-button type="text" size="small" @click="music_change(scope.row.id)">修改</el-button>
+            <el-button type="text" size="small" @click="music_del(scope.row.id)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -40,11 +40,19 @@ export default {
     }
   },
   methods: {
+    // 筛选
     formatter(row, column) {
       return row.datetime;
     },
     filterTag(value, row) {
       return row.datetime === value;
+    },
+    ///////////////////////
+    music_change(id){
+      console.log(id)
+    },
+    music_del(id){
+      console.log(id)
     }
   },
   created() {

@@ -72,12 +72,12 @@ export default {
   text-align: center;
   border-radius: 5%;
   backdrop-filter: blur(15px);
-  box-shadow: 1px 1px 2px rgba(255, 255, 255, 0.2) inset, 1px 1px 5px rgba(0, 0, 0, .5);
+  box-shadow: 1px 1px 1px rgba(255, 255, 255, 0.2) inset, 1px 1px 5px rgba(0, 0, 0, .5);
   transition: background-color ease .5s, box-shadow ease .5s, width ease .5s, backdrop-filter ease .3s;
 }
 
 .aboutBox:hover {
-  box-shadow: 1px 1px 2px rgba(255, 255, 255, 0.3) inset, 4px 4px 10px rgba(0, 0, 0, .2);
+  box-shadow: 1px 1px 1px rgba(255, 255, 255, 0.3) inset, 4px 4px 10px rgba(0, 0, 0, .2);
   background-color: rgba(71, 100, 122, 0.2);
   backdrop-filter: blur(15px);
   width: 32vw;
