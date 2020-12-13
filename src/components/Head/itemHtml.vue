@@ -25,7 +25,7 @@ export default {
   },
   methods: {
     isclick(key) {
-      this.active = this.$route.name
+      this.active = this.$route.name;
       // 被点击后将index传进来赋值为点击的第几个
       switch (key) {
         case 'Home':
@@ -52,7 +52,6 @@ export default {
   mounted() {
     this.active = this.$route.name
   }
-
 }
 </script>
 

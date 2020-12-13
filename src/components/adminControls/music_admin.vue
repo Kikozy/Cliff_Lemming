@@ -21,7 +21,8 @@
     </div>
     <div class="data_info">
       <div class="MusicCont BaseStyle">总{{ music_data.length }}首</div>
-      <div class="UpdataInfo BaseStyle">更新音乐</div>
+      <div id="Updata" class="UpdataInfo BaseStyle" @click="updateMusic">更新音乐</div>
+      <div id="Updating" class="UpdataInfo BaseStyle Mhide">更新中..</div>
       <div class="addMusic BaseStyle">自添音乐</div>
     </div>
   </div>
@@ -29,12 +30,15 @@
 
 <script>
 import {request} from "@/network/requests";
+import $ from 'jquery';
 
 export default {
   name: "music_admin",
+  inject: ['reload'],// 组件刷新调用
   data() {
     // this.$forceUpdate();
     return {
+      updateInfo: '',
       datetime: [],
       music_data: []
     }
@@ -48,11 +52,29 @@ export default {
       return row.datetime === value;
     },
     ///////////////////////
-    music_change(id){
+    music_change(id) {
       console.log(id)
     },
-    music_del(id){
+    music_del(id) {
       console.log(id)
+    },
+    updateMusic() {
+      $('#Updating').removeClass('Mhide')
+      $('#Updata').addClass('Mhide')
+      request({
+        url: '/music_save',
+        params: {id: '0609'},
+        timeout: false,
+      }).then(res => {
+        if (res.data.code === 200) {
+          this.reload() // 组件刷新
+        } else if (res.data.code === 500) {
+          $('#Updating').addClass('Mhide')
+          $('#Updata').removeClass('Mhide')
+        }
+      }).catch(err => {
+        console.log(err)
+      })
     }
   },
   created() {
@@ -96,6 +118,10 @@ export default {
 
 .UpdataInfo {
   margin-top: 8rem;
+}
+
+.Mhide {
+  display: none;
 }
 
 .UpdataInfo:hover {

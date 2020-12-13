@@ -30,6 +30,7 @@
       <div><h1>-</h1></div>
     </div>
     <div class="center_right_info">
+<!--      // 局部刷新-->
       <router-view v-if="isRouteAlive"/>
     </div>
   </div>
@@ -40,11 +41,13 @@ export default {
   name: "LCCenter",
   provide() {
     return {
+      // 局部刷新
       reload: this.reload
     }
   },
   data() {
     return {
+      // 局部刷新
       isRouteAlive: true
     }
   },
@@ -52,6 +55,7 @@ export default {
     center_toback() {
       this.$router.push('/')
     },
+    // 局部刷新
     reload() {
       this.isRouteAlive = false
       this.$nextTick(() => {

@@ -28,7 +28,6 @@ export default {
     Login,
     MusicBar
   },
-  methods: {}
 }
 </script>
 <style scoped>

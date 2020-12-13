@@ -18,7 +18,7 @@
           </div>
         </div>
       </div>
-      <audio id="audio"
+      <audio ref="audio" id="audio"
              :src="music_url['url']"></audio>
       <div class="Mtime">
         <div class="Mbar"></div>
@@ -52,6 +52,10 @@ export default {
       music_data: [],
     }
   },
+  destroyed() {
+    // 离开页面销毁的时候刷新一下
+    location.reload();
+  },
   // 如果js需要调vue的方法
   mounted() {
     window.Mnext = this.Mnext; // 将vue方法赋值给window，js直接调方法
@@ -75,6 +79,7 @@ export default {
     Mlistplay(index) {
       let timer;
       this.num = index;
+      let audio = this.$refs.audio;
       this.music_url = ({
         name: this.music_data[index]['name'],
         singer: this.music_data[index]['singer'],
@@ -106,6 +111,7 @@ export default {
     },
     Mplay() {
       let timer;
+      let audio = this.$refs.audio;
       if (audio.paused) {
         audio.play();
         $('.Mplay').addClass('Mhide');
@@ -139,6 +145,7 @@ export default {
     },
     Mnext() {
       let num = this.num++;
+      let audio = this.$refs.audio;
       let timer;
       if (num > this.music_data.length - 2) {
         this.num = 0;
@@ -174,6 +181,7 @@ export default {
     },
     Mlast() {
       let num = this.num--;
+      let audio = this.$refs.audio;
       let timer;
       if (num <= 0) {
         // 如果上一首音乐小于等于0的话，num跳转到歌曲最后一首
@@ -322,12 +330,12 @@ export default {
   background-color: #cfcfcf;
   width: 100px;
   height: 2px;
-  bottom: 0px;
+  bottom: 0;
   right: 20px;
 }
 
 .Mbar {
-  width: 0px;
+  width: 0;
   height: 100%;
   background-color: #666666;
 }
