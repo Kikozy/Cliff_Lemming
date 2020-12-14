@@ -14,7 +14,7 @@
         <el-table-column label="操作" width="100">
           <template slot-scope="scope">
             <el-button type="text" size="small" @click="music_change(scope.row.id)">修改</el-button>
-            <el-button type="text" size="small" @click="music_del(scope.row.id)">删除</el-button>
+            <el-button type="text" size="small" @click="music_del(scope.row.id,scope.row.name)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -23,7 +23,10 @@
       <div class="MusicCont BaseStyle">总{{ music_data.length }}首</div>
       <div id="Updata" class="UpdataInfo BaseStyle" @click="updateMusic">更新音乐</div>
       <div id="Updating" class="UpdataInfo BaseStyle Mhide">更新中..</div>
-      <div class="addMusic BaseStyle">自添音乐</div>
+      <div class="addMusic BaseStyle" @click="addMusic">自添音乐</div>
+      <div class="addMusicFrom">
+        <h1>添加音乐</h1>
+      </div>
     </div>
   </div>
 </template>
@@ -55,8 +58,22 @@ export default {
     music_change(id) {
       console.log(id)
     },
-    music_del(id) {
-      console.log(id)
+    music_del(id, name) {
+      request({
+        url: '/music_del',
+        params: {id, password: '0609'}
+      }).then(res => {
+        this.reload();
+        this.$message({
+          message: name + '删除成功',
+          type: 'success'
+        });
+      }).catch(err => {
+        this.$message.error({
+          message: name + '删除失败',
+        });
+        console.log('ERR', err)
+      })
     },
     updateMusic() {
       $('#Updating').removeClass('Mhide')
@@ -75,7 +92,10 @@ export default {
       }).catch(err => {
         console.log(err)
       })
-    }
+    },
+    addMusic() {
+      console.log('添加音乐')
+    },
   },
   created() {
     request({
@@ -95,6 +115,7 @@ export default {
 </script>
 
 <style scoped>
+
 .BaseStyle {
   z-index: 888;
   cursor: pointer;
@@ -141,4 +162,5 @@ export default {
 .el-table .active {
   background: #55a532;
 }
+
 </style>

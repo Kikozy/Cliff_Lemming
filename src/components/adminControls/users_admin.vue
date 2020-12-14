@@ -30,7 +30,6 @@
 import {request} from "@/network/requests";
 
 
-
 export default {
   name: "users_admin",
   inject: ['reload'],
@@ -45,8 +44,15 @@ export default {
         url: '/users_del_fake',
         params: {id}
       }).then(res => {
-        this.reload()
+        this.reload();
+        this.$message({
+          message: 'id:'+id+'  注销成功!',
+          type: 'success'
+        });
       }).catch(err => {
+        this.$message.error({
+          message: 'id:'+id+'  注销失败!',
+        });
         console.log('ERR', err)
       })
     }
@@ -57,11 +63,19 @@ export default {
         params: {id}
       }).then(res => {
         this.reload()
+        this.$message({
+          message: 'id:'+id+'  移库成功!',
+          type: "warning"
+        });
       }).catch(err => {
+        this.$message.error({
+          message: 'id:'+id+'  移库失败!',
+        });
         console.log('ERR', err)
       })
     }
-  },
+  }
+  ,
   created() {
     request({
       url: '/users_info_toshow'
