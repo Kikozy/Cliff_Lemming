@@ -2,11 +2,14 @@
   <div class="LoginForm">
     <div class="loginInput">
       <!--  登录表单   -->
-      <form class="Login" :action=login_url method="POST">
-        <input class="username input" type="text" name="username" placeholder="用户名" @keyup="ismatch">
-        <input class="password input" type="password" name="password" placeholder="密码" @keyup="ismatch">
-        <input class="loginBtn" type="submit" value="登录" disabled="true" @click="get_post_login">
-      </form>
+      <!--      加了form点击登录会自动刷新-->
+      <!--      <form class="Login" action="">-->
+      <input class="username input" v-model="login_form.username" type="text" name="username" placeholder="用户名"
+             @keyup="ismatch">
+      <input class="password input" v-model="login_form.password" type="password" name="password" placeholder="密码"
+             @keyup="ismatch">
+      <input class="loginBtn" type="submit" value="登录" disabled="true" @click="post_login">
+      <!--      </form>-->
     </div>
   </div>
 
@@ -23,23 +26,53 @@ export default {
   name: "Login",
   data() {
     return {
-      login_url: '哥不要乱搞啊'
+      login_form: {
+        username: '',
+        password: ''
+      }
     }
   },
   methods: {
     ismatch() {
-      var username = $("input[name='username']").val()
-      var password = $("input[name='password']").val()
+      let username = $("input[name='username']").val()
+      let password = $("input[name='password']").val()
       if (username.length >= 4 && password.length >= 4) {
         $(".loginBtn").attr("disabled", false)
       } else {
         $(".loginBtn").attr("disabled", true)
       }
     },
-    get_post_login() {
-      this.login_url = post_url() + '/user_login'
+    post_login() {
+      request({
+        method: 'post',
+        url: '/user_login',
+        data: this.login_form
+      }).then(res => {
+        if (res.data.code === 609) {
+          this.$message({
+            message: this.login_form.username + '管理员登录成功！',
+            type: 'success'
+          });
+          this.$router.push('/lemming_admin')
+        } else if (res.data.code === 200) {
+          this.$message({
+            message: this.login_form.username + '登录成功！',
+            type: 'success'
+          });
+          this.$router.push('/')
+        } else if(res.data.code === 400){
+          this.$message.error({
+            message: this.login_form.username + res.data.msg,
+          });
+          this.$router.push('/logon')
+        }
+      }).catch(err => {
+        this.$message.error({
+          message: this.login_form.username + '账号或者密码错误！',
+        });
+      })
     }
-  }
+  },
 }
 </script>
 

@@ -1,7 +1,7 @@
-<template>
+<template xmlns="" xmlns="">
   <div>
     <div class="Music_data">
-      <el-table :data="music_data" border style="width: 100%">
+      <el-table :data="music_data" border height="650">
         <el-table-column type="index" label="序号" width="50"></el-table-column>
         <el-table-column prop="datetime" label="日期" width="100"
                          :filters="datetime"
@@ -10,7 +10,7 @@
         <el-table-column prop="id" label="id" width="50"></el-table-column>
         <el-table-column prop="name" label="歌名" width="100"></el-table-column>
         <el-table-column prop="singer" label="歌手" width="100"></el-table-column>
-        <el-table-column prop="play_url" label="播放地址" width="600"></el-table-column>
+        <el-table-column prop="play_url" label="播放地址" width="500"></el-table-column>
         <el-table-column label="操作" width="100">
           <template slot-scope="scope">
             <el-button type="text" size="small" @click="music_change(scope.row.id)">修改</el-button>
@@ -23,27 +23,36 @@
       <div class="MusicCont BaseStyle">总{{ music_data.length }}首</div>
       <div id="Updata" class="UpdataInfo BaseStyle" @click="updateMusic">更新音乐</div>
       <div id="Updating" class="UpdataInfo BaseStyle Mhide">更新中..</div>
-      <div class="addMusic BaseStyle" @click="addMusic">自添音乐</div>
-      <div class="addMusicFrom">
-        <h1>添加音乐</h1>
+      <div class="addMusic BaseStyle" @click="show =! show;addMusic()">添加音乐
+        <div class="iscolor"></div>
       </div>
     </div>
+    <transition name="showUp">
+      <div v-if="show" class="addMusicFrom">
+        <addMusic/>
+      </div>
+    </transition>
   </div>
 </template>
 
 <script>
 import {request} from "@/network/requests";
 import $ from 'jquery';
+import addMusic from "@/components/adminControls/musicFuncs/addMusic";
 
 export default {
   name: "music_admin",
   inject: ['reload'],// 组件刷新调用
+  components: {
+    addMusic
+  },
   data() {
     // this.$forceUpdate();
     return {
       updateInfo: '',
       datetime: [],
-      music_data: []
+      music_data: [],
+      show: false,
     }
   },
   methods: {
@@ -94,7 +103,14 @@ export default {
       })
     },
     addMusic() {
-      console.log('添加音乐')
+      if (this.show === false){
+        $('.iscolor').animate({width:'0%'},500);
+        $('.addMusic').css('color','#cfcfcf')
+      }else if(this.show === true){
+        $('.iscolor').animate({width:'100%'},100);
+        $('.addMusic').css('color','#000000')
+      }
+      this.Mhide = !this.Mhide
     },
   },
   created() {
@@ -126,7 +142,7 @@ export default {
   right: 0;
   top: 0;
   margin: 2rem;
-  padding: 2rem;
+  padding: 1rem;
   border-radius: 10px;
   box-shadow: 0 0px 0px rgba(0, 0, 0, .4);
   transform: translateY(0px);
@@ -135,14 +151,26 @@ export default {
 
 .MusicCont {
   box-shadow: none;
+  background-color: #0077aa;
 }
 
 .UpdataInfo {
-  margin-top: 8rem;
+  margin-top: 6rem;
 }
 
 .Mhide {
   display: none;
+}
+
+.iscolor {
+  border-radius: 10px;
+  z-index: -1;
+  position: absolute;
+  background-color: #afafb0;
+  width: 0%;
+  height: 100%;
+  right: 0;
+  top: 0;
 }
 
 .UpdataInfo:hover {
@@ -151,7 +179,7 @@ export default {
 }
 
 .addMusic {
-  margin-top: 14rem;
+  margin-top: 10rem;
 }
 
 .addMusic:hover {
@@ -159,8 +187,39 @@ export default {
   box-shadow: 0 5px 5px rgba(0, 0, 0, .4);
 }
 
-.el-table .active {
-  background: #55a532;
+.el-table {
+  margin: 1rem;
+  width: 80%;
+  height: 40rem;
 }
 
+.addMusicFrom {
+  position: fixed;
+  top: 0;
+}
+
+/*显示隐藏*/
+/*.fade-enter-active, .fade-leave-active {*/
+/*  transition: opacity .5s;*/
+/*}*/
+
+/*.fade-enter, .fade-leave-to !* .fade-leave-active below version 2.1.8 *!*/
+/*{*/
+/*  opacity: 0;*/
+/*}*/
+/*显示隐藏end*/
+/*定义组件动画start*/
+
+.showUp-enter, .showUp-leave-to
+{
+  transform: translateX(500px);
+  opacity: 0;
+}
+
+/*进入和离开执行的时间*/
+.showUp-enter-active, .showUp-leave-active {
+  transition: all .3s;
+}
+
+/*定义组件动画end*/
 </style>

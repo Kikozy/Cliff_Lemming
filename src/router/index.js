@@ -52,9 +52,9 @@ const routes = [
         ]
     },
     // 控制
-    {path: '/lemming_admin/lccenter', redirect: '/lemming_admin/data_info'},
+    {path: '/lemming_admin', redirect: '/lemming_admin/data_info'},
     {
-        path: '/lemming_admin/lccenter',name:'Center', component: LCCenter,
+        path: '/lemming_admin', name:'Center', component: LCCenter,
         children: [ // 子路径
             {
                 path: '/lemming_admin/data_info',

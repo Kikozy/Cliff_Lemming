@@ -1,7 +1,9 @@
 <template>
   <div class="musicBar" @click="show =!show" @mouseleave="show=false">
     <div class="musicBox">
-      <div class="Mpic">图片</div>
+      <div class="Mpic"><img
+          src="">
+      </div>
       <div class="MusicControl">
         <div class="Mname">{{ music_url['name'] }}-{{ music_url['singer'] }}</div>
         <!--        <br>-->
@@ -271,6 +273,8 @@ export default {
 }
 
 .Mpic {
+  background-size:100%;
+  background-image: url("http://p2.music.126.net/YWeuBX08R4Lq8hLdpJGtmA==/109951164957278318.jpg?param=130y130");
   top: 0px;
   position: absolute;
   background-color: white;
@@ -280,6 +284,7 @@ export default {
   float: left;
   box-shadow: 0px 5px 5px rgba(0, 0, 0, .5);
 }
+
 
 .MusicControl {
   width: 10rem;

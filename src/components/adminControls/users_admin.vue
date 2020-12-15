@@ -94,8 +94,8 @@ export default {
   color: #cfcfcf;
   font-weight: bold;
   position: fixed;
-  padding: 2rem;
-  background-color: #1e4655;
+  padding: 1rem;
+  background-color: #0077aa;
   right: 0;
   top: 0;
   margin: 2rem;

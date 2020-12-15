@@ -20,7 +20,7 @@ export default {
         {'Timeline': '/timeline'},
         {'Lemming': '/lemming'},
         {'Test': '/test'},
-        {'Center': '/lemming_admin/lccenter'}]
+        {'Center': '/lemming_admin'}]
     }
   },
   methods: {
@@ -44,7 +44,7 @@ export default {
           this.$router.push('/lemming')
           break
         case 'Center':
-          this.$router.push('/lemming_admin/lccenter')
+          this.$router.push('/lemming_admin')
           break
       }
     }
