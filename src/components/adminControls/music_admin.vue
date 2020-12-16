@@ -11,7 +11,7 @@
         <el-table-column prop="name" label="歌名" width="100"></el-table-column>
         <el-table-column prop="singer" label="歌手" width="100"></el-table-column>
         <el-table-column prop="play_url" label="播放地址" width="500"></el-table-column>
-        <el-table-column label="操作" width="100">
+        <el-table-column label="操作" width="120">
           <template slot-scope="scope">
             <el-button type="text" size="small" @click="music_change(scope.row.id)">修改</el-button>
             <el-button type="text" size="small" @click="music_del(scope.row.id,scope.row.name)">删除</el-button>
@@ -21,9 +21,9 @@
     </div>
     <div class="data_info">
       <div class="MusicCont BaseStyle">总{{ music_data.length }}首</div>
-      <div id="Updata" class="UpdataInfo BaseStyle" @click="updateMusic">更新音乐</div>
-      <div id="Updating" class="UpdataInfo BaseStyle Mhide">更新中..</div>
-      <div class="addMusic BaseStyle" @click="show =! show;addMusic()">添加音乐
+      <div id="Updata" class="UpdataInfo BaseStyle base_color" @click="updateMusic">更新音乐</div>
+      <div id="Updating" class="UpdataInfo BaseStyle base_color Mhide">更新中..</div>
+      <div class="addMusic BaseStyle base_color" @click="show =! show;addMusic()">添加音乐
         <div class="iscolor"></div>
       </div>
     </div>
@@ -103,12 +103,12 @@ export default {
       })
     },
     addMusic() {
-      if (this.show === false){
-        $('.iscolor').animate({width:'0%'},500);
-        $('.addMusic').css('color','#cfcfcf')
-      }else if(this.show === true){
-        $('.iscolor').animate({width:'100%'},100);
-        $('.addMusic').css('color','#000000')
+      if (this.show === false) {
+        $('.iscolor').animate({width: '0%'}, 500);
+        $('.addMusic').css('color', '#cfcfcf')
+      } else if (this.show === true) {
+        $('.iscolor').animate({width: '100%'}, 100);
+        $('.addMusic').css('color', '#000000')
       }
       this.Mhide = !this.Mhide
     },
@@ -135,23 +135,24 @@ export default {
 .BaseStyle {
   z-index: 888;
   cursor: pointer;
-  color: #cfcfcf;
+  color: #ffffff;
   font-weight: bold;
   position: fixed;
-  background-color: #1e4655;
+  background-color: rgba(213, 213, 213, 0.1);
+  backdrop-filter: blur(10px);
   right: 0;
   top: 0;
   margin: 2rem;
   padding: 1rem;
   border-radius: 10px;
-  box-shadow: 0 0px 0px rgba(0, 0, 0, .4);
+  box-shadow: .5px .5px 1px inset rgba(226, 226, 226, .5), 1px 1px 3px rgba(0, 0, 0, .5);
   transform: translateY(0px);
   transition: transform ease .4s, box-shadow ease .4s;
 }
 
 .MusicCont {
-  box-shadow: none;
-  background-color: #0077aa;
+  /*box-shadow: none;*/
+  box-shadow: .5px .5px 1px inset rgba(226, 226, 226, .5), 1px 1px 3px rgba(0, 0, 0, .5);
 }
 
 .UpdataInfo {
@@ -175,7 +176,7 @@ export default {
 
 .UpdataInfo:hover {
   transform: translateY(-5px);
-  box-shadow: 0 5px 5px rgba(0, 0, 0, .4);
+  box-shadow: .5px .5px 1px inset rgba(226, 226, 226, .5), 2px 2px 6px rgba(0, 0, 0, .8);
 }
 
 .addMusic {
@@ -184,13 +185,67 @@ export default {
 
 .addMusic:hover {
   transform: translateY(-5px);
-  box-shadow: 0 5px 5px rgba(0, 0, 0, .4);
+  box-shadow: .5px .5px 1px inset rgba(226, 226, 226, .5), 2px 2px 6px rgba(0, 0, 0, .8);
 }
 
 .el-table {
   margin: 1rem;
-  width: 80%;
+  width: 93%;
   height: 40rem;
+}
+
+/*最外层透明*/
+/deep/ .el-table, /deep/ .el-table__expanded-cell {
+  border: none;
+  border-radius: 10px;
+  background-color: transparent;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, .4);
+}
+
+.el-table::before {
+  /*/ / 去除底部白线 */
+  height: 0;
+}
+
+.el-table--border::after, .el-table--group::after {
+  top: 0;
+  right: 0;
+  width: 0px;
+  height: 100%;
+}
+
+.el-button {
+  border: none;
+  color: white;
+  padding: .6rem;
+  border-radius: 10px;
+  background-color: rgb(1, 124, 165);
+  box-shadow: 1px 1px 0px inset rgba(226, 226, 226, .2);
+  transform: translateX(0);
+  transition: transform ease .4s;
+}
+
+/*设置选中高亮*/
+.el-table >>> .el-table__body tr:hover > td {
+  background-color: #a3a3a3;
+}
+
+.el-button:hover {
+  transform: translateX(2px);
+}
+
+/* 表格内背景颜色 */
+/deep/ .el-table th,
+/deep/ .el-table tr,
+/deep/ .el-table td {
+  border: none;
+  color: #000000;
+  background-color: transparent;
+}
+
+.base_color {
+  background-color: rgba(252, 175, 183, .3);
+  box-shadow: .5px .5px 1px inset rgba(226, 226, 226, .5), 1px 1px 3px rgba(0, 0, 0, .5);
 }
 
 .addMusicFrom {
@@ -210,8 +265,7 @@ export default {
 /*显示隐藏end*/
 /*定义组件动画start*/
 
-.showUp-enter, .showUp-leave-to
-{
+.showUp-enter, .showUp-leave-to {
   transform: translateX(500px);
   opacity: 0;
 }

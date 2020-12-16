@@ -60,7 +60,7 @@ export default {
             type: 'success'
           });
           this.$router.push('/')
-        } else if(res.data.code === 400){
+        } else if (res.data.code === 400) {
           this.$message.error({
             message: this.login_form.username + res.data.msg,
           });
@@ -83,9 +83,27 @@ export default {
   margin-top: 40%;
 }
 
+input::-webkit-input-placeholder {
+  color: #000000;
+}
+
+input::-moz-placeholder { /* Mozilla Firefox 19+ */
+  color: #000000;
+}
+
+input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  color: #000000;
+}
+
+input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #000000;
+}
 
 .input {
-  box-shadow: 0 5px 5px rgba(0, 0, 0, .5);
+  box-shadow: 1px 1px 1px rgba(103, 130, 117, .5) inset, 2px 2px 5px rgba(0, 0, 0, .5);
+  background-color: rgba(61, 61, 61, 0.8);
+  background-image: linear-gradient(to right, rgba(42, 74, 52, .7), rgba(255, 255, 255, 0.2)); /*对角渐变*/
+  backdrop-filter: blur(10px);
   padding-left: 1rem;
   font-weight: bold;
   font-size: 1rem;

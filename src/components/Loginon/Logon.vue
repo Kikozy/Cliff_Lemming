@@ -59,7 +59,7 @@ export default {
       if (password === repassword) {
         $("#matchPassword").addClass('hidden');
       }
-      if (username.length >= 0&& username.length <= 15 && password === repassword && mail.indexOf('@') >= 0 && mail.indexOf('.') >= 0) {
+      if (username.length >= 0 && username.length <= 15 && password === repassword && mail.indexOf('@') >= 0 && mail.indexOf('.') >= 0) {
         $("#isErr").attr("disabled", false);
       }
     },
@@ -77,7 +77,7 @@ export default {
       if (mail.indexOf('@') >= 0 && mail.indexOf('.') >= 0) {
         $("#matchMail").addClass('hidden');
       }
-      if (username.length >= 4 && username.length <= 15  && password === repassword && mail.indexOf('@') >= 0 && mail.indexOf('.') >= 0) {
+      if (username.length >= 4 && username.length <= 15 && password === repassword && mail.indexOf('@') >= 0 && mail.indexOf('.') >= 0) {
         $("#isErr").attr("disabled", false);
       }
     },
@@ -86,10 +86,10 @@ export default {
       let password = $("input[name='password']").val();
       let repassword = $("input[name='repassword']").val();
       let mail = $("input[name='mail']").val();
-      if (username.length >= 4 && username.length <= 15 ) {
+      if (username.length >= 4 && username.length <= 15) {
         $("#matchUsername").addClass('hidden');
       }
-      if (username.length < 4 || username.length > 15 ) {
+      if (username.length < 4 || username.length > 15) {
         $("#matchUsername").removeClass('hidden');
         $("#isErr").attr("disabled", true);
       }
@@ -129,8 +129,27 @@ export default {
   margin-top: 30%;
 }
 
+input::-webkit-input-placeholder {
+  color: #000000;
+}
+
+input::-moz-placeholder { /* Mozilla Firefox 19+ */
+  color: #000000;
+}
+
+input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  color: #000000;
+}
+
+input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #000000;
+}
+
 .input {
-  box-shadow: 0 5px 5px rgba(0, 0, 0, .5);
+  box-shadow: 1px 1px 1px rgba(103, 130, 117, .5) inset, 2px 2px 5px rgba(0, 0, 0, .5);
+  background-color: rgba(61, 61, 61, 0.8);
+  background-image: linear-gradient(to right, rgba(42, 74, 52, .7), rgba(255, 255, 255, 0.2)); /*对角渐变*/
+  backdrop-filter: blur(10px);
   padding-left: 1rem;
   font-weight: bold;
   font-size: 1rem;
@@ -140,6 +159,7 @@ export default {
   height: 3vw;
   border-radius: 10pt;
 }
+
 
 .logonBtn {
   font-weight: bold;

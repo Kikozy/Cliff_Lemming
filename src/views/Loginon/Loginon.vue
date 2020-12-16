@@ -57,7 +57,7 @@ export default {
   opacity: 0;
 }
 .showUp-enter {
-  transform: translateX(50px);
+  /*transform: translateX(100px);*/
   opacity: 0;
 }
 /*进入和离开执行的时间*/

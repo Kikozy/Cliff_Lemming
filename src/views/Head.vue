@@ -33,7 +33,7 @@ export default {
 <style scoped>
 /* scoped是局部使用 */
 /*导入外部css*/
-@import 'http://at.alicdn.com/t/font_2266444_or26wr6yvaj.css';
+@import 'http://at.alicdn.com/t/font_2266444_6eftw463mcr.css';
 @import '../assets/CSS/CommonHead.css';
 
 

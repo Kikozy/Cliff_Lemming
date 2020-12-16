@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>测试</h1>
-    <form class="addInfo" :action=add_music method="post">
+    <form class="addInfo test" :action=add_music method="post">
       <div class="leftInput">
         <input class="id_input" type="text" name='id' placeholder="歌曲id">
         <input class="name_input" type="text" name='name' placeholder="歌曲名称">
@@ -27,11 +27,17 @@ export default {
 .addInfo {
   float: left;
   width: 35rem;
-  background-color: rgba(111, 111, 111, .7);
+  /*background-color: rgba(123, 102, 102, 0.7);*/
   backdrop-filter: blur(10px);
-  border-radius: 10px;
   margin: 10rem;
   padding: 2rem;
+}
+
+.test{
+  border-radius: 20px;
+  background-color: #4a5063;
+  background-image: linear-gradient(to bottom right, #808695, #2e323e);
+  box-shadow: 1px 1px 2px inset rgba(226, 226, 226,1);
 }
 
 input {
