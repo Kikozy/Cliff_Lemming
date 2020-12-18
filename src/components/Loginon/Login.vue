@@ -77,7 +77,6 @@ export default {
 </script>
 
 <style scoped>
-/*@import '../../assets/CSS/Loginon/login.css';*/
 .loginInput {
   margin-left: 20%;
   margin-top: 40%;

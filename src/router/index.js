@@ -80,6 +80,11 @@ const routes = [
                 path: '/lemming_admin/users_admin',
                 meta: {title: '用户管理'}, // 由于控制标签名称
                 component: () => import('@/components/adminControls/users_admin.vue')
+            },
+            {
+                path: '/lemming_admin/game_admin',
+                meta: {title: '娱乐管理'}, // 由于控制标签名称
+                component: () => import('@/components/adminControls/game_admin.vue')
             }
         ]
     }

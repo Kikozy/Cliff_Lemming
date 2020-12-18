@@ -17,9 +17,9 @@
           <router-link id="logonbtn" to="/logon">Logon</router-link>
         </div>
       </div>
-          <!--定义组件动画-->
+      <!--定义组件动画-->
       <transition name="showUp">
-          <router-view/>
+        <router-view/>
       </transition>
 
     </div>
@@ -56,14 +56,17 @@ export default {
 .showUp-leave {
   opacity: 0;
 }
+
 .showUp-enter {
   /*transform: translateX(100px);*/
   opacity: 0;
 }
+
 /*进入和离开执行的时间*/
 .showUp-enter-active, .showUp-leave-active {
   transition: all .5s;
 }
+
 /*定义组件动画end*/
 
 </style>

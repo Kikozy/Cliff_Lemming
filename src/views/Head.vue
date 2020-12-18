@@ -1,5 +1,7 @@
 <template>
   <div class="home">
+    <!--  加载动画  -->
+    <LoadCloud/>
     <div class="headTop">
       <Login/>
       <MusicBar/>
@@ -16,6 +18,7 @@
 </template>
 
 <script>
+import LoadCloud from "@/components/Loading/LoadCloud";
 import MusicBar from "@/components/Head/MusicBar";
 import Login from "@/components/Head/loginBar";
 import userMsgBar from "@/components/Head/userMsgBar";
@@ -23,6 +26,7 @@ import itemHtml from "@/components/Head/itemHtml";
 
 export default {
   components: {
+    LoadCloud,
     itemHtml,
     userMsgBar,
     Login,
@@ -35,6 +39,5 @@ export default {
 /*导入外部css*/
 @import 'http://at.alicdn.com/t/font_2266444_6eftw463mcr.css';
 @import '../assets/CSS/CommonHead.css';
-
 
 </style>

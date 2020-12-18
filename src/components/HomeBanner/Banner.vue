@@ -35,8 +35,17 @@
 </template>
 
 <script>
+import $ from "jquery";
+
 export default {
-  name: "Banner"
+  name: "Banner",
+  mounted() {
+    // 监听滚动条
+    $(window).scroll(function () {
+      let top = $(document).scrollTop();
+      $('.aboutBox').css('top', -top * 0.3 + 280, '%')
+    })
+  }
 }
 </script>
 

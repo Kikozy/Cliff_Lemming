@@ -26,7 +26,12 @@
           <div class="compBtn"><i class="iconfont icon-yinle"></i>
             <h1> 音乐管理</h1></div>
         </router-link>
-        <div class="compBtn"><h1>-</h1></div>
+        <router-link  to='/lemming_admin/game_admin'>
+          <div class="compBtn">
+            <h1>娱乐管理</h1>
+          </div>
+        </router-link>
+
         <div class="compBtn"><h1>-</h1></div>
         <div class="compBtn"><h1>-</h1></div>
         <div class="compBtn"><h1>-</h1></div>

@@ -1,4 +1,4 @@
-<template xmlns="" xmlns="">
+<template>
   <div>
     <div class="Music_data">
       <el-table :data="music_data" border height="650">

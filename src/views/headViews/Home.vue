@@ -25,6 +25,7 @@ import InfoMe from "@/components/HomeContent/InfoMe";
 import GameInfo from "@/components/HomeContent/OtherInfo/gameInfo";
 import Musicinfo from "@/components/HomeContent/OtherInfo/musicInfo";
 import MovieInfo from "@/components/HomeContent/OtherInfo/movieInfo";
+import $ from 'jquery'
 
 export default {
   components: {
@@ -34,15 +35,16 @@ export default {
     Banner,
     Blog,
     InfoMe,
-  }
+  },
 }
 </script>
 
 <style scoped>
-.OtherInfo>*{
+.OtherInfo > * {
   margin-left: 3rem;
   float: left;
 }
+
 .HomeContent {
   width: 100%;
   position: absolute;
