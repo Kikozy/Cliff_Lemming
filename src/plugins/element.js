@@ -6,6 +6,7 @@ import { Form,FormItem } from 'element-ui';
 import { Input } from 'element-ui';
 import {Table,TableColumn} from "element-ui";
 import {Tag} from "element-ui";
+import {Switch} from 'element-ui'
 import {Notification} from "element-ui";
 import {Message} from "element-ui";
 
@@ -17,6 +18,7 @@ Vue.use(Input) // 输入框
 Vue.use(Table)
 Vue.use(TableColumn) //表格
 Vue.use(Tag) // 筛选
+Vue.use(Switch) //开关
 
 
 Vue.prototype.$notify = Notification

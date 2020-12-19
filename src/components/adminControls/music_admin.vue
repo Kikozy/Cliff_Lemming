@@ -94,11 +94,21 @@ export default {
       }).then(res => {
         if (res.data.code === 200) {
           this.reload() // 组件刷新
+          this.$message({
+            message: '音乐更新成功！',
+            type: 'success'
+          });
         } else if (res.data.code === 500) {
           $('#Updating').addClass('Mhide')
           $('#Updata').removeClass('Mhide')
+          this.$message.error({
+            message: '更新失败！',
+          });
         }
       }).catch(err => {
+        this.$message.error({
+          message: '更新失败！',
+        });
         console.log(err)
       })
     },

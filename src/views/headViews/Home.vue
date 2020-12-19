@@ -36,20 +36,28 @@ export default {
     Blog,
     InfoMe,
   },
+  mounted() {
+    // 监听滚动条
+    $(window).scroll(function () {
+      let top = $(document).scrollTop();
+      $('.HomeContent').css('background-image', 'linear-gradient(to bottom right, rgba(48, 67, 82,' + top / 200 * 0.3 + '), rgba(52, 49, 66,' + top / 100 * 0.3 + '))')
+    })
+  }
 }
 </script>
 
 <style scoped>
 .OtherInfo > * {
-  margin-left: 3rem;
+  margin-left: 4%;
   float: left;
 }
 
 .HomeContent {
+  padding-top: 4rem;
   width: 100%;
   position: absolute;
-  background-color: white;
-  box-shadow: 0 -40px 30px white;
+  background-image: linear-gradient(to bottom right, rgba(48, 67, 82, 0), rgba(52, 49, 66, 0)); /*对角渐变*/
+  box-shadow: 0 -40px 30px rgb(255, 252, 252);
 }
 
 .HContent {

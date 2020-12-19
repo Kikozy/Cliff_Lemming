@@ -44,6 +44,8 @@ export default {
     $(window).scroll(function () {
       let top = $(document).scrollTop();
       $('.aboutBox').css('top', -top * 0.3 + 280, '%')
+      console.log(top)
+      $('.backWord').css('opacity',-top/150*1+1,'%')
     })
   }
 }
@@ -51,7 +53,6 @@ export default {
 
 <style scoped>
 /*banner style start*/
-
 .backImg {
   width: 100%;
   height: 80vh;
@@ -61,6 +62,8 @@ export default {
 }
 
 .backWord {
+  opacity: 100%;
+  display: block;
   position: fixed;
   left: 50%;
   margin-left: -30%;
