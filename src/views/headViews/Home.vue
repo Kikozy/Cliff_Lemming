@@ -53,7 +53,7 @@ export default {
 }
 
 .HomeContent {
-  padding-top: 4rem;
+  padding-top: 3rem;
   width: 100%;
   position: absolute;
   background-image: linear-gradient(to bottom right, rgba(48, 67, 82, 0), rgba(52, 49, 66, 0)); /*对角渐变*/

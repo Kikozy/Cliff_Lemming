@@ -5,11 +5,16 @@
         <el-table-column type="selection" width="55"></el-table-column>
         <el-table-column type="index" label="序号" width="50"></el-table-column>
         <el-table-column prop="id" label="id" width="55"></el-table-column>
-        <el-table-column prop="platform" label="平台" width="100"></el-table-column>
+        <el-table-column prop="platform" label="平台" width="50"></el-table-column>
         <el-table-column prop="name" label="游戏" width="100"></el-table-column>
         <el-table-column prop="pic" label="图片" width="200">
           <template slot-scope="scope">
             　　　　<img :src="scope.row.pic" width="150" height="60" class="head_pic"/>
+          </template>
+        </el-table-column>
+        <el-table-column prop="url" label="链接" width="100">
+          <template slot-scope="scope">
+            　　　<a class="el-button" :href="scope.row.url">跳转</a>
           </template>
         </el-table-column>
         <el-table-column prop="starttime" label="开始时间" width="100"></el-table-column>

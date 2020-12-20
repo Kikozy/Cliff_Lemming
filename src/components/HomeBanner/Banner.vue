@@ -1,9 +1,19 @@
 <template>
   <div class="HomeBanner">
     <div class="backImg">
-      <div>
-        <h6 class="backWord">Lemming</h6>
+      <div class="BACKIMGS">
+        <img class="imgback" src="../../assets/IMAGE/LemBack/LemBack.png" alt="">
+        <img class="lem0" src="../../assets/IMAGE/LemBack/Lem0.png" alt="">
+        <img class="lem1" src="../../assets/IMAGE/LemBack/Lem1.png" alt="">
+        <img class="lem2" src="../../assets/IMAGE/LemBack/Lem2.png" alt="">
+        <img class="lem3" src="../../assets/IMAGE/LemBack/Lem3.png" alt="">
+        <img class="lem4" src="../../assets/IMAGE/LemBack/Lem4.png" alt="">
+        <div>
+          <h6 class="backWord">Lemming</h6>
+        </div>
+        <img class="lem5" src="../../assets/IMAGE/LemBack/Lem5.png" alt="">
       </div>
+
     </div>
     <div class="aboutBox">
       <a href="javascript:;">
@@ -44,8 +54,14 @@ export default {
     $(window).scroll(function () {
       let top = $(document).scrollTop();
       $('.aboutBox').css('top', -top * 0.3 + 280, '%')
-      console.log(top)
-      $('.backWord').css('opacity',-top/150*1+1,'%')
+      // console.log(top)
+      $('.backWord').css('opacity', -top / 150 * 1 + 1, '%')
+      $('.lem0').css('left', top * .8, 'px')
+      $('.lem1').css('top', top * 1.2, 'px')
+      $('.lem2').css('top', top * .9, 'px')
+      $('.lem3').css('top', top * .6, 'px')
+      $('.lem4').css('top', top * .3, 'px')
+
     })
   }
 }
@@ -53,13 +69,28 @@ export default {
 
 <style scoped>
 /*banner style start*/
+.HomeBanner {
+  margin-bottom: 5rem;
+}
+
 .backImg {
   width: 100%;
   height: 80vh;
-  background: url(../../assets/IMAGE/Home/BackC.png);
+  /*background: url(../../assets/IMAGE/Home/BackC.png);*/
   background-size: cover;
   z-index: -1;
 }
+.BACKIMGS{
+  top:5rem;
+}
+.BACKIMGS > * {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-size: cover;
+  top: -5rem;
+}
+
 
 .backWord {
   opacity: 100%;
@@ -132,7 +163,7 @@ export default {
 .clouds img {
   position: absolute;
   bottom: 0;
-  max-width: 100%;
+  max-width: 70%;
   /* #云的移动速度# */
   animation: animation calc(8s * var(--i)) linear infinite;
 }
@@ -140,10 +171,10 @@ export default {
 /* #云移动的开始到结尾位置# */
 @keyframes animation {
   0% {
-    transform: translateX(-100%);
+    transform: translateX(-130%);
   }
   100% {
-    transform: translateX(100%);
+    transform: translateX(130%);
   }
 }
 
