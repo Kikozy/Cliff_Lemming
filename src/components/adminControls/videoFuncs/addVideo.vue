@@ -1,16 +1,16 @@
 <template>
   <div class="addInfo add_base_color">
     <div class="leftInput">
-      <input class="id_input" v-model="addmusicInfo.id" type="text" name='id' placeholder="歌曲id">
-      <input class="name_input" v-model="addmusicInfo.name" type="text" name='name' placeholder="歌曲名称">
-      <input class="singer_input" v-model="addmusicInfo.singer" type="text" name='singer' placeholder="歌手">
+<!--      <input class="id_input" v-model="addvideoInfo.id" type="text" name='id' placeholder="影视id">-->
+      <input class="name_input" v-model="addvideoInfo.name" type="text" name='name' placeholder="影视名称">
+      <input class="type_input" v-model="addvideoInfo.type" type="text" name='type' placeholder="类型">
     </div>
     <div class="rightInput">
-      <input class="url_input" v-model="addmusicInfo.play_url" type="text" name='url' placeholder="播放地址">
-      <input class="pic_input" v-model="addmusicInfo.pic" type="text" name='pic' placeholder="图片地址">
-      <input class="date_input" v-model="addmusicInfo.date" type="text" name='date' placeholder="日期">
+      <input class="url_input" v-model="addvideoInfo.url" type="text" name='url' placeholder="地址">
+      <input class="score_input" v-model="addvideoInfo.score" type="text" name='score' placeholder="分数">
+      <input class="about_input" v-model="addvideoInfo.about" type="text" name='about' placeholder="关于">
     </div>
-    <input class="addInfoBtn" type="submit" value="添加" @click="post_addmusic">
+    <input class="addInfoBtn" type="submit" value="添加" @click="post_addvideo">
   </div>
 </template>
 
@@ -22,42 +22,41 @@ export default {
   inject: ['reload'],// 组件刷新调用
   data() {
     return {
-      addmusicInfo: {
-        id: '',
+      addvideoInfo: {
+        // id: '',
+        type:'',
         name: '',
-        singer: '',
-        play_url: '',
-        pic: '',
-        date: ''
+        url: '',
+        score: '',
+        about: '',
+        code:'0609'
       }
     }
   },
   created() {
     // 日期默认值
-    let date = new Date();
-    let year = date.getFullYear(); // 获取年份
-    let month = date.getMonth() + 1; // 获取月份
-    let day = date.getDate(); //获取日
-    let fullDate = year + '-' + month + '-' + day;
-    this.addmusicInfo.date = fullDate // 日期默认值
+    // let date = new Date();
+    // let year = date.getFullYear(); // 获取年份
+    // let month = date.getMonth() + 1; // 获取月份
+    // let day = date.getDate(); //获取日
+    // this.addvideoInfo.datetime = year + '-' + month + '-' + day // 日期默认值
   },
   methods: {
-    post_addmusic() {
+    post_addvideo() {
       request({
         method: 'post',
-        url: '/add_music',
-        data: this.addmusicInfo
+        url: '/video_add',
+        data: this.addvideoInfo
       }).then(res => {
-        console.log(res.data)
         if (res.data.code === 201) {
           this.reload()
           this.$message({
-            message: this.addmusicInfo.name + '  添加成功!',
+            message: this.addvideoInfo.name + '  添加成功!',
             type: 'success'
           });
         } else if (res.data.code === 400) {
           this.$message.error({
-            message: this.addmusicInfo.name + '  添加失败!',
+            message: this.addvideoInfo.name + '  添加失败!',
           });
         }
       }).catch(err => {
@@ -69,6 +68,9 @@ export default {
 </script>
 
 <style scoped>
+.addInfoBtn{
+  cursor: pointer;
+}
 .add_base_color {
   background-color: rgba(61, 73, 90, .5);
   backdrop-filter: blur(10px);
@@ -84,19 +86,19 @@ export default {
 }
 
 input::-webkit-input-placeholder {
-  color: #000000;
+  color: #cfcfcf;
 }
 
 input::-moz-placeholder { /* Mozilla Firefox 19+ */
-  color: #000000;
+  color: #cfcfcf;
 }
 
 input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-  color: #000000;
+  color: #cfcfcf;
 }
 
 input:-ms-input-placeholder { /* Internet Explorer 10-11 */
-  color: #000000;
+  color: #cfcfcf;
 }
 
 input {
@@ -126,5 +128,7 @@ input {
   margin-left: 10rem;
   margin-bottom: 0;
 }
+
+
 
 </style>

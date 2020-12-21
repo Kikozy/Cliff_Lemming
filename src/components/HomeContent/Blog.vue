@@ -57,8 +57,8 @@ export default {
   color: white;
   margin-bottom: 20px;
   background-color: #516574;
-  background-image: linear-gradient(to bottom right, rgb(48, 67, 82), rgb(52, 49, 66)); /*对角渐变*/
-  box-shadow: 1px 1px 1px inset rgba(226, 226, 226, .5), 1px 1px 3px rgba(0, 0, 0, .5);
+  background-image: linear-gradient(to bottom right, #385c84 -150%, #152033 100%); /*对角渐变*/
+  box-shadow: .5px .5px 1px inset rgba(226, 226, 226, .3), 2px 2px 5px rgba(0, 0, 0, .3);
   border-radius: 20px;
   width: 95%;
   height: 7vw;
@@ -69,13 +69,13 @@ export default {
 
 .blogList li:hover {
   transform: translateY(-10px);
-  box-shadow: 1px 1px 1px inset rgba(226, 226, 226, .5), 0px 5px 15px rgba(0, 0, 0, .5);
+  box-shadow: 1px 1px 1px inset rgba(226, 226, 226, .3), 0px 5px 15px rgba(0, 0, 0, .3);
 }
 
 .blogList li:hover #hole {
   width: 1.1rem;
   height: 1.1rem;
-  box-shadow: 0px 4px 5px #2a3642 inset;
+  box-shadow: 0px 4px 5px #0f1a21 inset;
 }
 
 #hole {
@@ -86,8 +86,8 @@ export default {
   width: 1rem;
   height: 1rem;
   border-radius: 50%;
-  background-color: #313f4e;
-  box-shadow: 0px 2px 1px #2a3642 inset;
+  background-color: #203947;
+  box-shadow: 0px 2px 1px #0f1a21 inset;
   transition: box-shadow ease .3s, height ease .3s, width ease .3s;
 }
 

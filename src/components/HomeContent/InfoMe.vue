@@ -1,6 +1,14 @@
 <template>
   <div class="infoMe">
     <img class="logo" src="../../assets/IMAGE/Home/HeadB.png"/>
+    <div class="nav_info_me">
+      <ul class="nav_ul">
+        <li>友链</li>
+        <li>其他</li>
+        <li>其他</li>
+        <li>其他</li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -19,8 +27,8 @@ export default {
   float: right;
   width: 27%;
   height: 30rem;
-background-image: linear-gradient(to bottom right, rgb(48, 67, 82), rgb(52, 49, 66)); /*对角渐变*/
-  box-shadow: 1px 1px 1px inset rgba(226, 226, 226, .5), 1px 1px 3px rgba(0, 0, 0, .5);
+  background-image: linear-gradient(to bottom right, #385c84 -150%, #152033 100%); /*对角渐变*/
+  box-shadow: .5px .5px 1px inset rgba(226, 226, 226, .3), 2px 2px 5px rgba(0, 0, 0, .3);
   /*box-shadow: 0px 5px 5px rgba(0, 0, 0, .4);*/
 }
 
@@ -28,6 +36,27 @@ background-image: linear-gradient(to bottom right, rgb(48, 67, 82), rgb(52, 49, 
   width: 30%;
   border-radius: 50%;
   margin-top: -30px;
-  box-shadow: 0 0 30px rgba(50, 69, 85, 0.8);
+  box-shadow: 0 0 30px #017ca5;
+  transition: box-shadow ease .3s;
+}
+
+.logo:hover {
+  box-shadow: 0 0 50px #00c0ff;
+}
+
+.nav_ul > li {
+  font-weight: bold;
+  color: #ffffff;
+  width: 15vw;
+  height: 6vh;
+  background-image: linear-gradient(to bottom right, #017ca5 -200%, #152033 100%); /*对角渐变*/
+  box-shadow: .5px .5px 1px inset rgba(226, 226, 226, .3);
+  border-radius: 5px;
+  margin: 2rem;
+  text-align: center;
+  line-height: 3rem;
+}
+.nav_ul>li:hover{
+
 }
 </style>

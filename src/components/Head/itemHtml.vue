@@ -9,6 +9,8 @@
 </template>
 
 <script>
+import $ from "jquery";
+
 export default {
   name: "itemHtml",
   data() {
@@ -57,19 +59,23 @@ export default {
 
 <style scoped>
 .itemHtml {
+  opacity: 100%;
   background-color: pink;
   float: right;
   margin: .2%;
   padding: 1rem;
   border-radius: 10px;
   background-color: rgba(97, 123, 136, .3);
-  box-shadow: 1px 1px 2px rgba(255, 255, 255, 0.1) inset, 1px 1px 5px rgba(0, 0, 0, .5);
+  background-image: linear-gradient(to bottom right, rgba(58, 95, 137, .5) -100%, rgba(20, 31, 49, .5) 100%); /*对角渐变*/
+  box-shadow: 1px 1px 1px rgba(255, 255, 255, 0.1) inset, 1px 1px 5px rgba(0, 0, 0, .5);
   backdrop-filter: blur(50px);
 }
 
 li {
   margin-left: .5rem;
-  background-color: #617B88;
+  /*background-color: #617B88;*/
+  background-image: linear-gradient(to bottom right, rgba(58, 95, 137, .5) -100%, rgba(20, 31, 49, .5) 100%); /*对角渐变*/
+  box-shadow: 1px 1px 1px rgba(255, 255, 255, 0.05) inset;
   border-radius: 10px;
   padding: 5px;
   transform: translateY(0);
@@ -84,8 +90,8 @@ li > * {
   transform: translateY(5px);
 }
 
-.active {
-  /*color: black;*/
-  background-color: #305747;
-}
+/*.active {*/
+/*  !*color: black;*!*/
+/*  background-color: #305747;*/
+/*}*/
 </style>

@@ -31,6 +31,11 @@
             <h1>娱乐管理</h1>
           </div>
         </router-link>
+        <router-link to="/lemming_admin/movie_admin">
+          <div class="compBtn">
+            <h1>影视管理</h1>
+          </div>
+        </router-link>
 
         <div class="compBtn"><h1>-</h1></div>
         <div class="compBtn"><h1>-</h1></div>

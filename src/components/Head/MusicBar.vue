@@ -257,9 +257,10 @@ export default {
   height: 90%;
   width: 200px;
   border-radius: 10px;
-  background-color: rgba(97, 123, 136, .7);
+  /*background-color: rgba(97, 123, 136, .7);*/
+  background-image: linear-gradient(to bottom right, rgba(58, 95, 137, .5) -100%, rgba(20, 31, 49, .5) 100%); /*对角渐变*/
   backdrop-filter: blur(10px);
-  box-shadow: 1px 1px 2px rgba(255, 255, 255, 0.1) inset, 1px 1px 5px rgba(0, 0, 0, .5);
+  box-shadow: 1px 1px 1px rgba(255, 255, 255, 0.1) inset, 1px 1px 5px rgba(0, 0, 0, .5);
   transform: translateY(0px);
   transition: transform ease .3s;
 }
@@ -273,7 +274,7 @@ export default {
 }
 
 .Mpic {
-  background-size:100%;
+  background-size: 100%;
   background-image: url("http://p2.music.126.net/YWeuBX08R4Lq8hLdpJGtmA==/109951164957278318.jpg?param=130y130");
   top: 0px;
   position: absolute;
@@ -352,7 +353,8 @@ export default {
   border-radius: 10px;
   width: 300px;
   height: 400px;
-  background-color: rgba(97, 123, 136, .7);
+  /*background-color: rgba(97, 123, 136, .7);*/
+  background-image: linear-gradient(to bottom right, rgba(58, 95, 137, .5) -100%, rgba(20, 31, 49, .5) 100%); /*对角渐变*/
   box-shadow: 1px 1px 2px rgba(255, 255, 255, 0.05) inset, 1px 1px 5px rgba(0, 0, 0, .5);
 }
 

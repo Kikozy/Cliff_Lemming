@@ -24,7 +24,9 @@
         <el-table-column label="操作" width="120">
           <template slot-scope="scope">
             <el-button type="text" size="small" @click="change_game(scope.row.id)">修改</el-button>
-            <el-button type="text" size="small" v-if="date_today === scope.row.datetime" @click="del_game(scope.row.id,scope.row.name)">删除</el-button>
+            <el-button type="text" size="small" v-if="date_today === scope.row.datetime"
+                       @click="del_game(scope.row.id,scope.row.name)">删除
+            </el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -129,6 +131,8 @@ export default {
           });
         }
       }).catch(err => {
+        $('#Updating').removeClass('Ghide')
+        $('#Updata').addClass('Ghide')
         this.$message.error({
           message: '更新失败！',
         });

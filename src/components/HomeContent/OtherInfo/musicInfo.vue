@@ -18,8 +18,8 @@ export default {
 .MusicBar {
   padding: 1rem;
   background-color: #4a5063; /*不支持渐变默认的颜色*/
-  width: 10rem;
-  height: 10rem;
+  width: 10vw;
+  height: 21vh;
   border-radius: 20px;
   margin-bottom: 2rem;
 }
@@ -36,8 +36,8 @@ export default {
 .base_linear {
   /*border-radius: 10px;*/
   /*background-color: #4a5063; !*不支持渐变默认的颜色*!*/
-  background-image: linear-gradient(to bottom right, rgba(48, 67, 82, .5), rgba(52, 49, 66, .5)); /*对角渐变*/
-  box-shadow: .5px .5px 1px inset rgba(226, 226, 226, .5), 2px 2px 5px rgba(0, 0, 0, .5);
+  background-image: linear-gradient(to bottom right, #385c84 -150%, #152033 100%); /*对角渐变*/
+  box-shadow: .5px .5px 1px inset rgba(226, 226, 226, .3), 2px 2px 5px rgba(0, 0, 0, .3);
   backdrop-filter: blur(10px);
 }
 </style>
