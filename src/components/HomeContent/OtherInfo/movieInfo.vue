@@ -49,7 +49,6 @@ export default {
   width: 18vw;
   height: 21vh;
   border-radius: 20px;
-  margin-bottom: 2rem;
 }
 .movie_info_title {
   color: #ffffff;

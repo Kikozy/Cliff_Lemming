@@ -21,5 +21,5 @@ Vue.use(Tag) // 筛选
 Vue.use(Switch) //开关
 
 
-Vue.prototype.$notify = Notification
+Vue.prototype.$notify = Notification //全局注册，使用方法为:this.$notify
 Vue.prototype.$message = Message

@@ -12,17 +12,19 @@
       <Banner/>
       <div class="HomeContent">
         <div class="HContent w">
-          <InfoMe/>
-          <!--     keep-alive 保持状态（避免重复渲染）-->
-          <keep-alive>
-            <!--    子路由显示占位符    -->
-            <router-view/>
-          </keep-alive>
+          <div class="INFO_ME_BOX"><InfoMe/></div>
+          <div class="CONTENT">
+            <transition name="showUp">
+              <!--     keep-alive 保持状态（避免重复渲染）-->
+              <keep-alive>
+                <!--    子路由显示占位符    -->
+                <router-view/>
+              </keep-alive>
+            </transition>
+          </div>
         </div>
       </div>
     </div>
-
-
   </div>
 </template>
 
@@ -52,7 +54,6 @@ export default {
 /*导入外部css*/
 @import 'http://at.alicdn.com/t/font_2266444_6eftw463mcr.css';
 @import '../assets/CSS/CommonHead.css';
-
 .HomeContent {
   padding-top: 3rem;
   width: 100%;
@@ -62,7 +63,40 @@ export default {
 }
 
 .HContent {
-  width: 70%;
+  width: 70rem;
   height: 100rem;
 }
+
+.CONTENT{
+  /*padding-left: 2rem;*/
+  width: 52vw;
+}
+.INFO_ME_BOX{
+  float: right;
+  position: sticky;
+  right: 15vw;
+  top: 10%;
+}
+/*定义组件动画start*/
+
+.showUp-leave-to {
+  transform: translateY(1000px);
+  opacity: 0;
+  height: 0;
+  position: absolute;
+}
+
+.showUp-enter {
+  transform: translateY(1000px);
+  opacity: 0;
+  height: 0;
+  position: absolute;
+}
+
+/*进入和离开执行的时间*/
+.showUp-enter-active, .showUp-leave-active {
+  transition: all ease 1s;
+}
+
+/*定义组件动画end*/
 </style>

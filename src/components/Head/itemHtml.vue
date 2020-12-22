@@ -27,6 +27,8 @@ export default {
   },
   methods: {
     isclick(key) {
+      // 点击后滚动到指定位置
+      $('html,body').animate({ scrollTop: $(".HomeContent").offset().top-100}, 300)
       this.active = this.$route.name;
       // 被点击后将index传进来赋值为点击的第几个
       switch (key) {
@@ -75,20 +77,21 @@ li {
   margin-left: .5rem;
   /*background-color: #617B88;*/
   background-image: linear-gradient(to bottom right, rgba(58, 95, 137, .5) -100%, rgba(20, 31, 49, .5) 100%); /*对角渐变*/
-  box-shadow: 1px 1px 1px rgba(255, 255, 255, 0.05) inset;
+  box-shadow: 1px 1px 1px rgba(255, 255, 255, 0.05) inset, 0 0 0px #017ca5;
   border-radius: 10px;
   padding: 5px;
-  transform: translateY(0);
-  transition: transform ease .3s;
+  transition: transform ease .3s,box-shadow ease 1s,background-color ease .5s;
+}
+li:hover{
+  background-color: #017ca5;
+  box-shadow: 0 0 20px #017ca5;
+  transform: translateY(3px);
 }
 
 li > * {
   color: #cfcfcf;
 }
 
-.itemHtml > ul > li:hover {
-  transform: translateY(5px);
-}
 
 /*.active {*/
 /*  !*color: black;*!*/

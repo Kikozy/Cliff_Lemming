@@ -21,7 +21,6 @@ export default {
   width: 10vw;
   height: 21vh;
   border-radius: 20px;
-  margin-bottom: 2rem;
 }
 
 .music_info_title {

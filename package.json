@@ -9,6 +9,7 @@
     "server": "nodemon index.js --ignore client"
   },
   "dependencies": {
+    "@packy-tang/vue-tinymce": "^1.1.0",
     "axios": "^0.21.0",
     "core-js": "^3.8.0",
     "element-ui": "^2.4.5",

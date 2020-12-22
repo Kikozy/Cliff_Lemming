@@ -122,7 +122,7 @@ export default {
   transform: translate(-50%, -40%);
   line-height: 4vw;
   text-align: center;
-  border-radius: 5%;
+  border-radius: 10px;
   backdrop-filter: blur(5px);
   box-shadow: .5px .5px 1px rgba(255, 255, 255, 0.2) inset, 1px 1px 5px rgba(0, 0, 0, .4);
   transition: background-color ease .5s, box-shadow ease .5s, width ease .5s, backdrop-filter ease .3s;

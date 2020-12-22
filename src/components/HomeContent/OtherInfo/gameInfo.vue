@@ -48,7 +48,6 @@ export default {
   width: 10vw;
   height: 21vh;
   border-radius: 20px;
-  margin-bottom: 2rem;
 }
 
 .game_info_title {
@@ -91,7 +90,7 @@ export default {
   overflow: hidden; /*自动隐藏文字*/
   text-overflow: ellipsis; /*文字隐藏后添加省略号*/
   white-space: nowrap; /*强制不换行*/
-  width: 9em; /*不允许出现半汉字截断*/
+  width: 80%; /*不允许出现半汉字截断*/
   border-radius: 5px;
   padding: .2rem;
   margin-top: 6vh;
