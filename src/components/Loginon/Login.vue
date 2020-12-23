@@ -1,10 +1,11 @@
 <template>
   <div class="LoginForm">
+    <img class="iconHead" :src="qq_icon" alt="">
     <div class="loginInput">
       <!--  登录表单   -->
       <!--      加了form点击登录会自动刷新-->
       <!--      <form class="Login" action="">-->
-      <input class="username input" v-model="login_form.username" type="text" name="username" placeholder="用户名"
+      <input class="mail input" v-model="login_form.mail" type="text" name="mail" placeholder="邮箱"
              @keyup="ismatch">
       <input class="password input" v-model="login_form.password" type="password" name="password" placeholder="密码"
              @keyup="ismatch">
@@ -26,17 +27,22 @@ export default {
   name: "Login",
   data() {
     return {
+      qq_icon: '',
       login_form: {
-        username: '',
+        mail: '',
         password: ''
       }
     }
   },
   methods: {
     ismatch() {
-      let username = $("input[name='username']").val()
-      let password = $("input[name='password']").val()
-      if (username.length >= 4 && password.length >= 4) {
+      if (this.login_form.mail.indexOf('@') >= 0) {
+        let qq = this.login_form.mail.split('@')[0]
+        this.qq_icon = 'http://q1.qlogo.cn/g?b=qq&nk=' + qq + '&s=640'
+      } else {
+        this.qq_icon = ''
+      }
+      if (this.login_form.mail.length <= 30 && this.login_form.mail.indexOf('@') >= 0 && this.login_form.mail.indexOf('.') >= 0 && this.login_form.password.length >= 4) {
         $(".loginBtn").attr("disabled", false)
       } else {
         $(".loginBtn").attr("disabled", true)
@@ -50,25 +56,28 @@ export default {
       }).then(res => {
         if (res.data.code === 609) {
           this.$message({
-            message: this.login_form.username + '管理员登录成功！',
+            message: '管理员登录成功！',
             type: 'success'
           });
           this.$router.push('/lemming_admin')
         } else if (res.data.code === 200) {
           this.$message({
-            message: this.login_form.username + '登录成功！',
+            message: res.data.username + '登录成功！',
             type: 'success'
           });
+          // 提交到vuex
+          let login_infos = {username: res.data.username, qqHead: this.qq_icon, mail: this.login_form.mail}
+          this.$store.commit('saveLogin', login_infos) //提交
           this.$router.push('/')
         } else if (res.data.code === 400) {
           this.$message.error({
-            message: this.login_form.username + res.data.msg,
+            message: this.login_form.mail + res.data.msg,
           });
           this.$router.push('/logon')
         }
       }).catch(err => {
         this.$message.error({
-          message: this.login_form.username + '账号或者密码错误！',
+          message: this.login_form.mail + '账号或者密码错误！',
         });
       })
     }
@@ -77,6 +86,14 @@ export default {
 </script>
 
 <style scoped>
+.iconHead {
+  left: -3rem;
+  z-index: -1;
+  width: 40%;
+  border-radius: 50%;
+  position: absolute;
+}
+
 .loginInput {
   margin-left: 20%;
   margin-top: 40%;

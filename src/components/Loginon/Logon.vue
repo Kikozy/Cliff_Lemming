@@ -1,5 +1,6 @@
 <template>
   <div class="LogonForm">
+    <img class="iconHead" :src="qq_icon" alt="">
     <div class="logonInput">
       <!-- 注册表单   -->
       <!--      <form class="Logon" :action=logon_url method="post">-->
@@ -17,7 +18,7 @@
              @keyup="matchPassword">
       <input class="email input" type="text" v-model="logon_form.mail" name='mail'
              placeholder="邮箱"
-             @keyup="matchMail">
+             @keyup="matchMail1">
       <span class="hidden movestyle" id="matchMail">请输入正确的邮箱格式！💤</span>
       <input class="logonBtn isErr" id="isErr" type="submit" value="注册" disabled="ture" @click="post_logon">
       <!--      </form>-->
@@ -36,6 +37,7 @@ export default {
     return {
       back: '',
       logon_url: '不要乱搞哥哥！',
+      qq_icon:'',
       logon_form: {
         username: '',
         password: '',
@@ -44,56 +46,53 @@ export default {
       }
     }
   },
-
   methods: {
-    // 判断两次密码是否正确
-    matchPassword() {
-      let username = $("input[name='username']").val();
-      let mail = $("input[name='mail']").val();
-      let password = $("input[name='password']").val();
-      let repassword = $("input[name='repassword']").val();
-      if (password !== repassword) {
-        $("#matchPassword").removeClass('hidden');
-        $("#isErr").attr("disabled", true);
+    matchMail1(){
+      if (this.logon_form.mail.indexOf('@') >= 0) {
+        let qq = this.logon_form.mail.split('@')[0]
+        this.qq_icon = 'http://q1.qlogo.cn/g?b=qq&nk=' + qq + '&s=640'
+      }else {
+        this.qq_icon = ''
       }
-      if (password === repassword) {
-        $("#matchPassword").addClass('hidden');
-      }
-      if (username.length >= 0 && username.length <= 15 && password === repassword && mail.indexOf('@') >= 0 && mail.indexOf('.') >= 0) {
-        $("#isErr").attr("disabled", false);
-      }
-    },
-    // 判断邮箱格式是否正确
-    matchMail() {
-      let username = $("input[name='username']").val();
-      let password = $("input[name='password']").val();
-      let repassword = $("input[name='repassword']").val();
-      let mail = $("input[name='mail']").val();
-      // 如果mail里面是没有@和.com这个字符将执行下面，（xxx >= 0则是判断里面有）
-      if (mail.indexOf('@') <= 0 && mail.indexOf('.') <= 0) {
+      if (this.logon_form.mail.indexOf('@') <= 0 && this.logon_form.mail.indexOf('.') <= 0) {
         $("#matchMail").removeClass('hidden');
         $("#isErr").attr("disabled", true);
       }
-      if (mail.indexOf('@') >= 0 && mail.indexOf('.') >= 0) {
+      if (this.logon_form.mail.indexOf('@') >= 0 && this.logon_form.mail.indexOf('.') >= 0) {
         $("#matchMail").addClass('hidden');
       }
-      if (username.length >= 4 && username.length <= 15 && password === repassword && mail.indexOf('@') >= 0 && mail.indexOf('.') >= 0) {
+      if (this.logon_form.username.length >= 4 &&this.logon_form.username.length <= 15 &&
+        this.logon_form.password === this.logon_form.repassword &&
+        this.logon_form.mail.indexOf('@') >= 0 && this.logon_form.mail.indexOf('.') >= 0) {
+        $("#isErr").attr("disabled", false);
+      }
+    },
+    // 判断两次密码是否正确
+    matchPassword() {
+      if (this.logon_form.password !== this.logon_form.repassword) {
+        $("#matchPassword").removeClass('hidden');
+        $("#isErr").attr("disabled", true);
+      }
+      if (this.logon_form.password === this.logon_form.repassword) {
+        $("#matchPassword").addClass('hidden');
+      }
+      if (this.logon_form.username.length >= 4 &&this.logon_form.username.length <= 15 &&
+        this.logon_form.password === this.logon_form.repassword &&
+        this.logon_form.mail.indexOf('@') >= 0 && this.logon_form.mail.indexOf('.') >= 0) {
         $("#isErr").attr("disabled", false);
       }
     },
     matchUsername() {
-      let username = $("input[name='username']").val();
-      let password = $("input[name='password']").val();
-      let repassword = $("input[name='repassword']").val();
-      let mail = $("input[name='mail']").val();
-      if (username.length >= 4 && username.length <= 15) {
+      if (this.logon_form.username.length >= 4 && this.logon_form.username.length <= 15) {
         $("#matchUsername").addClass('hidden');
       }
-      if (username.length < 4 || username.length > 15) {
+      if (this.logon_form.username.length < 4 || this.logon_form.username.length > 15) {
         $("#matchUsername").removeClass('hidden');
         $("#isErr").attr("disabled", true);
       }
-      if (username.length >= 4 && username.length <= 15 && password === repassword && mail.indexOf('@') >= 0 && mail.indexOf('.') >= 0) {
+      if (this.logon_form.username.length >= 4 &&this.logon_form.username.length <= 15 &&
+        this.logon_form.password === this.logon_form.repassword &&
+        this.logon_form.mail.indexOf('@') >= 0 && this.logon_form.mail.indexOf('.') >= 0) {
         $("#isErr").attr("disabled", false);
       }
     },
@@ -123,7 +122,13 @@ export default {
 </script>
 
 <style scoped>
-/*@import '../../assets/CSS/Loginon/logon.css';*/
+.iconHead{
+  z-index: -1;
+  width: 40%;
+  border-radius: 50%;
+  position: absolute;
+  left: -3rem;
+}
 .logonInput {
   margin-left: 20%;
   margin-top: 30%;

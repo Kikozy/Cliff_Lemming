@@ -33,11 +33,26 @@ const routes = [
         component: Head, //非按需求导入（加载慢）
         // 子路由
         children: [
-            {path: '/about',name:'About', meta: {title: '关于'}, component: () => import('@/views/headViews/About.vue')}, //按需求导入（加载快）
-            {path: '/home',name:'Home' ,meta: {title: '主页'}, component: () => import('@/views/headViews/Home.vue')},
-            {path: '/timeline',name:'Timeline', meta: {title: '时间线'}, component: () => import('@/views/headViews/Timeline')},
-            {path: '/test',name:'Test', meta: {title: '测试'}, component: () => import('@/views/headViews/Test')},
-            {path: '/lemming',name:'Lemming', meta: {title: 'Lemming'}, component: () => import('@/views/headViews/Lemming')},
+            {
+                path: '/about',
+                name: 'About',
+                meta: {title: '关于'},
+                component: () => import('@/views/headViews/About.vue')
+            }, //按需求导入（加载快）
+            {path: '/home', name: 'Home', meta: {title: '主页'}, component: () => import('@/views/headViews/Home.vue')},
+            {
+                path: '/timeline',
+                name: 'Timeline',
+                meta: {title: '时间线'},
+                component: () => import('@/views/headViews/Timeline')
+            },
+            {path: '/test', name: 'Test', meta: {title: '测试'}, component: () => import('@/views/headViews/Test')},
+            {
+                path: '/lemming',
+                name: 'Lemming',
+                meta: {title: 'Lemming'},
+                component: () => import('@/views/headViews/Lemming')
+            },
         ]
     },
     //默认重定向路径
@@ -47,14 +62,14 @@ const routes = [
         path: '/loginon',
         component: Loginon,
         children: [ //子路径
-            {path: '/login',name:'Login', meta: {title: '登录'}, component: Login},
-            {path: '/logon',name:'Logon', meta: {title: '注册'}, component: Logon}
+            {path: '/login', name: 'Login', meta: {title: '登录'}, component: Login},
+            {path: '/logon', name: 'Logon', meta: {title: '注册'}, component: Logon}
         ]
     },
     // 控制
     {path: '/lemming_admin', redirect: '/lemming_admin/data_info'},
     {
-        path: '/lemming_admin', name:'Center', component: LCCenter,
+        path: '/lemming_admin', name: 'Center', component: LCCenter,
         children: [ // 子路径
             {
                 path: '/lemming_admin/data_info',
@@ -87,9 +102,9 @@ const routes = [
                 component: () => import('@/components/adminControls/game_admin.vue')
             },
             {
-                path:'/lemming_admin/movie_admin',
-                meta:{title:'影视管理'},
-                component: ()=>import('@/components/adminControls/movie_admin.vue')
+                path: '/lemming_admin/movie_admin',
+                meta: {title: '影视管理'},
+                component: () => import('@/components/adminControls/movie_admin.vue')
             }
         ]
     }
@@ -106,6 +121,10 @@ router.beforeEach((to, from, next) => {
     document.title = '☁' + to.meta.title // 控制全局标签名称
     next() // 必带！！！跳转的
     // 判断是否登录再跳转
+    console.log('测试')
+    if (localStorage.getItem('keepLogin')) {
+        console.log('有值')
+    }
     // next('/login')
 
 })

@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import './plugins/element'
 import './plugins/tinymce'
+import store from './store'
 // 共同初始化包
 import './assets/CSS/Common.css'
 import './assets/CSS/scrollbar.css'
@@ -12,6 +13,7 @@ import './assets/CSS/scrollbar.css'
 Vue.config.productionTip = false
 
 new Vue({
-  router,
+  router,  //使用
+  store,
   render: h => h(App)
 }).$mount('#app')

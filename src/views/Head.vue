@@ -7,6 +7,9 @@
       <MusicBar/>
       <userMsgBar/>
       <itemHtml/>
+      <div class="loginImg">
+        <img class="qqHead" :src="qqHead" alt="">
+      </div>
     </div>
     <div class="HOME">
       <Banner/>
@@ -38,7 +41,12 @@ import userMsgBar from "@/components/Head/userMsgBar";
 import itemHtml from "@/components/Head/itemHtml";
 
 export default {
-  components: {
+  data(){
+    return{
+      qqHead:''
+    }
+  },
+    components: {
     Banner,
     InfoMe,
     LoadCloud,
@@ -47,6 +55,11 @@ export default {
     Login,
     MusicBar
   },
+  created() {
+    // json.parse转换对象为json
+    let local_infos = JSON.parse(localStorage.getItem('keepLogin'))
+    this.qqHead = local_infos.qqHead
+  }
 }
 </script>
 <style scoped>
@@ -54,6 +67,12 @@ export default {
 /*导入外部css*/
 @import 'http://at.alicdn.com/t/font_2266444_6eftw463mcr.css';
 @import '../assets/CSS/CommonHead.css';
+.qqHead{
+  width: 4%;
+  border-radius: 50%;
+  position: absolute;
+  margin:.3rem;
+}
 .HomeContent {
   padding-top: 3rem;
   width: 100%;
