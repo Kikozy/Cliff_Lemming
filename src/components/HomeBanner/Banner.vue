@@ -3,7 +3,7 @@
     <div class="backImg">
       <div id="isshowBack" class="BACKIMGS">
         <img class="imgback" src="../../assets/IMAGE/LemBack/LemBack.png" alt="">
-        <img class="lem1" src="../../assets/IMAGE/LemBack/Lem1.png" alt="">
+        <img id="lem1" src="../../assets/IMAGE/LemBack/Lem1.png" alt="">
         <img class="lem2" src="../../assets/IMAGE/LemBack/Lem2.png" alt="">
         <img class="lem3" src="../../assets/IMAGE/LemBack/Lem3.png" alt="">
         <img class="lem4" src="../../assets/IMAGE/LemBack/Lem4.png" alt="">
@@ -57,14 +57,14 @@ export default {
       if (top <= 800) {
         $('#isshowBack').addClass('BACKIMGS')
         $('.aboutBox').css('top', -top * 0.3 + 280, '%')
-        $('.backWord').css('opacity', -top / 150 * 1 + 1, '%')
+        $('.backWord').css('opacity', -top / 150 + 1, '%')
         $('.lem0').css('top', top * .8, 'px')
-        $('.lem1').css('left', top * .3, 'px').css('top', top * .9, 'px')
-        $('.lem2').css('top', top * .9, 'px')
-        $('.lem3').css('top', top * .6, 'px')
-        $('.lem4').css('top', top * .3, 'px')
-        $('.lem5').css('bottom', top * .05, 'px')
-        $('.lem6').css('bottom', top * .05, 'px')
+        $('#lem1').css('top', top * 1, 'px').css('left', top * .5, 'px')
+        $('.lem2').css('top', top * 0.9, 'px')
+        $('.lem3').css('top', top * 0.6, 'px')
+        $('.lem4').css('top', top * 0.3, 'px')
+        $('.lem5').css('bottom', top * 0.05, 'px')
+        $('.lem6').css('bottom', top * 0.05, 'px')
       } else {
         $('#isshowBack').removeClass('.BACKIMGS')
       }
@@ -78,12 +78,17 @@ export default {
 .HomeBanner {
   margin-bottom: 5rem;
 }
-
+#lem1{
+  width: 222px;
+  height: 222px;
+  /*z-index: 0;*/
+  /*position: absolute;*/
+  /*background-size: unset;*/
+  /*left: 4rem;*/
+}
 .backImg {
   width: 100%;
   height: 80vh;
-  /*background: url(../../assets/IMAGE/Home/BackC.png);*/
-  background-size: cover;
   z-index: -1;
 }
 

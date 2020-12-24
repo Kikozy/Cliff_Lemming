@@ -27,8 +27,8 @@ export default {
   border-radius: 20px;
   float: right;
   /*margin-left: 10vw;*/
-  width: 20vw;
-  height: 60vh;
+  width: 18rem;
+  height: 30rem;
   background-image: linear-gradient(to bottom right, #385c84 -150%, #152033 100%); /*对角渐变*/
   box-shadow: .5px .5px 1px inset rgba(226, 226, 226, .3), 2px 2px 5px rgba(0, 0, 0, .3);
   /*box-shadow: 0px 5px 5px rgba(0, 0, 0, .4);*/
@@ -49,7 +49,7 @@ export default {
 .nav_ul > li {
   font-weight: bold;
   color: #ffffff;
-  width: 15vw;
+  width: 13rem;
   height: 6vh;
   background-image: linear-gradient(to bottom right, #017ca5 -200%, #152033 100%); /*对角渐变*/
   box-shadow: .5px .5px 1px inset rgba(226, 226, 226, .3);

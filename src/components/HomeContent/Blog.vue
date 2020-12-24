@@ -46,7 +46,7 @@ export default {
 .BlogLi {
   margin-bottom: 1rem;
   border-radius: 10px;
-  width: 48vw;
+  width: 45rem;
   height: 20vh;
   background-image: linear-gradient(to bottom right, #385c84 -100%, #152033 100%); /*对角渐变*/
   box-shadow: .5px .5px 1px inset rgba(226, 226, 226, .3), 2px 2px 5px rgba(0, 0, 0, .3);
@@ -65,7 +65,7 @@ export default {
   position: relative;
   top: -.5rem;
   margin-left: 12vw;
-  width: 35vw;
+  width: 33rem;
   height: 20vh;
   background-image: linear-gradient(to bottom right, rgba(56, 92, 132,.8) -100%, rgba(21, 32, 51,1) 100%); /*对角渐变*/
   box-shadow: .5px .5px 1px inset rgba(226, 226, 226, .3), 2px 2px 5px rgba(0, 0, 0, .3);

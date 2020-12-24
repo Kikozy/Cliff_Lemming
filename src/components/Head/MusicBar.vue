@@ -9,11 +9,11 @@
         <!--        <br>-->
         <div class="Mcontrol">
           <div @click="Mlast">
-            <p class="Mlast iconfont icon-xiayishou"></p>
+            <p class="Mlast iconfont icon-shangyishou"></p>
           </div>
           <div @click="Mplay">
-            <p class="Mpause Mhide iconfont icon-zantingtingzhi"></p>
-            <p class="Mplay iconfont icon-bofang"></p>
+            <p class="Mpause Mhide iconfont icon-ai07"></p>
+            <p class="Mplay iconfont icon-icon_play"></p>
           </div>
           <div @click="Mnext">
             <p class="Mnext iconfont icon-Nextsong"></p>

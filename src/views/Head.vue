@@ -3,22 +3,30 @@
     <!--  加载动画  -->
     <LoadCloud/>
     <div class="headTop">
-      <Login/>
+      <div v-if="islogin===true">
+        <transition name="showLogin">
+          <logined/>
+        </transition>
+      </div>
+      <div v-else>
+        <transition name="showLogin">
+          <Login/>
+        </transition>
+      </div>
       <MusicBar/>
       <userMsgBar/>
       <itemHtml/>
-      <div class="loginImg">
-        <img class="qqHead" :src="qqHead" alt="">
-      </div>
     </div>
     <div class="HOME">
       <Banner/>
       <div class="HomeContent">
-        <div class="HContent w">
-          <div class="INFO_ME_BOX"><InfoMe/></div>
+        <div class="HContent">
+          <div class="INFO_ME_BOX">
+            <InfoMe/>
+          </div>
           <div class="CONTENT">
             <transition name="showUp">
-              <!--     keep-alive 保持状态（避免重复渲染）-->
+              <!--     keep-alive 保持状态（避免重复渲染提交）-->
               <keep-alive>
                 <!--    子路由显示占位符    -->
                 <router-view/>
@@ -39,14 +47,16 @@ import MusicBar from "@/components/Head/MusicBar";
 import Login from "@/components/Head/loginBar";
 import userMsgBar from "@/components/Head/userMsgBar";
 import itemHtml from "@/components/Head/itemHtml";
+import logined from "@/components/Head/logined/logined";
 
 export default {
-  data(){
-    return{
-      qqHead:''
+  data() {
+    return {
+      islogin: false
     }
   },
-    components: {
+  components: {
+    logined,
     Banner,
     InfoMe,
     LoadCloud,
@@ -55,47 +65,53 @@ export default {
     Login,
     MusicBar
   },
+  methods: {},
   created() {
-    // json.parse转换对象为json
-    let local_infos = JSON.parse(localStorage.getItem('keepLogin'))
-    this.qqHead = local_infos.qqHead
+    if (this.$store.state.username) {
+      this.islogin = true
+    }
+  },
+  watch: {
+    // 监听值的变化
+    '$store.state.username': function () {
+      this.islogin = !this.islogin
+    }
   }
 }
 </script>
 <style scoped>
 /* scoped是局部使用 */
 /*导入外部css*/
-@import 'http://at.alicdn.com/t/font_2266444_6eftw463mcr.css';
+@import 'http://at.alicdn.com/t/font_2290624_l5nyg5ml6gj.css';
 @import '../assets/CSS/CommonHead.css';
-.qqHead{
-  width: 4%;
-  border-radius: 50%;
-  position: absolute;
-  margin:.3rem;
-}
+
 .HomeContent {
   padding-top: 3rem;
   width: 100%;
   position: absolute;
   background-image: linear-gradient(to bottom, #101a24, #2c5364); /*对角渐变*/
   box-shadow: 0 -20px 30px #101a24;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .HContent {
-  width: 70rem;
-  height: 100rem;
+
+  margin-left: auto;
+  margin-right: auto;
+  width: 1100px;
 }
 
-.CONTENT{
-  /*padding-left: 2rem;*/
+.CONTENT {
   width: 52vw;
 }
-.INFO_ME_BOX{
-  float: right;
+
+.INFO_ME_BOX {
   position: sticky;
-  right: 15vw;
   top: 10%;
 }
+
 /*定义组件动画start*/
 
 .showUp-leave-to {
@@ -118,4 +134,26 @@ export default {
 }
 
 /*定义组件动画end*/
+
+/*登录组件的动画*/
+.showLogin-leave-to {
+  transform: translateX(50px);
+  opacity: 0;
+  height: 0;
+  position: absolute;
+}
+
+.showLogin-enter {
+  transform: translateX(50px);
+  opacity: 0;
+  height: 0;
+  position: absolute;
+}
+
+/*进入和离开执行的时间*/
+.showLogin-enter-active, .showLogin-leave-active {
+  transition: all ease 1s;
+}
+
+/*登录组件的动画end*/
 </style>

@@ -77,7 +77,7 @@ export default {
         }
       }).catch(err => {
         this.$message.error({
-          message: this.login_form.mail + '账号或者密码错误！',
+          message: '网络出错，请稍后再试！',
         });
       })
     }

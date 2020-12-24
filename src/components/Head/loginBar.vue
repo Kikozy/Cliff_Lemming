@@ -1,6 +1,6 @@
 <template>
   <div class="loginBar" @click="goLoginon">
-    <a class="logIcon iconfont icon-denglu1"></a>
+    <a class="logIcon iconfont icon-user"></a>
   </div>
 </template>
 

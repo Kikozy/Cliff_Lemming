@@ -8,7 +8,7 @@ const store = new Vuex.Store({
     state: {
         username: '',
         mail: '',
-        iconHead: ''
+        iconHead: '',
     },
     // 计算函数
     getters: {},
@@ -24,7 +24,19 @@ const store = new Vuex.Store({
                 'qqHead':login_infos.qqHead,
                 'mail':login_infos.mail
             }
+            // 存进本地存储
             localStorage.setItem('keepLogin',JSON.stringify(localStorage_info));
+        },
+        keepLoginUpdata(state){
+            let new_loginfo = JSON.parse(localStorage.getItem('keepLogin'))
+            state.username = new_loginfo.username
+            state.iconHead = new_loginfo.qqHead
+            state.mail = new_loginfo.mail
+        },
+        logOut(state){
+            state.username = ''
+            state.mail = ''
+            state.iconHead = ''
         }
     },
     actions: {},

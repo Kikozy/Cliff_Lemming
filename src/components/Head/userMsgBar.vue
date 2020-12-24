@@ -1,6 +1,6 @@
 <template>
   <div class="userMsgBar">
-    <a class="msgIcon iconfont icon-liuyan"></a>
+    <a class="msgIcon iconfont icon-liuyan1"></a>
   </div>
 </template>
 
@@ -27,13 +27,12 @@ export default {
 
 .userMsgBar:hover {
   transform: translateY(-5px);
-
 }
 
 .msgIcon {
   color: #cfcfcf;
-  margin: .8rem;
-  font-size: 2.3rem;
+  margin: 1rem;
+  font-size: 2rem;
 }
 
 /*用户留言结束*/
