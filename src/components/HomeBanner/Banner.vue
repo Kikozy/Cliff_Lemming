@@ -8,6 +8,7 @@
         <img class="lem3" src="../../assets/IMAGE/LemBack/Lem3.png" alt="">
         <img class="lem4" src="../../assets/IMAGE/LemBack/Lem4.png" alt="">
         <div>
+          <!--          <p>Hi </p>-->
           <h6 class="backWord">Lemming</h6>
         </div>
         <img class="lem5" src="../../assets/IMAGE/LemBack/Lem5.png" alt="">
@@ -17,23 +18,15 @@
 
     </div>
     <div class="aboutBox">
-      <a href="javascript:;">
-        <img class="logo" src="../../assets/IMAGE/Home/HeadB.png"/>
-        <h4 class="Name">Lemming</h4>
-        <div class="bannerInfo">
-          <ul>
-            <li>
-              <div>博客</div>
-            </li>
-            <li>
-              <div>信息</div>
-            </li>
-            <li>
-              <div>其他</div>
-            </li>
-          </ul>
-        </div>
-      </a>
+      <img class="logo" src="../../assets/IMAGE/Home/HeadB.png"/>
+      <div class="bannerInfo">
+        <h4 class="Name">
+          Hi! 我是
+          <span>Lem</span>
+          <br>
+          <p>一个努力学习成长的普通年轻人</p>
+        </h4>
+      </div>
     </div>
     <!--    <div class="clouds">-->
     <!--      <img src="../../assets/IMAGE/Home_clouds/cloud1.png" style="&#45;&#45;i: 1"/>-->
@@ -63,9 +56,10 @@ export default {
         $('.lem2').css('top', top * 0.9, 'px')
         $('.lem3').css('top', top * 0.6, 'px')
         $('.lem4').css('top', top * 0.3, 'px')
-        $('.lem5').css('bottom', top * 0.05, 'px')
-        $('.lem6').css('bottom', top * 0.05, 'px')
+        // $('.lem5').css('bottom', top * 0.05, 'px')
+        // $('.lem6').css('bottom', top * 0.05, 'px')
       } else {
+        $('.backWord').removeClass('.backWord')
         $('#isshowBack').removeClass('.BACKIMGS')
       }
     })
@@ -78,14 +72,12 @@ export default {
 .HomeBanner {
   margin-bottom: 5rem;
 }
-#lem1{
+
+#lem1 {
   width: 222px;
   height: 222px;
-  /*z-index: 0;*/
-  /*position: absolute;*/
-  /*background-size: unset;*/
-  /*left: 4rem;*/
 }
+
 .backImg {
   width: 100%;
   height: 80vh;
@@ -125,7 +117,6 @@ export default {
   top: 40%;
   left: 50%;
   transform: translate(-50%, -40%);
-  line-height: 4vw;
   text-align: center;
   border-radius: 10px;
   backdrop-filter: blur(5px);
@@ -148,51 +139,49 @@ export default {
   box-shadow: 0 0 30px rgba(50, 69, 85, 0.8);
 }
 
-.Name {
-  font-size: 2vw;
-}
-
 .bannerInfo {
-  background-color: #00b1ff;
+  margin-top: 1rem;
+  padding: .5rem;
+  text-align: left;
+  /*background-color: #55a532;*/
 }
 
-.bannerInfo > ul > li {
-  margin-left: 2.5%;
-  margin-top: 5%;
-  margin-bottom: 2.5%;
-  border-radius: 10px;
-  float: left;
-  /*background-image: linear-gradient(rgba(0, 0, 0, 0), #8c9ea8);*/
-  background-image: linear-gradient(to bottom right, rgba(58, 95, 137, .5) -100%, rgba(20, 31, 49, .5) 100%); /*对角渐变*/
-  width: 30%;
-  height: 7rem;
-  box-shadow: 0 0px 0px #000000;
-  transform: translateY(0px);
-  transition: transform ease .3s, box-shadow ease .3s;
+.Name {
+  color: white;
+  font-family: "Microsoft JhengHei UI";
+  font-weight: bold;
+  font-size: 3vw;
 }
 
-.bannerInfo > ul > li:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 5px 5px rgba(0, 0, 0, .4);
+.Name > span {
+  color: #017ca5;
 }
 
-.clouds img {
-  position: absolute;
-  bottom: 0;
-  max-width: 70%;
-  /* #云的移动速度# */
-  animation: animation calc(8s * var(--i)) linear infinite;
+.Name > p {
+  margin: 1vw;
+  font-family: "Microsoft JhengHei UI";
+  font-weight: normal;
+  font-size: 1vw;
+  color: #a5a5a5;
 }
+
+/*.clouds img {*/
+/*  position: absolute;*/
+/*  bottom: 0;*/
+/*  max-width: 70%;*/
+/*  !* #云的移动速度# *!*/
+/*  animation: animation calc(8s * var(--i)) linear infinite;*/
+/*}*/
 
 /* #云移动的开始到结尾位置# */
-@keyframes animation {
-  0% {
-    transform: translateX(-130%);
-  }
-  100% {
-    transform: translateX(130%);
-  }
-}
+/*@keyframes animation {*/
+/*  0% {*/
+/*    transform: translateX(-130%);*/
+/*  }*/
+/*  100% {*/
+/*    transform: translateX(130%);*/
+/*  }*/
+/*}*/
 
 /*banner style end*/
 </style>

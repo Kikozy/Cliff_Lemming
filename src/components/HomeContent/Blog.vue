@@ -1,18 +1,14 @@
 <template>
   <div class="blogNews">
-    <ul class="blogList">
-      <transition-group name="showUp">
-        <li class="BlogLi" v-for="(item,index) in data" v-bind:key="index">
-          <div class="articelImg">
-            <div class="articelContent">
-              <div class="title"><h1>{{ item.title }}</h1></div>
-              <div class="content"><p id="blogP">{{ item.content }}</p></div>
-              <div class="datetime"><p>2020-12-14</p></div>
-              <div class=""></div>
-            </div>
-          </div>
-        </li>
-      </transition-group>
+    <ul class="Blogs" v-for="(item,index) in data">
+      <li class="Blog_li">
+        <img class="Blog_img" src="http://img5.mtime.cn/pi/2020/08/26/110208.47581761_1000X1000.jpg" alt="">
+        <div class="Blog_info">
+            <h1>{{ item.title }}</h1>
+            <p class="Blog_content" v-html="item.content.substr(0,300)+'...'"></p>
+            <p class="Blog_pushDate">{{ item.pushDate }}</p>
+        </div>
+      </li>
     </ul>
   </div>
 </template>
@@ -30,7 +26,11 @@ export default {
   created() {
     request({
       // url:'http://127.0.0.1:5000/api/cliff/home'
-      url: '/home'
+      // url: '/home'
+      url: '/article_show',
+      params: {
+        id: 'article069'
+      }
     }).then(res => {
       console.log(res.data);
       this.data = res.data
@@ -43,46 +43,55 @@ export default {
 
 
 <style scoped>
-.BlogLi {
-  margin-bottom: 1rem;
-  border-radius: 10px;
-  width: 45rem;
-  height: 20vh;
-  background-image: linear-gradient(to bottom right, #385c84 -100%, #152033 100%); /*对角渐变*/
-  box-shadow: .5px .5px 1px inset rgba(226, 226, 226, .3), 2px 2px 5px rgba(0, 0, 0, .3);
-  padding: 1rem;
+.Blog_li {
+  /*background-color: #cfcfcf;*/
+  margin-bottom: 1.5rem;
+  width: 100%;
+  height: 40vh;
 }
 
-.articelImg {
-  width: 30%;
-  height: 100%;
-  background-color: white;
+.Blog_img {
   float: left;
-  border-radius: 10px;
+  width: 15vw;
+  height: 40vh;
+  border-radius: 20px;
+  background-color: #cecece;
 }
 
-.articelContent {
-  position: relative;
-  top: -.5rem;
-  margin-left: 12vw;
-  width: 33rem;
-  height: 20vh;
-  background-image: linear-gradient(to bottom right, rgba(56, 92, 132,.8) -100%, rgba(21, 32, 51,1) 100%); /*对角渐变*/
-  box-shadow: .5px .5px 1px inset rgba(226, 226, 226, .3), 2px 2px 5px rgba(0, 0, 0, .3);
-  backdrop-filter: blur(10px);
-  border-radius: 10px;
-  padding: 1vh;
+.Blog_info {
+  height: 35vh;
+  float: left;
+  padding: 1rem;
+  /*background-color: #0077aa;*/
 }
 
-.articelContent > .title {
+.Blog_info > h1 {
+  color: white;
+  font-size: 2vw;
+  font-family: "Microsoft JhengHei UI";
+}
+
+.Blog_content {
+  overflow: hidden; /*自动隐藏文字*/
+  text-overflow: ellipsis; /*文字隐藏后添加省略号*/
+  /*white-space: nowrap; !*强制不换行*!*/
+  width: 30vw; /*不允许出现半汉字截断*/
+  font-weight: lighter;
+  line-height: 1.5vw;
+  height: 10vw;
+  margin-top: 1rem;
+  color: #cfcfcf;
+  font-family: "Microsoft JhengHei UI";
+}
+
+.Blog_pushDate {
+  margin-top: 1rem;
+  position: absolute;
+  font-size: 1vw;
   color: #ffffff;
-  font-size: 1.5rem;
-  font-weight: bold;
+  background-image: linear-gradient(150deg,#20b7d9 -50%,#13202b 100%);
+  border-radius: 10px;
+  padding: .5rem;
+  box-shadow:0 0 30px rgba(27, 123, 148,.35);
 }
-
-.articelContent > .content {
-  margin: .5rem;
-  color: #979797;
-}
-
 </style>

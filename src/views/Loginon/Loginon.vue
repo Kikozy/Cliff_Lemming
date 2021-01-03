@@ -18,9 +18,12 @@
         </div>
       </div>
       <!--定义组件动画-->
-      <transition name="showUp">
-        <router-view/>
-      </transition>
+      <div class="Log_Box">
+        <transition name="showUp">
+          <router-view/>
+        </transition>
+      </div>
+
 
     </div>
   </div>
@@ -50,7 +53,6 @@ export default {
 
 <style scoped>
 @import "../../assets/CSS/Loginon/Loginon.css";
-
 /*定义组件动画start*/
 
 .showUp-leave {

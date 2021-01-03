@@ -21,9 +21,9 @@
     </div>
     <div class="data_info">
       <div class="MusicCont BaseStyle">总{{ music_data.length }}首</div>
-      <div id="Updata" class="UpdataInfo BaseStyle base_color" @click="updateMusic">更新音乐</div>
+      <div id="Updata" class="UpdataInfo musicMove BaseStyle base_color" @click="updateMusic">更新音乐</div>
       <div id="Updating" class="UpdataInfo BaseStyle base_color Mhide">更新中..</div>
-      <div class="addMusic BaseStyle base_color" @click="show =! show;addMusic()">添加音乐
+      <div class="addMusic BaseStyle musicMove base_color" @click="show =! show;addMusic()">添加音乐
         <div class="iscolor"></div>
       </div>
     </div>
@@ -184,18 +184,13 @@ export default {
   top: 0;
 }
 
-.UpdataInfo:hover {
+.musicMove:hover {
   transform: translateY(-5px);
   box-shadow: .5px .5px 1px inset rgba(226, 226, 226, .5), 2px 2px 6px rgba(0, 0, 0, .8);
 }
 
 .addMusic {
   margin-top: 10rem;
-}
-
-.addMusic:hover {
-  transform: translateY(-5px);
-  box-shadow: .5px .5px 1px inset rgba(226, 226, 226, .5), 2px 2px 6px rgba(0, 0, 0, .8);
 }
 
 .el-table {

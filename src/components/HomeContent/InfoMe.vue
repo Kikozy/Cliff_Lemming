@@ -23,12 +23,12 @@ export default {
 .infoMe {
   z-index: 99;
   position: sticky;
-  top: 10%;
+  /*top: 15%;*/
   border-radius: 20px;
   float: right;
   /*margin-left: 10vw;*/
-  width: 18rem;
-  height: 30rem;
+  width: 18vw;
+  height: 60vh;
   background-image: linear-gradient(to bottom right, #385c84 -150%, #152033 100%); /*对角渐变*/
   box-shadow: .5px .5px 1px inset rgba(226, 226, 226, .3), 2px 2px 5px rgba(0, 0, 0, .3);
   /*box-shadow: 0px 5px 5px rgba(0, 0, 0, .4);*/
@@ -49,14 +49,14 @@ export default {
 .nav_ul > li {
   font-weight: bold;
   color: #ffffff;
-  width: 13rem;
+  width: 13vw;
   height: 6vh;
   background-image: linear-gradient(to bottom right, #017ca5 -200%, #152033 100%); /*对角渐变*/
   box-shadow: .5px .5px 1px inset rgba(226, 226, 226, .3);
   border-radius: 5px;
-  margin: 2rem;
+  margin: 2vw;
   text-align: center;
-  line-height: 3rem;
+  line-height: 3vw;
 }
 .nav_ul>li:hover{
 

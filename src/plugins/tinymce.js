@@ -11,6 +11,7 @@ import 'tinymce/skins/ui/oxide/content.min.css'
 import 'tinymce/themes/silver'
 
 //插件
+import 'tinymce/plugins/emoticons' // 表情
 import 'tinymce/plugins/link' //链接插件
 import 'tinymce/plugins/image' //图片插件
 import 'tinymce/plugins/media' //媒体插件
@@ -24,8 +25,8 @@ import 'tinymce/plugins/fullscreen' //全屏插件
  */
 import 'tinymce/icons/default/icons'
 
-//本地化
-// import 'tinymce/langs/zh_CN.js'
+//本地化 汉化
+import 'tinymce/langs/zh_CN.js'
 
 Vue.use(VueTinymce)
 Vue.prototype.$tinymce = tinymce //全局注册，使用方法为:this.$tinymce

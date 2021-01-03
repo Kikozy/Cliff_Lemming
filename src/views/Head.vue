@@ -98,8 +98,8 @@ export default {
 
 .HContent {
 
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 10vw;
+  margin-right: 10vw;
   width: 1100px;
 }
 
