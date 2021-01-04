@@ -18,7 +18,9 @@
       <itemHtml/>
     </div>
     <div class="HOME">
-      <Banner/>
+      <div class="Banner">
+        <Banner/>
+      </div>
       <div class="HomeContent">
         <div class="HContent">
           <div class="INFO_ME_BOX">
@@ -26,20 +28,25 @@
           </div>
           <div class="CONTENT">
             <transition name="showUp">
-              <!--     keep-alive 保持状态（避免重复渲染提交）-->
-              <keep-alive>
-                <!--    子路由显示占位符    -->
-                <router-view/>
-              </keep-alive>
+              <!--    子路由显示占位符    -->
+              <router-view v-if="isRouteAlive"/>
             </transition>
           </div>
         </div>
       </div>
     </div>
+    <div class="end">
+      <end-banner/>
+    </div>
+    <div class="JUMPTOP">
+      <jump-top/>
+    </div>
   </div>
 </template>
 
 <script>
+import jumpTop from "@/components/jumpTop/jumpTop";
+import endBanner from "@/components/EndBanner/end";
 import Banner from '@/components/HomeBanner/Banner';
 import InfoMe from "@/components/HomeContent/InfoMe";
 import LoadCloud from "@/components/Loading/LoadCloud";
@@ -48,14 +55,24 @@ import Login from "@/components/Head/loginBar";
 import userMsgBar from "@/components/Head/userMsgBar";
 import itemHtml from "@/components/Head/itemHtml";
 import logined from "@/components/Head/logined/logined";
+import $ from "jquery";
 
 export default {
+  provide() {
+    return {
+      // 局部刷新
+      reload: this.reload
+    }
+  },
   data() {
     return {
+      isRouteAlive: true,
       islogin: false
     }
   },
   components: {
+    jumpTop,
+    endBanner,
     logined,
     Banner,
     InfoMe,
@@ -66,6 +83,13 @@ export default {
     MusicBar
   },
   methods: {},
+  // 局部刷新
+  reload() {
+    this.isRouteAlive = false
+    this.$nextTick(() => {
+      this.isRouteAlive = true
+    })
+  },
   created() {
     if (this.$store.state.username) {
       this.islogin = true
@@ -85,19 +109,23 @@ export default {
 @import 'http://at.alicdn.com/t/font_2290624_l5nyg5ml6gj.css';
 @import '../assets/CSS/CommonHead.css';
 
+.Banner {
+  position: relative;
+  z-index: -2;
+  height: 100vh;
+}
+
 .HomeContent {
   padding-top: 3rem;
   width: 100%;
-  position: absolute;
-  background-image: linear-gradient(to bottom, #101a24, #2c5364); /*对角渐变*/
-  box-shadow: 0 -20px 30px #101a24;
+  background-image: linear-gradient(to bottom, #101a24, #0d2b4d); /*对角渐变*/
+  box-shadow: 0 -30px 20px #101a24;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .HContent {
-
   margin-left: 10vw;
   margin-right: 10vw;
   width: 1100px;
@@ -108,8 +136,15 @@ export default {
 }
 
 .INFO_ME_BOX {
+  float: right;
   position: sticky;
   top: 10%;
+  z-index: 2;
+}
+.JUMPTOP{
+  position: fixed;
+  bottom: 20vh;
+  left: 5vh;
 }
 
 /*定义组件动画start*/

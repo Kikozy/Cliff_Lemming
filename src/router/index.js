@@ -30,23 +30,39 @@ const routes = [
         // 子路由
         children: [
             {
+                path: '/article',
+                name: 'Article',
+                meta: {title: '文章'},
+                component: () => import('@/components/Article/showArticle')
+            },
+            {
                 path: '/about',
                 name: 'About',
-                meta: {title: '关于'},
+                meta: {title: '关于',keepAlive: true},
                 component: () => import('@/views/headViews/About.vue')
             }, //按需求导入（加载快）
-            {path: '/home', name: 'Home', meta: {title: '主页'}, component: () => import('@/views/headViews/Home.vue')},
+            {
+                path: '/home',
+                name: 'Home',
+                meta: {title: '主页',keepAlive: true},
+                component: () => import('@/views/headViews/Home.vue')
+            },
             {
                 path: '/timeline',
                 name: 'Timeline',
-                meta: {title: '时间线'},
+                meta: {title: '时间线',keepAlive: true},
                 component: () => import('@/views/headViews/Timeline')
             },
-            {path: '/test', name: 'Test', meta: {title: '测试'}, component: () => import('@/views/headViews/Test')},
+            {
+                path: '/test',
+                name: 'Test',
+                meta: {title: '测试',keepAlive: true},
+                component: () => import('@/views/headViews/Test')
+            },
             {
                 path: '/lemming',
                 name: 'Lemming',
-                meta: {title: 'Lemming'},
+                meta: {title: 'Lemming',keepAlive: true},
                 component: () => import('@/views/headViews/Lemming')
             },
         ]
@@ -122,7 +138,7 @@ router.beforeEach((to, from, next) => {
         console.log('有值')
         // 如果有local就全局更新local
         store.commit('keepLoginUpdata')
-    }else {
+    } else {
         console.log('没有值')
     }
     // next('/login')

@@ -18,6 +18,7 @@ export default {
     }
   },
   created() {
+    // 读取本地local
     let local_infos = JSON.parse(localStorage.getItem('keepLogin'))
     this.qqHead = local_infos.qqHead
     this.username = local_infos.username

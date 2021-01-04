@@ -56,7 +56,7 @@ export default {
       url: '/article_show',
       params: {id: 'article069'}
     }).then(res => {
-      this.article_info = res.data
+      this.article_info = res.data[0]
     }).catch(err => {
       console.log(err)
     })

@@ -1,10 +1,5 @@
 <template>
   <div>
-<!--    <div class="HEAD_HOME_INFO">-->
-<!--        <div><MusicInfo/></div>-->
-<!--        <div><GameInfo/></div>-->
-<!--        <div><MovieInfo/></div>-->
-<!--    </div>-->
     <div class="HOME_ARTICLE">
       <div><Blog/></div>
     </div>

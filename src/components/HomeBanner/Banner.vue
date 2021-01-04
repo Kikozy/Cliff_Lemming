@@ -8,14 +8,11 @@
         <img class="lem3" src="../../assets/IMAGE/LemBack/Lem3.png" alt="">
         <img class="lem4" src="../../assets/IMAGE/LemBack/Lem4.png" alt="">
         <div>
-          <!--          <p>Hi </p>-->
           <h6 class="backWord">Lemming</h6>
         </div>
         <img class="lem5" src="../../assets/IMAGE/LemBack/Lem5.png" alt="">
         <img class="lem6" src="../../assets/IMAGE/LemBack/Lem6.png" alt="">
-
       </div>
-
     </div>
     <div class="aboutBox">
       <img class="logo" src="../../assets/IMAGE/Home/HeadB.png"/>
@@ -24,7 +21,7 @@
           Hi! 我是
           <span>Lem</span>
           <br>
-          <p>一个努力学习成长的普通年轻人</p>
+          <p>一个努力学习成长热爱<span>前端</span>普通年轻人</p>
         </h4>
       </div>
     </div>
@@ -51,13 +48,10 @@ export default {
         $('#isshowBack').addClass('BACKIMGS')
         $('.aboutBox').css('top', -top * 0.3 + 280, '%')
         $('.backWord').css('opacity', -top / 150 + 1, '%')
-        $('.lem0').css('top', top * .8, 'px')
         $('#lem1').css('top', top * 1, 'px').css('left', top * .5, 'px')
         $('.lem2').css('top', top * 0.9, 'px')
         $('.lem3').css('top', top * 0.6, 'px')
         $('.lem4').css('top', top * 0.3, 'px')
-        // $('.lem5').css('bottom', top * 0.05, 'px')
-        // $('.lem6').css('bottom', top * 0.05, 'px')
       } else {
         $('.backWord').removeClass('.backWord')
         $('#isshowBack').removeClass('.BACKIMGS')
@@ -74,8 +68,9 @@ export default {
 }
 
 #lem1 {
-  width: 222px;
-  height: 222px;
+  width: 150px;
+  height: 150px;
+  margin: 4rem;
 }
 
 .backImg {
@@ -153,7 +148,8 @@ export default {
   font-size: 3vw;
 }
 
-.Name > span {
+.Name span {
+  font-weight: bold;
   color: #017ca5;
 }
 

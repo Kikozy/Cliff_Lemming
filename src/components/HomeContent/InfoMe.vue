@@ -22,16 +22,11 @@ export default {
 <style scoped>
 .infoMe {
   z-index: 99;
-  position: sticky;
-  /*top: 15%;*/
   border-radius: 20px;
-  float: right;
-  /*margin-left: 10vw;*/
   width: 18vw;
   height: 60vh;
   background-image: linear-gradient(to bottom right, #385c84 -150%, #152033 100%); /*对角渐变*/
   box-shadow: .5px .5px 1px inset rgba(226, 226, 226, .3), 2px 2px 5px rgba(0, 0, 0, .3);
-  /*box-shadow: 0px 5px 5px rgba(0, 0, 0, .4);*/
 }
 
 .logo {
@@ -58,7 +53,8 @@ export default {
   text-align: center;
   line-height: 3vw;
 }
-.nav_ul>li:hover{
+
+.nav_ul > li:hover {
 
 }
 </style>
