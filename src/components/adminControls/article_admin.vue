@@ -54,7 +54,7 @@ export default {
   created() {
     request({
       url: '/article_show',
-      params: {id: 'article069'}
+      params: {id: 'lemming069'}
     }).then(res => {
       this.article_info = res.data[0]
     }).catch(err => {

@@ -85,7 +85,7 @@ li {
 li:hover {
   background-color: #017ca5;
   box-shadow: 0 0 20px #017ca5;
-  transform: translateY(3px);
+  /*transform: translateY(3px);*/
 }
 
 li > * {

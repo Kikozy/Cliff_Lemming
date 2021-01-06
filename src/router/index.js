@@ -21,6 +21,7 @@ VueRouter.prototype.push = function push(location) {
 Vue.use(VueRouter)
 // 路由
 const routes = [
+    {path: '/TEST1',component: ()=>import('@/components/TEST/TEST')},
     //重定向，当访问/路径时，自动跳转到/home
     // 主页
     {path: '/', redirect: '/home'},
@@ -32,7 +33,7 @@ const routes = [
             {
                 path: '/article',
                 name: 'Article',
-                meta: {title: '文章'},
+                meta: {title: '文章',keepAlive: true},
                 component: () => import('@/components/Article/showArticle')
             },
             {

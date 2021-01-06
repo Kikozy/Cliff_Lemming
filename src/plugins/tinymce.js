@@ -4,11 +4,11 @@ import Vue from 'vue';
 import tinymce from 'tinymce'
 import VueTinymce from '@packy-tang/vue-tinymce'
 import 'tinymce/skins/content/default/content.min.css'
-import 'tinymce/skins/ui/oxide/skin.min.css'
-import 'tinymce/skins/ui/oxide/content.min.css'
+import 'tinymce/skins/ui/oxide-dark/skin.min.css'
+import 'tinymce/skins/ui/oxide-dark/content.min.css'
 
 //主题
-import 'tinymce/themes/silver'
+import 'tinymce/themes/silver/theme.min.js'
 
 //插件
 import 'tinymce/plugins/emoticons' // 表情
@@ -19,6 +19,8 @@ import 'tinymce/plugins/table' //表格插件
 import 'tinymce/plugins/lists' //列表插件
 import 'tinymce/plugins/quickbars' //快速栏插件
 import 'tinymce/plugins/fullscreen' //全屏插件
+import 'tinymce/plugins/code'
+import 'tinymce/plugins/codesample'
 /**
  * 注：
  * 5.3.x版本需要额外引进图标，没有所有按钮就会显示not found

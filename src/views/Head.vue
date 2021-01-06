@@ -39,7 +39,9 @@
       <end-banner/>
     </div>
     <div class="JUMPTOP">
-      <jump-top/>
+      <div class="jump">
+        <jumpTop/>
+      </div>
     </div>
   </div>
 </template>
@@ -116,6 +118,7 @@ export default {
 }
 
 .HomeContent {
+  /*position: relative;*/
   padding-top: 3rem;
   width: 100%;
   background-image: linear-gradient(to bottom, #101a24, #0d2b4d); /*对角渐变*/
@@ -141,11 +144,12 @@ export default {
   top: 10%;
   z-index: 2;
 }
-.JUMPTOP{
+
+.JUMPTOP {
   position: fixed;
-  bottom: 20vh;
-  left: 5vh;
+  bottom: 10px;
 }
+
 
 /*定义组件动画start*/
 

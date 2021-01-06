@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="jumpTop" @click="jump">
-      <img src="../../assets/IMAGE/LemBack/Lem1.png" alt="">
+      <img src="../../assets/IMAGE/LemBack/Moon.png" alt="">
     </div>
   </div>
 </template>
@@ -18,22 +18,7 @@ export default {
     window.addEventListener('scroll', this.windowScroll)
   },
   methods: {
-    windowScroll() {
-      // 监听页面滚动位置
-      let scrollTop = window.pageYOffset|| document.documentElement.scrollTop || document.body.scrollTop
-      console.log(scrollTop)
-      if (scrollTop >= 1200) {
-        $('.JUMPTOP').animate({
-          top:'10vh'
-        })
-      }else{
-        $('.JUMPTOP').animate({
-          top:'0vh'
-        })
-      }
-    },
     jump() {
-      // console.log(this.show)
       $('html,body').animate({scrollTop: $(".HomeContent").offset().top - 100}, 300)
     },
   }
@@ -41,29 +26,24 @@ export default {
 </script>
 
 <style scoped>
+
 img {
   cursor: pointer;
-  width: 8vw;
+  animation: ease-in-out jump-in 5s infinite;
 }
 
-/*img:hover{*/
-/*  animation: ease-in-out jump-in .5s;*/
-/*}*/
 
 /*点击播放列表动画*/
 
 @keyframes jump-in {
   0% {
-    transform: translateY(0px);
-    /*opacity: 0;*/
+    transform: rotateZ(-30deg);
   }
   50% {
-    transform: translateY(100px);
-    /*opacity: 10;*/
+    transform: rotateZ(50deg);
   }
   100% {
-    transform: translateY(0px);
-    /*opacity: 30;*/
+    transform: rotateZ(-30deg);
   }
 }
 

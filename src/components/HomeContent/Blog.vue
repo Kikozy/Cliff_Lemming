@@ -43,6 +43,7 @@ export default {
         'pushDate': pushDate
       }
       // 存进本地
+      localStorage.removeItem('article')
       localStorage.setItem('article', JSON.stringify(localStrange_article));
       this.$router.push('/article')
     },
@@ -54,6 +55,7 @@ export default {
           page: page - 1
         }
       }).then(res => {
+        console.log(res.data[0])
         this.data = res.data[0] //数据
         $('html,body').animate({scrollTop: $(".HomeContent").offset().top - 100}, 500)
       }).catch(err => {
@@ -74,10 +76,10 @@ export default {
       let page = res.data[1].length //传来的数据数量
       // parseInt取整型不要余数
       // 取页码：如果数据除余数不等于0，那么就除10加1；如果等于0，那么就除10不加1
-      this.page = page % 10 !== 0 ? parseInt(page / 10) + 1 : parseInt(page / 10)
+      this.page = page % 10 !== 0 ? parseInt(page / 10) + 1 : parseInt(page / 10) + 1
     }).catch(err => {
       console.log('===jianshu ERR===', err)
-    })
+    });
   }
 }
 </script>
@@ -103,7 +105,9 @@ export default {
   cursor: pointer;
   float: left;
   width: 15vw;
+  min-width: 10rem;
   height: 40vh;
+  min-height: 10rem;
   border-radius: 20px;
   background-color: #cecece;
   transform: scale(1);
@@ -111,7 +115,9 @@ export default {
 }
 
 .Blog_info {
+  /*background-color: red;*/
   height: 35vh;
+  min-width: 10rem;
   float: left;
   padding: 1rem;
   /*background-color: #0077aa;*/
@@ -120,7 +126,8 @@ export default {
 .Blog_title {
   cursor: pointer;
   color: white;
-  font-size: 2vw;
+  font-size: 2em;
+  min-font-size: 5rem;
   width: 33vw;
   font-family: "Microsoft JhengHei UI";
   transition: ease color .3s;
@@ -134,13 +141,15 @@ export default {
   font-weight: lighter;
   line-height: 1.5rem;
   height: 10vw;
+  /*background-color: #55a532;*/
+  min-height: 5rem;
   margin-top: 1rem;
   color: #cfcfcf;
   font-family: "Microsoft JhengHei UI";
 }
 
 .Blog_pushDate {
-  margin-top: 1rem;
+  /*margin-top: 1rem;*/
   position: absolute;
   font-size: 1vw;
   color: #ffffff;
@@ -151,14 +160,21 @@ export default {
 }
 
 .pages {
+  display: inline-block;
+  /*background-color: red;*/
   text-align: center;
   width: 52vw;
-  height: 8vh;
+  /*height: 2rem;*/
 }
 
 .Blog_page {
-  display: inline-block;
+  /*background-color: red;*/
+  width: 100%;
+  min-width: 10rem;
+  display: block;
+  /*display: inline-block;*/
 }
+
 
 .Blog_page > li {
   color: white;

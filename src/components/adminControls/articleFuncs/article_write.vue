@@ -5,7 +5,7 @@
       <input class="titleInput" v-model="title" type="text" placeholder="博客标题">
       <div class="post_article" @click="postArticle">提交</div>
     </div>
-    <vue-tinymce v-model="content" :setting="setting"/>
+    <vue-tinymce v-model="content" :setting="setting"></vue-tinymce>
   </div>
 </template>
 
@@ -18,19 +18,19 @@ import {request} from "@/network/requests";
 Vue.use(VueTinymce)
 
 export default {
-  inject:['reload'],
-  name: "article_admin",
+  inject: ['reload'],
+  name: "article_write",
   data() {
     return {
-      title:'',
+      title: '',
       content: "",
       setting: {
-        menubar: false,
+        menubar: true,
         emoticons_database_url: emojis,
-        toolbar: "emoticons | undo redo | fullscreen | formatselect alignleft aligncenter alignright alignjustify | link unlink | numlist bullist | image media table | fontselect fontsizeselect forecolor backcolor | bold italic underline strikethrough | indent outdent | superscript subscript | removeformat |",
+        toolbar: " |emoticons | code undo redo codesample| fullscreen |fontselect fontsizeselect forecolor backcolor |bold italic underline strikethrough | formatselect alignleft aligncenter alignright alignjustify | link unlink | numlist bullist | image media table |   indent outdent | superscript subscript | removeformat |",
         toolbar_drawer: "sliding",
-        quickbars_selection_toolbar: "removeformat | bold italic underline strikethrough | fontsizeselect forecolor backcolor",
-        plugins: "emoticons link image media table lists fullscreen quickbars",
+        quickbars_selection_toolbar: " removeformat | bold italic underline strikethrough | fontsizeselect forecolor backcolor",
+        plugins: "emoticons link image media table lists fullscreen quickbars code codesample ",
         language: 'zh_CN',
         width: 800,
         height: 350
@@ -38,19 +38,19 @@ export default {
     }
   },
   methods: {
-    postArticle(){
+    postArticle() {
       request({
-        url:'/article_save',
-        method:'post',
-        data:{
-          title:this.title,
-          content:this.content,
-          code:'article069'
+        url: '/article_save',
+        method: 'post',
+        data: {
+          title: this.title,
+          content: this.content,
+          code: 'article069'
         }
-      }).then(res=>{
+      }).then(res => {
         console.log(res.data)
         this.reload()
-      }).catch(err=>{
+      }).catch(err => {
         console.log(err)
       })
       console.log(this.content)
@@ -62,6 +62,11 @@ export default {
 </script>
 
 <style scoped>
+/* /deep/ 直接修改最深层源文件样式*/
+/*#add_article /deep/ .tox .tox-edit-area__iframe {*/
+/*  background-color: #3d4758;*/
+/*}*/
+
 .articleInfo {
   padding: 1rem;
 }
@@ -72,7 +77,8 @@ export default {
   border-radius: 10px;
   border: none;
 }
-input{
+
+input {
   font-size: large;
   font-weight: bold;
   padding-left: 1rem;

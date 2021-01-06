@@ -24,6 +24,7 @@ export default {
   z-index: 99;
   border-radius: 20px;
   width: 18vw;
+  min-width: 10rem;
   height: 60vh;
   background-image: linear-gradient(to bottom right, #385c84 -150%, #152033 100%); /*对角渐变*/
   box-shadow: .5px .5px 1px inset rgba(226, 226, 226, .3), 2px 2px 5px rgba(0, 0, 0, .3);
@@ -45,6 +46,7 @@ export default {
   font-weight: bold;
   color: #ffffff;
   width: 13vw;
+  min-width:9rem;
   height: 6vh;
   background-image: linear-gradient(to bottom right, #017ca5 -200%, #152033 100%); /*对角渐变*/
   box-shadow: .5px .5px 1px inset rgba(226, 226, 226, .3);

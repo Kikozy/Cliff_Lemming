@@ -1,14 +1,17 @@
 <template>
   <div class="FOOTBANNER">
     <div class="FootBanner">
-      <img class="end0" src="../../assets/IMAGE/footerBanner/LemBack.png" alt="">
-      <!--            <img src="../../assets/IMAGE/footerBanner/Lem0.png" alt="">-->
-      <!--            <img src="../../assets/IMAGE/footerBanner/Lem1.png" alt="">-->
-      <img class="end1" src="../../assets/IMAGE/footerBanner/Lem2.png" alt="">
-      <img class="end2" src="../../assets/IMAGE/footerBanner/Lem3.png" alt="">
-      <img class="end3" src="../../assets/IMAGE/footerBanner/Lem4.png" alt="">
-      <img class="end4" src="../../assets/IMAGE/footerBanner/Lem5.png" alt="">
-      <img class="end5" src="../../assets/IMAGE/footerBanner/Lem6.png" alt="">
+      <section>
+        <img class="end0" src="../../assets/IMAGE/footerBanner/LemBack.png" alt="">
+        <!--            <img src="../../assets/IMAGE/footerBanner/Lem0.png" alt="">-->
+        <!--            <img src="../../assets/IMAGE/footerBanner/Lem1.png" alt="">-->
+        <img class="end1" src="../../assets/IMAGE/footerBanner/Lem2.png" alt="">
+        <img class="end2" src="../../assets/IMAGE/footerBanner/Lem3.png" alt="">
+        <img class="end3" src="../../assets/IMAGE/footerBanner/Lem4.png" alt="">
+        <img class="end4" src="../../assets/IMAGE/footerBanner/Lem5.png" alt="">
+        <img class="end5" src="../../assets/IMAGE/footerBanner/Lem6.png" alt="">
+      </section>
+
     </div>
   </div>
 </template>
@@ -34,7 +37,7 @@ export default {
         $('.end1').css('top', 0.9 * (125 * (bottom / 180 - 10) - 1400), 'px')
         $('.end2').css('top', 0.6 * (125 * (bottom / 180 - 10) - 1400), 'px')
         $('.end3').css('top', 0.3 * (115 * (bottom / 180 - 10) - 1400), 'px')
-      } else{
+      } else {
         $('.end1').css('top', '0px')
         $('.end2').css('top', '0px')
         $('.end3').css('top', '0px')
@@ -45,30 +48,49 @@ export default {
 </script>
 
 <style scoped>
-.FOOTBANNER {
-  width: 100%;
-  height: 100vh;
+section {
+  z-index: -1;
   position: relative;
+  width: 100%;
+  height: 130vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.FootBanner > * {
+section:before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100px;
+  z-index: 10000;
+}
+
+section:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
+  /*background: #0a2a43;*/
+  z-index: 10000;
+  mix-blend-mode: color;
+}
+
+section img {
+  position: absolute;
   -moz-transform: rotate(18deg);
   -webkit-transform: rotate(180deg);
   transform: rotate(180deg);
-  position: absolute;
-  background-size: cover;
-}
-
-/*选择第二个和第四个*/
-.FootBanner > *:nth-child(-n+4):nth-child(n+2) {
-  /*bottom: 0px;*/
-  z-index: -1;
-}
-
-.end0 {
-  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
 }
 
 </style>

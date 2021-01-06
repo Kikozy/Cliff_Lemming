@@ -1,61 +1,69 @@
 <template>
-  <div class="HomeBanner">
-    <div class="backImg">
-      <div id="isshowBack" class="BACKIMGS">
-        <img class="imgback" src="../../assets/IMAGE/LemBack/LemBack.png" alt="">
-        <img id="lem1" src="../../assets/IMAGE/LemBack/Lem1.png" alt="">
-        <img class="lem2" src="../../assets/IMAGE/LemBack/Lem2.png" alt="">
-        <img class="lem3" src="../../assets/IMAGE/LemBack/Lem3.png" alt="">
-        <img class="lem4" src="../../assets/IMAGE/LemBack/Lem4.png" alt="">
-        <div>
-          <h6 class="backWord">Lemming</h6>
-        </div>
-        <img class="lem5" src="../../assets/IMAGE/LemBack/Lem5.png" alt="">
-        <img class="lem6" src="../../assets/IMAGE/LemBack/Lem6.png" alt="">
-      </div>
+  <section>
+    <img
+        src="../../assets/IMAGE/LemBack/LemBack.png"
+        id="bg"
+    >
+    <img
+        src="../../assets/IMAGE/LemBack/Lem1.png"
+        id="moon"
+    >
+    <img
+        src="../../assets/IMAGE/LemBack/Lem2.png"
+        id="cloud"
+    >
+    <img
+        src="../../assets/IMAGE/LemBack/Lem3.png"
+        id="mountain1"
+    >
+    <img
+        src="../../assets/IMAGE/LemBack/Lem4.png"
+        id="mountain2"
+    >
+    <h2 id="text">
+      Lem Ming
+    </h2>
+    <div id="aboutBox">
+      <AboutBox/>
     </div>
-    <div class="aboutBox">
-      <img class="logo" src="../../assets/IMAGE/Home/HeadB.png"/>
-      <div class="bannerInfo">
-        <h4 class="Name">
-          Hi! 我是
-          <span>Lem</span>
-          <br>
-          <p>一个努力学习成长热爱<span>前端</span>普通年轻人</p>
-        </h4>
-      </div>
-    </div>
-    <!--    <div class="clouds">-->
-    <!--      <img src="../../assets/IMAGE/Home_clouds/cloud1.png" style="&#45;&#45;i: 1"/>-->
-    <!--      <img src="../../assets/IMAGE/Home_clouds/cloud2.png" style="&#45;&#45;i: 2"/>-->
-    <!--      <img src="../../assets/IMAGE/Home_clouds/cloud3.png" style="&#45;&#45;i: 3"/>-->
-    <!--      <img src="../../assets/IMAGE/Home_clouds/cloud4.png" style="&#45;&#45;i: 4"/>-->
-    <!--      <img src="../../assets/IMAGE/Home_clouds/cloud5.png" style="&#45;&#45;i: 5"/>-->
-    <!--    </div>-->
-  </div>
+    <img
+        src="../../assets/IMAGE/LemBack/Lem5.png"
+        id="mountain3"
+    >
+    <img
+        src="../../assets/IMAGE/LemBack/Lem6.png"
+        id="mountain4"
+    >
+
+  </section>
+
 </template>
 
 <script>
-import $ from "jquery";
-
+import AboutBox from "@/components/HomeBanner/AboutBox";
 export default {
   name: "Banner",
+  components:{
+    AboutBox
+  },
   mounted() {
-    // 监听滚动条
-    $(window).scroll(function () {
-      let top = $(document).scrollTop();
-      if (top <= 800) {
-        $('#isshowBack').addClass('BACKIMGS')
-        $('.aboutBox').css('top', -top * 0.3 + 280, '%')
-        $('.backWord').css('opacity', -top / 150 + 1, '%')
-        $('#lem1').css('top', top * 1, 'px').css('left', top * .5, 'px')
-        $('.lem2').css('top', top * 0.9, 'px')
-        $('.lem3').css('top', top * 0.6, 'px')
-        $('.lem4').css('top', top * 0.3, 'px')
-      } else {
-        $('.backWord').removeClass('.backWord')
-        $('#isshowBack').removeClass('.BACKIMGS')
-      }
+    let bg = document.querySelector('#bg')
+    let moon = document.querySelector('#moon')
+    let cloud = document.querySelector('#cloud')
+    let text = document.querySelector('#text')
+    let mountain1 = document.querySelector('#mountain1')
+    let mountain2 = document.querySelector('#mountain2')
+    // let aboutBox = document.querySelector('#aboutBox')
+    window.addEventListener('scroll', () => {
+      let value = window.scrollY;
+      bg.style.top = value * 0.5 + 'px';
+      moon.style.left = value * 0.2 + 'px';
+      moon.style.top = value * 0.2 + 'px';
+      cloud.style.top = value * 0.5 + 'px';
+      text.style.top = value * 1.2 + 'px';
+      mountain1.style.top = value * 1 + 'px';
+      mountain2.style.top = value * 0.4 + 'px';
+      // aboutBox.style.top = -value * 0.3 + 'px';
     })
   }
 }
@@ -63,103 +71,36 @@ export default {
 
 <style scoped>
 /*banner style start*/
-.HomeBanner {
-  margin-bottom: 5rem;
-}
-
-#lem1 {
-  width: 150px;
-  height: 150px;
-  margin: 4rem;
-}
-
-.backImg {
+section {
+  position: relative;
   width: 100%;
-  height: 80vh;
-  z-index: -1;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.BACKIMGS {
-  top: 5rem;
-}
-
-.BACKIMGS > * {
+section img {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+#text {
+  position: relative;
+  color: #ffffff;
+  font-size: 10em;
+  z-index: 0;
+}
+#aboutBox{
   position: absolute;
-  background-size: cover;
-  /*top: -5rem;*/
 }
 
-
-.backWord {
-  opacity: 100%;
-  display: block;
-  position: fixed;
-  left: 50%;
-  margin-left: -30%;
-  top: 50%;
-  font-size: 12VW;
-  font-weight: bold;
-}
-
-.aboutBox {
-  position: absolute;
-  z-index: 1;
-  /*background-color: rgba(140, 158, 168, .4);*/
-  background-image: linear-gradient(to bottom right, rgba(58, 95, 137, .5) -100%, rgba(20, 31, 49, .5) 100%); /*对角渐变*/
-  width: 30vw;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -40%);
-  text-align: center;
-  border-radius: 10px;
-  backdrop-filter: blur(5px);
-  box-shadow: .5px .5px 1px rgba(255, 255, 255, 0.2) inset, 1px 1px 5px rgba(0, 0, 0, .4);
-  transition: background-color ease .5s, box-shadow ease .5s, width ease .5s, backdrop-filter ease .3s;
-}
-
-.aboutBox:hover {
-  box-shadow: .5px .5px 1px rgba(255, 255, 255, 0.3) inset, 4px 4px 10px rgba(0, 0, 0, .2);
-  /*background-color: rgba(71, 100, 122, 0.2);*/
-  background-image: linear-gradient(to bottom right, rgba(58, 95, 137, .5) -100%, rgba(20, 31, 49, .5) 100%); /*对角渐变*/
-  backdrop-filter: blur(5px);
-  width: 32vw;
-}
-
-.logo {
-  width: 30%;
-  border-radius: 50%;
-  margin-top: -30px;
-  box-shadow: 0 0 30px rgba(50, 69, 85, 0.8);
-}
-
-.bannerInfo {
-  margin-top: 1rem;
-  padding: .5rem;
-  text-align: left;
-  /*background-color: #55a532;*/
-}
-
-.Name {
-  color: white;
-  font-family: "Microsoft JhengHei UI";
-  font-weight: bold;
-  font-size: 3vw;
-}
-
-.Name span {
-  font-weight: bold;
-  color: #017ca5;
-}
-
-.Name > p {
-  margin: 1vw;
-  font-family: "Microsoft JhengHei UI";
-  font-weight: normal;
-  font-size: 1vw;
-  color: #a5a5a5;
-}
 
 /*.clouds img {*/
 /*  position: absolute;*/
