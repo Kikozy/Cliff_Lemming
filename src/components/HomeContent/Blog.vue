@@ -2,8 +2,9 @@
   <div class="blogNews">
     <ul class="Blogs" v-for="(item,index) in data">
       <li class="Blog_li">
-        <img @click="showArticle(item.id,item.title,item.content,item.pushDate)" class="Blog_img"
-             src="http://img5.mtime.cn/pi/2020/08/26/110208.47581761_1000X1000.jpg" alt="">
+        <div class="Blog_img" @click="showArticle(item.id,item.title,item.content,item.pushDate)">
+          <img src="http://img5.mtime.cn/pi/2020/08/26/110208.47581761_1000X1000.jpg">
+        </div>
         <div class="Blog_info">
           <h1 class="Blog_title" @click="showArticle(item.id,item.title,item.content,item.pushDate)">{{
               item.title
@@ -29,6 +30,7 @@ export default {
   name: "Blog",
   data() {
     return {
+      isshow:true,
       page: '',
       data: []
     }
@@ -97,21 +99,29 @@ export default {
   color: #017ca5;
 }
 
-.Blog_li:hover .Blog_img {
-  transform: scale(1.05);
-}
-
 .Blog_img {
   cursor: pointer;
   float: left;
-  width: 15vw;
-  min-width: 10rem;
-  height: 40vh;
-  min-height: 10rem;
+  /*width: 15vw;*/
+  /*min-width: 10rem;*/
+  /*height: 40vh;*/
+  /*min-height: 10rem;*/
   border-radius: 20px;
-  background-color: #cecece;
+  /*background-color: #cecece;*/
   transform: scale(1);
   transition: ease transform .3s;
+}
+
+img{
+  min-width: 10rem;
+  min-height: 10rem;
+  width: 15vw;
+  height: 40vh;
+  border-radius: 20px;
+}
+
+.Blog_li:hover .Blog_img {
+  transform: scale(1.05);
 }
 
 .Blog_info {

@@ -16,7 +16,7 @@
         <el-table-column label="操作" width="150">
           <template slot-scope="scope">
             <el-button type="text" size="small" @click="">修改</el-button>
-            <el-button type="text" size="small" @click="">删除</el-button>
+            <el-button type="text" size="small" @click="post_del(scope.row.id,scope.row.title)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -41,6 +41,7 @@ import {request} from "@/network/requests";
 import article_write from "@/components/adminControls/articleFuncs/article_write";
 
 export default {
+  inject:['reload'],
   name: "article_admin",
   components: {
     article_write
@@ -71,6 +72,21 @@ export default {
         $('.add_article').css('color', "#000000")
       }
     },
+    post_del(id,title){
+      request({
+        url:'/article_del',
+        params:{
+          id:id,
+          code:'LemmingArticleDel069'
+        }
+      }).then(res=>{
+        console.log(res)
+        this.reload()
+      }).catch(err=>{
+        console.log(err)
+      })
+
+    }
   }
 
 }

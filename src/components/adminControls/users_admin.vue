@@ -15,7 +15,7 @@
         <el-table-column label="操作" width="150">
           <template slot-scope="scope">
             <el-button type="text" size="small" @click="post_id_fakedel(scope.row.id)">注销</el-button>
-            <el-button type="text" size="small" @click="post_id_realdel(scope.row.id)">删除信息</el-button>
+            <el-button class="worryStyle" type="text" size="small" @click="post_id_realdel(scope.row.id)">删除信息</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -158,6 +158,9 @@ export default {
   box-shadow: 1px 1px 0px inset rgba(226, 226, 226, .2);
   transform: translateX(0);
   transition: transform ease .4s;
+}
+.worryStyle{
+  background-color: #A57983;
 }
 
 .el-button:hover {

@@ -120,7 +120,9 @@ const routes = [
                 component: () => import('@/components/adminControls/movie_admin.vue')
             }
         ]
-    }
+    },
+    // 404 页面
+    {path: '/*',meta:{title:'404'}, component:()=>import('@/components/404/404')},
 ]
 
 const router = new VueRouter({

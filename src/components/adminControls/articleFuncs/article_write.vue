@@ -3,7 +3,8 @@
   <div id="add_article" class="add_article_box">
     <div class="articleInfo">
       <input class="titleInput" v-model="title" type="text" placeholder="博客标题">
-      <div class="post_article" @click="postArticle">提交</div>
+      <div class="post_article buttonStyle" @click="postArticle">提交</div>
+      <div class="articleBack buttonStyle" @click="goback">取消</div>
     </div>
     <vue-tinymce v-model="content" :setting="setting"></vue-tinymce>
   </div>
@@ -33,11 +34,14 @@ export default {
         plugins: "emoticons link image media table lists fullscreen quickbars code codesample ",
         language: 'zh_CN',
         width: 800,
-        height: 350
+        height: 350,
       }
     }
   },
-  methods: {
+  methods:{
+    goback(){
+      this.reload()
+    },
     postArticle() {
       request({
         url: '/article_save',
@@ -83,16 +87,24 @@ input {
   font-weight: bold;
   padding-left: 1rem;
 }
-
-.post_article {
+.buttonStyle{
   cursor: pointer;
   color: white;
   font-weight: bold;
   padding: .7vw;
-  background-color: #017CA5;
   box-shadow: 1px 1px 0px inset rgba(226, 226, 226, .2);
   border-radius: 10px;
   text-align: center;
+}
+
+.articleBack{
+  margin-right: 2rem;
+  background-color: pink;
+  float: right;
+}
+
+.post_article {
+  background-color: #017CA5;
   float: right;
 }
 

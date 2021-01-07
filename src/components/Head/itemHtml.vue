@@ -62,21 +62,22 @@ export default {
 <style scoped>
 .itemHtml {
   opacity: 100%;
-  background-color: pink;
+  /*background-color: pink;*/
   float: right;
   margin: .2%;
   padding: 1rem;
   border-radius: 10px;
-  background-color: rgba(97, 123, 136, .3);
-  background-image: linear-gradient(to bottom right, rgba(58, 95, 137, .5) -100%, rgba(20, 31, 49, .5) 100%); /*对角渐变*/
-  box-shadow: 1px 1px 1px rgba(255, 255, 255, 0.1) inset, 1px 1px 5px rgba(0, 0, 0, .5);
-  backdrop-filter: blur(50px);
+  /*background-color: rgba(97, 123, 136, .3);*/
+  /*background-image: linear-gradient(to bottom right, rgba(58, 95, 137, .5) -100%, rgba(20, 31, 49, .5) 100%); !*对角渐变*!*/
+  /*box-shadow: 1px 1px 1px rgba(255, 255, 255, 0.1) inset, 1px 1px 5px rgba(0, 0, 0, .5);*/
+  /*backdrop-filter: blur(50px);*/
 }
 
 li {
-  margin-left: .5rem;
-  background-image: linear-gradient(to bottom right, rgba(58, 95, 137, .5) -100%, rgba(20, 31, 49, .5) 100%); /*对角渐变*/
-  box-shadow: 1px 1px 1px rgba(255, 255, 255, 0.05) inset, 0 0 0px #017ca5;
+  margin-left: 1rem;
+  font-weight: bold;
+  /*background-image: linear-gradient(to bottom right, rgba(58, 95, 137, .5) -100%, rgba(20, 31, 49, .5) 100%); !*对角渐变*!*/
+  /*box-shadow: 1px 1px 1px rgba(255, 255, 255, 0.05) inset, 0 0 0px #017ca5;*/
   border-radius: 10px;
   padding: 5px;
   transition:box-shadow ease 1s, background-color ease .5s;

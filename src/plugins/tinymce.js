@@ -28,7 +28,7 @@ import 'tinymce/plugins/codesample'
 import 'tinymce/icons/default/icons'
 
 //本地化 汉化
-import 'tinymce/langs/zh_CN.js'
+// import 'tinymce/langs/zh_CN.js'
 
 Vue.use(VueTinymce)
 Vue.prototype.$tinymce = tinymce //全局注册，使用方法为:this.$tinymce
