@@ -19,7 +19,6 @@
 <script>
 
 import {request} from "@/network/requests";
-import {post_url} from "@/network/post_base_url";
 import $ from "jquery";
 
 
@@ -88,6 +87,7 @@ export default {
 <style scoped>
 .iconHead {
   left: -3rem;
+  top: 30%;
   z-index: -1;
   width: 40%;
   border-radius: 50%;
@@ -115,20 +115,6 @@ input:-ms-input-placeholder { /* Internet Explorer 10-11 */
   color: #000000;
 }
 
-.input {
-  box-shadow: 1px 1px 1px rgba(103, 130, 117, .5) inset, 2px 2px 5px rgba(0, 0, 0, .5);
-  background-color: rgba(61, 61, 61, 0.8);
-  background-image: linear-gradient(to right, rgba(42, 74, 52, .7), rgba(255, 255, 255, 0.2)); /*对角渐变*/
-  backdrop-filter: blur(10px);
-  padding-left: 1rem;
-  font-weight: bold;
-  font-size: 1rem;
-  margin-bottom: 3%;
-  border: 0px;
-  width: 15vw;
-  height: 3vw;
-  border-radius: 10pt;
-}
 
 .loginBtn {
   font-weight: bold;
@@ -136,7 +122,9 @@ input:-ms-input-placeholder { /* Internet Explorer 10-11 */
   /*float: left;*/
   border-radius: 10pt;
   width: 10vw;
+  min-width: 5rem;
   height: 5vh;
+  min-height: 2.5rem;
   background-color: #2a4a34;
   border: 0px;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, .5);

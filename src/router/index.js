@@ -3,10 +3,10 @@
 import store from "@/store";
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Head from '../views/Head.vue'
-// import Home from '../views/headViews/Home.vue'
+import Head from '../views/index.vue'
+// import Home from '../views/indexViews/Home.vue'
 import Loginon from '../views/Loginon/Loginon.vue'
-// import About from '../views/headViews/About.vue'
+// import About from '../views/indexViews/About.vue'
 import Login from "@/components/Loginon/Login";
 import Logon from "@/components/Loginon/Logon";
 import LCCenter from '@/views/LemControlCenter/LCCenter.vue'
@@ -40,31 +40,31 @@ const routes = [
                 path: '/about',
                 name: 'About',
                 meta: {title: '关于',keepAlive: true},
-                component: () => import('@/views/headViews/About.vue')
+                component: () => import('@/views/indexViews/About.vue')
             }, //按需求导入（加载快）
             {
                 path: '/home',
                 name: 'Home',
                 meta: {title: '主页',keepAlive: true},
-                component: () => import('@/views/headViews/Home.vue')
+                component: () => import('@/views/indexViews/Home.vue')
             },
             {
                 path: '/timeline',
                 name: 'Timeline',
                 meta: {title: '时间线',keepAlive: true},
-                component: () => import('@/views/headViews/Timeline')
+                component: () => import('@/views/indexViews/Timeline')
             },
             {
                 path: '/test',
                 name: 'Test',
                 meta: {title: '测试',keepAlive: true},
-                component: () => import('@/views/headViews/Test')
+                component: () => import('@/views/indexViews/Test')
             },
             {
                 path: '/lemming',
                 name: 'Lemming',
                 meta: {title: 'Lemming',keepAlive: true},
-                component: () => import('@/views/headViews/Lemming')
+                component: () => import('@/views/indexViews/Lemming')
             },
         ]
     },

@@ -11,7 +11,9 @@ body {
     background-color: #cfcfcf;
 }
 
+
 .loginIn {
+    position: relative;
     width: 100vw;
     height: 100vh;
     background-size: cover;
@@ -40,6 +42,8 @@ body {
 .loginInBox {
     position: absolute;
     width: 30vw;
+    min-width: 20rem;
+    min-height: 20rem;
     height: 60vh;
     top: 22vh;
     right: 28vw;
@@ -68,6 +72,23 @@ body {
 .goback:hover {
     left: -3.5rem;
     box-shadow: 0 3px 5px rgba(0, 0, 0, .5);
+}
+
+.input {
+    box-shadow: 1px 1px 1px rgba(103, 130, 117, .5) inset, 2px 2px 5px rgba(0, 0, 0, .5);
+    background-color: rgba(61, 61, 61, 0.8);
+    background-image: linear-gradient(to right, rgba(42, 74, 52, .7), rgba(255, 255, 255, 0.2)); /*对角渐变*/
+    backdrop-filter: blur(10px);
+    padding-left: 1rem;
+    font-weight: bold;
+    font-size: 1rem;
+    margin-bottom: 3%;
+    border: 0px;
+    width: 15vw;
+    min-width: 12rem;
+    height: 3vw;
+    min-height: 2.5rem;
+    border-radius: 10pt;
 }
 
 .el-icon-arrow-left {

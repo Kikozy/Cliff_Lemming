@@ -27,7 +27,6 @@
 </template>
 
 <script>
-import {post_url} from "@/network/post_base_url";
 import $ from "jquery";
 import {request} from "@/network/requests";
 
@@ -150,28 +149,14 @@ input:-ms-input-placeholder { /* Internet Explorer 10-11 */
   color: #000000;
 }
 
-.input {
-  box-shadow: 1px 1px 1px rgba(103, 130, 117, .5) inset, 2px 2px 5px rgba(0, 0, 0, .5);
-  background-color: rgba(61, 61, 61, 0.8);
-  background-image: linear-gradient(to right, rgba(42, 74, 52, .7), rgba(255, 255, 255, 0.2)); /*对角渐变*/
-  backdrop-filter: blur(10px);
-  padding-left: 1rem;
-  font-weight: bold;
-  font-size: 1rem;
-  margin-bottom: 3%;
-  border: 0px;
-  width: 15vw;
-  height: 3vw;
-  border-radius: 10pt;
-}
-
-
 .logonBtn {
   font-weight: bold;
   font-size: 1rem;
   border-radius: 10px;
   width: 10vw;
+  min-width: 5rem;
   height: 5vh;
+  min-height: 2.5rem;
   background-color: #2a4a34;
   border: 0px;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, .5);

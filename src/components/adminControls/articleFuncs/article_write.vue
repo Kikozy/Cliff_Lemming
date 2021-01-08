@@ -11,6 +11,7 @@
 </template>
 
 <script>
+// import Tiny from '../../tinymce/tinymce-editor'
 import VueTinymce from "@packy-tang/vue-tinymce"
 import emojis from '../../../plugins/emojis' //导入表情
 import Vue from 'vue'
@@ -21,25 +22,28 @@ Vue.use(VueTinymce)
 export default {
   inject: ['reload'],
   name: "article_write",
+  // components: {
+  //   Tiny
+  // },
   data() {
     return {
       title: '',
       content: "",
-      setting: {
-        menubar: true,
-        emoticons_database_url: emojis,
-        toolbar: " |emoticons | code undo redo codesample| fullscreen |fontselect fontsizeselect forecolor backcolor |bold italic underline strikethrough | formatselect alignleft aligncenter alignright alignjustify | link unlink | numlist bullist | image media table |   indent outdent | superscript subscript | removeformat |",
-        toolbar_drawer: "sliding",
-        quickbars_selection_toolbar: " removeformat | bold italic underline strikethrough | fontsizeselect forecolor backcolor",
-        plugins: "emoticons link image media table lists fullscreen quickbars code codesample ",
-        language: 'zh_CN',
-        width: 800,
-        height: 350,
-      }
+        setting: {
+          menubar: true,
+          emoticons_database_url: emojis,
+          toolbar: " |emoticons | code undo redo codesample| fullscreen |fontselect fontsizeselect forecolor backcolor |bold italic underline strikethrough | formatselect alignleft aligncenter alignright alignjustify | link unlink | numlist bullist | image media table |   indent outdent | superscript subscript | removeformat |",
+          toolbar_drawer: "sliding",
+          quickbars_selection_toolbar: " removeformat | bold italic underline strikethrough | fontsizeselect forecolor backcolor",
+          plugins: "emoticons link image media table lists fullscreen quickbars code codesample ",
+          language: 'zh_CN',
+          width: 800,
+          height: 350,
+        }
     }
   },
-  methods:{
-    goback(){
+  methods: {
+    goback() {
       this.reload()
     },
     postArticle() {
@@ -66,11 +70,6 @@ export default {
 </script>
 
 <style scoped>
-/* /deep/ 直接修改最深层源文件样式*/
-/*#add_article /deep/ .tox .tox-edit-area__iframe {*/
-/*  background-color: #3d4758;*/
-/*}*/
-
 .articleInfo {
   padding: 1rem;
 }
@@ -87,7 +86,8 @@ input {
   font-weight: bold;
   padding-left: 1rem;
 }
-.buttonStyle{
+
+.buttonStyle {
   cursor: pointer;
   color: white;
   font-weight: bold;
@@ -97,7 +97,7 @@ input {
   text-align: center;
 }
 
-.articleBack{
+.articleBack {
   margin-right: 2rem;
   background-color: pink;
   float: right;

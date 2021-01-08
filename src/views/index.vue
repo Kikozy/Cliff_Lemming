@@ -48,7 +48,7 @@
 
 <script>
 import jumpTop from "@/components/jumpTop/jumpTop";
-import endBanner from "@/components/EndBanner/end";
+import endBanner from "@/components/EndFoot/endBanner";
 import Banner from '@/components/HomeBanner/Banner';
 import InfoMe from "@/components/HomeContent/InfoMe";
 import LoadCloud from "@/components/Loading/LoadCloud";
@@ -94,7 +94,7 @@ export default {
   },
   created() {
     if (this.$store.state.username) {
-      this.islogin = true
+      this.islogin = true;
     }
   },
   watch: {
@@ -114,15 +114,15 @@ export default {
 .Banner {
   position: relative;
   z-index: -2;
-  height: 100vh;
+  height: 120vh;
 }
 
 .HomeContent {
   /*position: relative;*/
   padding-top: 3rem;
   width: 100%;
-  background-image: linear-gradient(to bottom, #101a24, #0d2b4d); /*对角渐变*/
-  box-shadow: 0 -30px 20px #101a24;
+  background-image: linear-gradient(to bottom, #0d161e, #0d2b4d); /*对角渐变*/
+  box-shadow: 0 -80px 30px #0d161e;
   display: flex;
   justify-content: center;
   align-items: center;

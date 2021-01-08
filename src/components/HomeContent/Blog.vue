@@ -2,15 +2,17 @@
   <div class="blogNews">
     <ul class="Blogs" v-for="(item,index) in data">
       <li class="Blog_li">
-        <div class="Blog_img" @click="showArticle(item.id,item.title,item.content,item.pushDate)">
-          <img src="http://img5.mtime.cn/pi/2020/08/26/110208.47581761_1000X1000.jpg">
-        </div>
+        <h1 class="Blog_title" @click="showArticle(item.id,item.title,item.content,item.pushDate)">{{
+            item.title
+          }}</h1>
         <div class="Blog_info">
-          <h1 class="Blog_title" @click="showArticle(item.id,item.title,item.content,item.pushDate)">{{
-              item.title
-            }}</h1>
-          <p class="Blog_content" v-html="item.content.substr(0,300)+'...'"></p>
-          <p class="Blog_pushDate">{{ item.pushDate }}</p>
+          <div class="Blog_img" @click="showArticle(item.id,item.title,item.content,item.pushDate)">
+            <img src="https://p.pstatp.com/origin/137560001eb95836ce26a.jpg">
+          </div>
+          <div class="BlogContent">
+            <p class="Blog_content" v-html="item.content.substr(0,300)+'...'"></p>
+            <p class="Blog_pushDate">{{ item.pushDate }}</p>
+          </div>
         </div>
       </li>
     </ul>
@@ -30,7 +32,7 @@ export default {
   name: "Blog",
   data() {
     return {
-      isshow:true,
+      isshow: true,
       page: '',
       data: []
     }
@@ -89,58 +91,63 @@ export default {
 
 <style scoped>
 .Blog_li {
-  /*background-color: #cfcfcf;*/
+  /*border-radius: 5px;*/
+  /*box-shadow: 2px 2px 4px #000000;*/
   margin-bottom: 1.5rem;
-  width: 100%;
-  height: 40vh;
+  width: 52vw;
+  min-width: 20rem;
 }
 
 .Blog_li:hover .Blog_title {
   color: #017ca5;
-}
-
-.Blog_img {
-  cursor: pointer;
-  float: left;
-  /*width: 15vw;*/
-  /*min-width: 10rem;*/
-  /*height: 40vh;*/
-  /*min-height: 10rem;*/
-  border-radius: 20px;
-  /*background-color: #cecece;*/
-  transform: scale(1);
-  transition: ease transform .3s;
-}
-
-img{
-  min-width: 10rem;
-  min-height: 10rem;
-  width: 15vw;
-  height: 40vh;
-  border-radius: 20px;
-}
-
-.Blog_li:hover .Blog_img {
-  transform: scale(1.05);
-}
-
-.Blog_info {
-  /*background-color: red;*/
-  height: 35vh;
-  min-width: 10rem;
-  float: left;
-  padding: 1rem;
-  /*background-color: #0077aa;*/
+  text-shadow: 0 0 10px #005474;
 }
 
 .Blog_title {
   cursor: pointer;
   color: white;
   font-size: 2em;
+  padding: 1rem;
   min-font-size: 5rem;
-  width: 33vw;
+  width: 52vw;
   font-family: "Microsoft JhengHei UI";
   transition: ease color .3s;
+}
+
+.Blog_info {
+  height: 26vh;
+  width: 52vw;
+  display: inline-block;
+
+}
+
+.Blog_img {
+  float: left;
+  /*width: 20vw;*/
+  /*height: 13vw;*/
+  min-height: 10rem;
+  border-radius: 10px;
+  transition: ease transform .3s;
+}
+
+.Blog_img > img {
+  cursor: pointer;
+  width: 20vw;
+  height: 13vw;
+  min-height: 10rem;
+  border-radius: 10px;
+}
+
+.BlogContent {
+  position: relative;
+  color: #cfcfcf;
+  float: left;
+  width: 32vw;
+  height: 26vh;
+}
+
+.BlogContent > * {
+  margin: .5rem;
 }
 
 .Blog_content {
@@ -148,41 +155,37 @@ img{
   text-overflow: ellipsis; /*文字隐藏后添加省略号*/
   /*white-space: nowrap; !*强制不换行*!*/
   width: 30vw; /*不允许出现半汉字截断*/
+  height: 20vh;
   font-weight: lighter;
   line-height: 1.5rem;
-  height: 10vw;
-  /*background-color: #55a532;*/
-  min-height: 5rem;
-  margin-top: 1rem;
-  color: #cfcfcf;
   font-family: "Microsoft JhengHei UI";
 }
 
 .Blog_pushDate {
-  /*margin-top: 1rem;*/
   position: absolute;
+  bottom: 0;
   font-size: 1vw;
   color: #ffffff;
-  background-image: linear-gradient(150deg, #20b7d9 -50%, #13202b 100%);
+  background-image: linear-gradient(150deg, #017ca5 -50%, #13202b 100%);
   border-radius: 10px;
   padding: .5rem;
   box-shadow: 0 0 30px rgba(27, 123, 148, .35);
 }
 
+.Blog_li:hover .Blog_img {
+  transform: scale(1.05);
+}
+
 .pages {
   display: inline-block;
-  /*background-color: red;*/
   text-align: center;
   width: 52vw;
-  /*height: 2rem;*/
 }
 
 .Blog_page {
-  /*background-color: red;*/
   width: 100%;
   min-width: 10rem;
   display: block;
-  /*display: inline-block;*/
 }
 
 

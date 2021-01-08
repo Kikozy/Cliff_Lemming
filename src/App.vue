@@ -11,5 +11,5 @@ export default {}
 </script>
 
 <style>
-@import "assets/CSS/scrollbar.css";
+/*@import "assets/CSS/scrollbar.css";*/
 </style>

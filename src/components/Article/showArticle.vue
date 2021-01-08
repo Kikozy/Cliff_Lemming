@@ -110,6 +110,7 @@ export default {
 }
 
 .article {
+  line-height: 1.5rem;
   /*background-color: #55a532;*/
   width: 52vw;
   display: inline-block;

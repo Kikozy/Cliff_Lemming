@@ -343,7 +343,8 @@ export default {
 .Mbar {
   width: 0;
   height: 100%;
-  background-color: #666666;
+  background-color: #017ca5;
+  box-shadow: 0 0 8px #017ca5;
 }
 
 .Mlist {

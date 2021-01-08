@@ -11,7 +11,6 @@
         <img class="end4" src="../../assets/IMAGE/footerBanner/Lem5.png" alt="">
         <img class="end5" src="../../assets/IMAGE/footerBanner/Lem6.png" alt="">
       </section>
-
     </div>
   </div>
 </template>
@@ -28,21 +27,21 @@ export default {
   name: "end",
   mounted() {
     // 监听滚动条
-    $(window).scroll(function () {
-      // console.log($(".FOOTBANNER").offset().top)
-      let bottom = $(document).scrollTop();
-      if (bottom >= 1800 && bottom <= 3800) {
-        // 速度  间距                 位置
-        // 0.9*(125*(bottom/180-10)-1400)
-        $('.end1').css('top', 0.9 * (125 * (bottom / 180 - 10) - 1400), 'px')
-        $('.end2').css('top', 0.6 * (125 * (bottom / 180 - 10) - 1400), 'px')
-        $('.end3').css('top', 0.3 * (115 * (bottom / 180 - 10) - 1400), 'px')
-      } else {
-        $('.end1').css('top', '0px')
-        $('.end2').css('top', '0px')
-        $('.end3').css('top', '0px')
-      }
-    })
+    // $(window).scroll(function () {
+    //   // console.log($(".FOOTBANNER").offset().top)
+    //   let bottom = $(document).scrollTop();
+    //   if (bottom >= 1800 && bottom <= 3800) {
+    //     // 速度  间距                 位置
+    //     // 0.9*(125*(bottom/180-10)-1400)
+    //     $('.end1').css('top', 0.9 * (125 * (bottom / 180 - 10) - 1400), 'px')
+    //     $('.end2').css('top', 0.6 * (125 * (bottom / 180 - 10) - 1400), 'px')
+    //     $('.end3').css('top', 0.3 * (115 * (bottom / 180 - 10) - 1400), 'px')
+    //   } else {
+    //     $('.end1').css('top', '0px')
+    //     $('.end2').css('top', '0px')
+    //     $('.end3').css('top', '0px')
+    //   }
+    // })
   }
 }
 </script>

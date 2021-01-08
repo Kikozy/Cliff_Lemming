@@ -74,7 +74,7 @@ export default {
 section {
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: 120vh;
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -93,6 +93,7 @@ section img {
 
 #text {
   position: relative;
+  text-shadow: 2px 2px 1px rgba(0,0,0,.7);
   color: #ffffff;
   font-size: 10em;
   z-index: 0;

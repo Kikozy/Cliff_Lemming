@@ -1,6 +1,6 @@
 <template>
   <!-- 背景 -->
-  <div class="loginIn">
+  <div class="loginIn ComeIn">
     <div class="loginB1">
       <p id="loginBG"></p>
     </div>
@@ -23,8 +23,6 @@
           <router-view/>
         </transition>
       </div>
-
-
     </div>
   </div>
 </template>
@@ -33,12 +31,15 @@
 <script>
 //导入外部JS
 // import '../../assets/JS/Loginon/Loginon.js'
-
+import $ from 'jquery'
 export default {
   data() {
     return {
       style: 1,
     }
+  },
+  destroyed() {
+    console.log('xiaohui')
   },
   methods: {
     active(index) {
@@ -53,6 +54,19 @@ export default {
 
 <style scoped>
 @import "../../assets/CSS/Loginon/Loginon.css";
+
+.ComeIn{
+  animation: ease run .3s  1 alternate forwards;
+}
+@keyframes run {
+  0% {
+    transform: scale(.80);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
 /*定义组件动画start*/
 
 .showUp-leave {
