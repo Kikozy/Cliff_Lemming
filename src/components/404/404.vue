@@ -3,7 +3,7 @@
     <img src="../../assets/IMAGE/404/Lemming404-2.png" alt="">
     <div class="logoHead"></div>
     <p class="worryInfo">你是不是迷路了？这里还没有布置哦~</p>
-    <p class="enInfo worryInfo">This page is missing</p>
+    <p class="enInfo worryInfo">Are you lost? It's not set up yet</p>
     <div class="notFoundBack" @click="goHome">GO HOME</div>
   </div>
 </template>

@@ -9,6 +9,7 @@
 
 <script>
 import $ from "jquery";
+import {request} from "@/network/requests";
 
 export default {
   name: "showArticle",
@@ -27,15 +28,44 @@ export default {
   },
   methods: {
     goback() {
-      history.back()
-      $('html,body').animate({scrollTop: $(".HomeContent").offset().top - 100}, 500)
+      this.$router.push('/home')
+      // $('html,body').animate({scrollTop: $(".HomeContent").offset().top - 100}, 500)
+    },
+    getArticle(id){
+      request({
+        url:'/article_show',
+        params:{
+          id:id,
+          code:'getArticle'
+        }
+      }).then(res=>{
+        this.title = res.data[0].title
+        this.content = res.data[0].content
+        this.pushDate = res.data[0].pushDate
+        // 其他地方跳转过来的，动态增加title
+        this.$router.push({query:{...this.$route.query,title:res.data[0].title}})
+        $('html,body').animate({scrollTop: $(".HomeContent").offset().top - 100}, 500)
+      }).catch(err=>{
+        this.$router.push('/404')
+      })
     }
   },
   created() {
-    let local_article = JSON.parse(localStorage.getItem('article'))
-    this.title = local_article.title
-    this.content = local_article.content
-    this.pushDate = local_article.pushDate
+    // 接收id
+    // 判断本地是否有，减少重复请求
+    let id = parseInt(this.$route.query.id);
+    if (JSON.parse(localStorage.getItem('article')) === null) {
+      this.getArticle(id)
+    } else {
+      let local_article = JSON.parse(localStorage.getItem('article'))
+      if (local_article.id !== id) {
+        this.getArticle(id)
+      } else {
+        this.title = local_article.title
+        this.content = local_article.content
+        this.pushDate = local_article.pushDate
+      }
+    }
   }
 }
 </script>

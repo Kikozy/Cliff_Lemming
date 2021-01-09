@@ -90,7 +90,24 @@ section img {
   object-fit: cover;
   pointer-events: none;
 }
-
+#cloud{
+  transform: scaleX(1.5);
+  animation: ease run 5s infinite;
+}
+@keyframes run {
+  0% {
+    left: 7px;
+    top: 3px;
+  }
+  50% {
+    left: -7px;
+    top: 0;
+  }
+  100% {
+    left: 7px;
+    top: 3px;
+  }
+}
 #text {
   position: relative;
   text-shadow: 2px 2px 1px rgba(0,0,0,.7);

@@ -49,13 +49,20 @@ export default {
       // 存进本地
       localStorage.removeItem('article')
       localStorage.setItem('article', JSON.stringify(localStrange_article));
-      this.$router.push('/article')
+      this.$router.push({
+        path:'/article',
+        // 传id过去
+        query: {
+          id:id,
+          title:title
+        }
+      })
     },
     post_page(page) {
       request({
         url: '/article_show',
         params: {
-          id: 'article069',
+          code: 'article069',
           page: page - 1
         }
       }).then(res => {
@@ -68,10 +75,11 @@ export default {
     }
   },
   created() {
+    // 获取一页博客
     request({
       url: '/article_show',
       params: {
-        id: 'article069',
+        code: 'article069',
         page: 0
       }
     }).then(res => {
