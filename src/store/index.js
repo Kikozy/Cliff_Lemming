@@ -6,9 +6,9 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
     state: {
-        username: '',
-        mail: '',
-        iconHead: '',
+        username: '', // 用户名
+        mail: '', // 邮箱
+        iconHead: '', // 头像
     },
     // 计算函数
     getters: {},
@@ -37,7 +37,7 @@ const store = new Vuex.Store({
             state.username = ''
             state.mail = ''
             state.iconHead = ''
-        }
+        },
     },
     actions: {},
     modules: {}

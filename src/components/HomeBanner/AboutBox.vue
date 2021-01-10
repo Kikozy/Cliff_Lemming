@@ -6,7 +6,7 @@
         Hi! 我是
         <span>Lem</span>
         <br>
-        <p>一个努力学习成长热爱<span>前端</span>普通年轻人</p>
+        <p>一个努力学习成长热爱<span>学习</span>普通年轻人</p>
       </h4>
     </div>
   </div>
@@ -26,9 +26,8 @@ export default {
   background-image: linear-gradient(to bottom right, rgba(58, 95, 137, .5) -100%, rgba(20, 31, 49, .5) 100%); /*对角渐变*/
   width: 30vw;
   min-width: 20rem;
-  top: 40%;
   left: 50%;
-  transform: translate(-50%, -40%);
+  transform: translate(-50%, -80%);
   text-align: center;
   border-radius: 10px;
   backdrop-filter: blur(5px);
@@ -62,7 +61,7 @@ export default {
   color: white;
   font-family: "Microsoft JhengHei UI";
   font-weight: bold;
-  font-size: 3vw;
+  font-size: 2.5em;
 }
 
 .Name span {
@@ -76,5 +75,18 @@ export default {
   font-weight: normal;
   font-size: 1vw;
   color: #a5a5a5;
+}
+
+.aboutBox {
+  animation: ease toUp .5s;
+}
+
+@keyframes toUp {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
 }
 </style>

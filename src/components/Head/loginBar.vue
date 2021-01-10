@@ -1,18 +1,13 @@
 <template>
-  <div class="loginBar" @click="goLoginon">
-    <a class="logIcon iconfont icon-user"></a>
+  <div class="loginBar">
+    <router-link to="/login">
+      <a class="logIcon iconfont icon-user"></a>
+    </router-link>
   </div>
 </template>
 
 <script>
-export default {
-  methods: {
-    //跳转到登录界面
-    goLoginon() {
-      this.$router.push('/loginon')
-    }
-  }
-}
+export default {}
 </script>
 
 <style scoped>
@@ -21,10 +16,6 @@ export default {
   font-weight: bold;
   text-align: center;
   margin: .5rem;
-  /*height: 60%;*/
-  padding: .5rem;
-  /*position: relative;*/
-  /*width: 70px;*/
   border-radius: 10px;
   background-color: rgba(48, 87, 71, .8);
   backdrop-filter: blur(10px);
@@ -38,6 +29,7 @@ export default {
 }
 
 .logIcon {
+  padding: .5rem;
   color: #cfcfcf;
   font-size: 2rem;
 }

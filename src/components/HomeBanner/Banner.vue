@@ -41,9 +41,10 @@
 
 <script>
 import AboutBox from "@/components/HomeBanner/AboutBox";
+
 export default {
   name: "Banner",
-  components:{
+  components: {
     AboutBox
   },
   mounted() {
@@ -56,14 +57,15 @@ export default {
     // let aboutBox = document.querySelector('#aboutBox')
     window.addEventListener('scroll', () => {
       let value = window.scrollY;
-      bg.style.top = value * 0.5 + 'px';
-      moon.style.left = value * 0.2 + 'px';
-      moon.style.top = value * 0.2 + 'px';
-      cloud.style.top = value * 0.5 + 'px';
-      text.style.top = value * 1.2 + 'px';
-      mountain1.style.top = value * 1 + 'px';
-      mountain2.style.top = value * 0.4 + 'px';
-      // aboutBox.style.top = -value * 0.3 + 'px';
+      bg.style.transform = 'translateY('+value * 0.5+'px)';
+      moon.style.left = +value * 0.2+'px';
+      moon.style.transform = 'translateY('+value * 0.2+'px)';
+      cloud.style.transform = 'translateY('+value * 0.5+'px)';
+      text.style.transform = 'translateY('+value * 1.2+'px)';
+      // transform: translateY();
+      mountain1.style.transform = 'translateY('+value * 1+'px)';
+      mountain2.style.transform = 'translateY('+value * 0.4+'px)';
+      aboutBox.style.transform = 'translateY(-'+value * 0.5+'px)';
     })
   }
 }
@@ -90,32 +92,58 @@ section img {
   object-fit: cover;
   pointer-events: none;
 }
-#cloud{
-  transform: scaleX(1.5);
-  animation: ease run 5s infinite;
+
+#cloud {
+  animation: ease run 3s infinite;
 }
+
 @keyframes run {
   0% {
-    left: 7px;
-    top: 3px;
+    transform: translateX(3px) scaleX(1.5);
   }
-  50% {
-    left: -7px;
-    top: 0;
+  50%{
+    transform: translateX(-3px) scaleX(1.5);
   }
   100% {
-    left: 7px;
-    top: 3px;
+    transform: translateX(3px) scaleX(1.5);
   }
 }
+
+
+#mountain1 {
+  animation: ease toUp 2s;
+}
+
+#mountain2 {
+  animation: ease toUp 1s;
+}
+
+#mountain3{
+  animation: ease toUp .5s;
+}
+
+
 #text {
   position: relative;
-  text-shadow: 2px 2px 1px rgba(0,0,0,.7);
+  text-shadow: 2px 2px 1px rgba(0, 0, 0, .7);
   color: #ffffff;
   font-size: 10em;
   z-index: 0;
+  animation: ease toUp 1.5s;
 }
-#aboutBox{
+
+@keyframes toUp {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+
+
+#aboutBox {
   position: absolute;
 }
 

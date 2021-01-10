@@ -1,15 +1,15 @@
 <template>
   <div class="LoginForm">
     <img class="iconHead" :src="qq_icon" alt="">
-    <div class="loginInput">
+    <div class="loginInput move">
       <!--  登录表单   -->
       <!--      加了form点击登录会自动刷新-->
       <!--      <form class="Login" action="">-->
-      <input class="mail input" v-model="login_form.mail" type="text" name="mail" placeholder="邮箱"
+      <input class="mail input" v-model="login_form.mail" type="text" name="mail" style="--i:5" placeholder="邮箱"
              @keyup="ismatch">
-      <input class="password input" v-model="login_form.password" type="password" name="password" placeholder="密码"
+      <input class="password input" v-model="login_form.password" type="password" style="--i:6" name="password" placeholder="密码"
              @keyup="ismatch">
-      <input class="loginBtn" type="submit" value="登录" disabled="true" @click="post_login">
+      <input class="loginBtn" type="submit" style="--i:7" value="登录" disabled="true" @click="post_login">
       <!--      </form>-->
     </div>
   </div>
@@ -67,6 +67,7 @@ export default {
           // 提交到vuex
           let login_infos = {username: res.data.username, qqHead: this.qq_icon, mail: this.login_form.mail}
           this.$store.commit('saveLogin', login_infos) //提交
+          // this.$store.commit('saveLogin'方法名, login_infos参数)
           this.$router.push('/')
         } else if (res.data.code === 400) {
           this.$message.error({
@@ -129,6 +130,19 @@ input:-ms-input-placeholder { /* Internet Explorer 10-11 */
   border: 0px;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, .5);
   cursor: pointer;
+}
+
+input{
+  animation: ease showDown calc(.1s * var(--i));
+}
+
+@keyframes showDown {
+  0%{
+    transform: translateY(calc(-40px * var(--i)));
+  }
+  100%{
+    transform: translateY(0px);
+  }
 }
 
 

@@ -1,6 +1,6 @@
 <template>
   <!-- 背景 -->
-  <div class="loginIn ComeIn">
+  <div class="loginIn move">
     <div class="loginB1">
       <p id="loginBG"></p>
     </div>
@@ -38,11 +38,9 @@ export default {
       style: 1,
     }
   },
-  destroyed() {
-    console.log('xiaohui')
-  },
   methods: {
     active(index) {
+      // $('.loginInBox').addClass('turn180')
       this.style = index;
     },
     goback() {
@@ -55,18 +53,39 @@ export default {
 <style scoped>
 @import "../../assets/CSS/Loginon/Loginon.css";
 
-.ComeIn{
-  animation: ease run .3s  1 alternate forwards;
+.turn180{
+  animation: ease turn180 5s infinite;
 }
+@keyframes turn180 {
+ 0%{
+   transform: rotateY(0deg);
+ }
+  100%{
+    transform: rotateY(180deg);
+  }
+}
+
+
+.move {
+  animation:ease run 1s;
+}
+
 @keyframes run {
   0% {
-    transform: scale(.80);
+    border-radius: 20rem;
+    top: -40vh;
+    left: -50%;
+    transform:scale(.10);
   }
 
   100% {
-    transform: scale(1);
+    border-radius: 0;
+    top: 0;
+    left: 0;
+    transform:scale(1);
   }
 }
+
 /*定义组件动画start*/
 
 .showUp-leave {

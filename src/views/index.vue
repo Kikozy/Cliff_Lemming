@@ -150,6 +150,32 @@ export default {
   bottom: 10px;
 }
 
+/* 登录后信息 */
+.UserInfoBar {
+  animation: ease .5s toDown;
+}
+
+.loginBar {
+  animation: ease .5s toDown;
+}
+
+.musicBar {
+  animation: ease 1s toDown;
+}
+
+.userMsgBar {
+  animation: ease 1.5s toDown;
+}
+
+@keyframes toDown {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
 
 /*定义组件动画start*/
 

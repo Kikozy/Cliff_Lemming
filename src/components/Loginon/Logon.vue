@@ -4,23 +4,23 @@
     <div class="logonInput">
       <!-- 注册表单   -->
       <!--      <form class="Logon" :action=logon_url method="post">-->
-      <input class="username input" v-model="logon_form.username" type="text" name='username'
+      <input class="username input" v-model="logon_form.username" type="text" style="--i:4;" name='username'
              placeholder="用户名"
              @keyup="matchUsername">
       <span class="hidden movestyle" id="matchUsername">请输入用户名（4-15位）！💤</span>
-      <input class="password input" v-model="logon_form.password" type="password" name='password'
+      <input class="password input" v-model="logon_form.password" type="password" style="--i:5;" name='password'
              placeholder="密码"
              @keyup="matchPassword">
       <span class="hidden movestyle" id="matchPassword">两次密码不一致（4-12位）！💤</span>
       <!--当输入完成后自动执行函数-->
-      <input class="repassword input" v-model="logon_form.repassword" type="password" name='repassword'
+      <input class="repassword input" v-model="logon_form.repassword" type="password" style="--i:6;" name='repassword'
              placeholder="确认密码"
              @keyup="matchPassword">
-      <input class="email input" type="text" v-model="logon_form.mail" name='mail'
+      <input class="email input" type="text" v-model="logon_form.mail" style="--i:7;" name='mail'
              placeholder="邮箱"
              @keyup="matchMail1">
       <span class="hidden movestyle" id="matchMail">请输入正确的邮箱格式！💤</span>
-      <input class="logonBtn isErr" id="isErr" type="submit" value="注册" disabled="ture" @click="post_logon">
+      <input class="logonBtn isErr" id="isErr" type="submit" value="注册" disabled="ture" style="--i:8;" @click="post_logon">
       <!--      </form>-->
     </div>
   </div>
@@ -225,6 +225,19 @@ input:-ms-input-placeholder { /* Internet Explorer 10-11 */
   100% {
     transform: translateX(0px);
     opacity: 30;
+  }
+}
+
+input{
+  animation: ease showDown calc(.1s * var(--i));
+}
+
+@keyframes showDown {
+  0%{
+    transform: translateY(calc(-40px * var(--i)));
+  }
+  100%{
+    transform: translateY(0px);
   }
 }
 

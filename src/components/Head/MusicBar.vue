@@ -1,7 +1,7 @@
 <template>
-  <div class="musicBar" @click="show =!show" @mouseleave="show=false">
+  <div class="musicBar" @mouseleave="show=false">
     <div class="musicBox">
-      <div class="Mpic"><img
+      <div class="Mpic" @click="show =!show"><img
           src="">
       </div>
       <div class="MusicControl">
@@ -46,8 +46,11 @@ import $ from "jquery";
 import {request} from "@/network/requests";
 
 export default {
+  name: 'musicBar',
+  inject: ['reload'],// 组件刷新调用
   data() {
     return {
+      timer: null, // 计时器
       num: 1,
       music_url: [],
       show: false,
@@ -55,8 +58,10 @@ export default {
     }
   },
   destroyed() {
-    // 离开页面销毁的时候刷新一下
-    location.reload();
+    // 销毁时
+    if (this.timer) { //如果定时器还在运行 或者直接关闭，不用判断
+      clearInterval(this.timer); // 清空计时器
+    }
   },
   // 如果js需要调vue的方法
   mounted() {
@@ -79,7 +84,6 @@ export default {
   },
   methods: {
     Mlistplay(index) {
-      let timer;
       this.num = index;
       let audio = this.$refs.audio;
       this.music_url = ({
@@ -87,7 +91,7 @@ export default {
         singer: this.music_data[index]['singer'],
         url: this.music_data[index]['play_url']
       })
-      if (audio.paused) {
+      if (audio.paused || audio.play) {
         audio.play();
         $('.Mplay').addClass('Mhide');
         $('.Mpause').removeClass('Mhide');
@@ -95,15 +99,7 @@ export default {
         $('.Mpic').animate({
           top: '10px',
         }, 500);
-        timer = setInterval(function () {
-          if (audio.ended) {
-            console.log('ended!!')
-            clearInterval(timer)
-          } else {
-            let ratio = audio.currentTime / audio.duration;
-            $('.Mbar').css('width', ratio * 100, '%')
-          }
-        }, 100)
+        this.get_time()
       }
       // 监听是否播放完毕！！
       let audioEnded = document.getElementById("audio");
@@ -112,7 +108,6 @@ export default {
       };
     },
     Mplay() {
-      let timer;
       let audio = this.$refs.audio;
       if (audio.paused) {
         audio.play();
@@ -123,12 +118,7 @@ export default {
           top: '10px',
           //动画时间0.5s
         }, 500);
-        timer = setInterval(function () {
-          //currentTime返回播放的当前位置（以秒计）
-          //duration获取总时长（秒）
-          let ratio = audio.currentTime / audio.duration;
-          $('.Mbar').css('width', ratio * 100, '%')
-        }, 100)
+        this.get_time()
       } else {
         audio.pause();
         $('.Mpause').addClass('Mhide');
@@ -148,7 +138,6 @@ export default {
     Mnext() {
       let num = this.num++;
       let audio = this.$refs.audio;
-      let timer;
       if (num > this.music_data.length - 2) {
         this.num = 0;
       }
@@ -157,7 +146,7 @@ export default {
         singer: this.music_data[num]['singer'],
         url: this.music_data[num]['play_url']
       })
-      if (audio.paused) {
+      if (audio.paused || audio.play) {
         audio.play();
         $('.Mplay').addClass('Mhide');
         $('.Mpause').removeClass('Mhide');
@@ -165,15 +154,7 @@ export default {
         $('.Mpic').animate({
           top: '10px',
         }, 500);
-        timer = setInterval(function () {
-          if (audio.ended) {
-            console.log('ended!!')
-            clearInterval(timer)
-          } else {
-            let ratio = audio.currentTime / audio.duration;
-            $('.Mbar').css('width', ratio * 100, '%')
-          }
-        }, 100)
+        this.get_time()
       }
       // 监听是否播放完毕！！
       let audioEnded = document.getElementById("audio");
@@ -194,7 +175,7 @@ export default {
         singer: this.music_data[num]['singer'],
         url: this.music_data[num]['play_url'],
       });
-      if (audio.paused) {
+      if (audio.paused || audio.play) {
         audio.play();
         $('.Mplay').addClass('Mhide');
         $('.Mpause').removeClass('Mhide');
@@ -202,21 +183,25 @@ export default {
         $('.Mpic').animate({
           top: '10px',
         }, 500);
-        timer = setInterval(function () {
-          if (audio.ended) {
-            console.log('ended!!')
-            clearInterval(timer)
-          } else {
-            let ratio = audio.currentTime / audio.duration;
-            $('.Mbar').css('width', ratio * 100, '%');
-          }
-        }, 100)
+        this.get_time()
       }
       // 监听是否播放完毕！！
       let audioEnded = document.getElementById("audio");
       audioEnded.onended = function () {
         Mnext()
       };
+    },
+    // 获取进度条时间
+    get_time() {
+      let audio = this.$refs.audio;
+      this.timer = setInterval(function () {
+        if (audio.ended) {
+          clearInterval(timer) // 清空计时器
+        } else {
+          let ratio = audio.currentTime / audio.duration;
+          $('.Mbar').css('width', ratio * 100, '%');
+        }
+      }, 100)
     }
   }
 }
