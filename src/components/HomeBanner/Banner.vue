@@ -75,6 +75,7 @@ export default {
 /*banner style start*/
 section {
   position: relative;
+  z-index: -2;
   width: 100%;
   height: 120vh;
   overflow: hidden;

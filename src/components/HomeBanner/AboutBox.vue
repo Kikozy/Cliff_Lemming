@@ -77,16 +77,4 @@ export default {
   color: #a5a5a5;
 }
 
-.aboutBox {
-  animation: ease toUp .5s;
-}
-
-@keyframes toUp {
-  0% {
-    transform: translateY(100%);
-  }
-  100% {
-    transform: translateY(0%);
-  }
-}
 </style>

@@ -2,16 +2,21 @@
   <div class="blogNews">
     <ul class="Blogs" v-for="(item,index) in data">
       <li class="Blog_li">
-        <h1 class="Blog_title" @click="showArticle(item.id,item.title,item.content,item.pushDate)">{{
-            item.title
-          }}</h1>
+        <h1 class="Blog_title dog" @click="showArticle(item.id,item.title,item.content,item.pushDate,item.click)">
+          <img id="dog" :src="require('../../assets/ICON/dogs/'+index+'.png')" alt="">
+          {{item.title }}
+        </h1>
         <div class="Blog_info">
-          <div class="Blog_img" @click="showArticle(item.id,item.title,item.content,item.pushDate)">
+          <div class="Blog_img" @click="showArticle(item.id,item.title,item.content,item.pushDate,item.click)">
             <img src="https://p.pstatp.com/origin/137560001eb95836ce26a.jpg">
           </div>
           <div class="BlogContent">
             <p class="Blog_content" v-html="item.content.substr(0,300)+'...'"></p>
-            <p class="Blog_pushDate">{{ item.pushDate }}</p>
+            <div class="blogOther">
+              <p class="Blog_pushDate blogOtherStyle">{{ item.pushDate }}</p>
+              <p class="blogOtherStyle iconfont icon-liulan" title="点击量"> {{ item.click }}</p>
+              <p class="blogOtherStyle iconfont icon-zuozhe"> Lemming</p>
+            </div>
           </div>
         </div>
       </li>
@@ -37,24 +42,30 @@ export default {
       data: []
     }
   },
+  computed:{
+    dogUrl(index){
+      console.log(index)
+    }
+  },
   methods: {
-    showArticle(id, title, content, pushDate) {
+    showArticle(id, title, content, pushDate, clickNum) {
       $('html,body').animate({scrollTop: $(".HomeContent").offset().top - 100}, 500)
       let localStrange_article = {
         'id': id,
         'title': title,
         'content': content,
-        'pushDate': pushDate
+        'pushDate': pushDate,
+        'clickNum': clickNum
       }
       // 存进本地
       localStorage.removeItem('article')
       localStorage.setItem('article', JSON.stringify(localStrange_article));
       this.$router.push({
-        path:'/article',
+        path: '/article',
         // 传id过去
         query: {
-          id:id,
-          title:title
+          id: id,
+          title: title
         }
       })
     },
@@ -99,12 +110,13 @@ export default {
 
 <style scoped>
 .Blog_li {
-  /*border-radius: 5px;*/
-  /*box-shadow: 2px 2px 4px #000000;*/
   margin-bottom: 1.5rem;
-  width: 52vw;
+  width: 55vw;
   min-width: 20rem;
+  max-width: 55rem;
+  max-height: 30rem;
 }
+
 
 .Blog_li:hover .Blog_title {
   color: #017ca5;
@@ -117,23 +129,25 @@ export default {
   font-size: 2em;
   padding: 1rem;
   min-font-size: 5rem;
-  width: 52vw;
+  /*width: 55vw;*/
   font-family: "Microsoft JhengHei UI";
   transition: ease color .3s;
 }
 
+#dog {
+  position: relative;
+  top: 1.5rem;
+  width: 80px;
+}
+
 .Blog_info {
   height: 26vh;
-  width: 52vw;
+  width: 55vw;
   display: inline-block;
-
 }
 
 .Blog_img {
   float: left;
-  /*width: 20vw;*/
-  /*height: 13vw;*/
-  min-height: 10rem;
   border-radius: 10px;
   transition: ease transform .3s;
 }
@@ -141,8 +155,9 @@ export default {
 .Blog_img > img {
   cursor: pointer;
   width: 20vw;
+  max-width: 20rem;
   height: 13vw;
-  min-height: 10rem;
+  max-height: 13rem;
   border-radius: 10px;
 }
 
@@ -150,8 +165,9 @@ export default {
   position: relative;
   color: #cfcfcf;
   float: left;
-  width: 32vw;
+  width: 35vw;
   height: 26vh;
+  /*min-height: 15rem;*/
 }
 
 .BlogContent > * {
@@ -162,22 +178,39 @@ export default {
   overflow: hidden; /*自动隐藏文字*/
   text-overflow: ellipsis; /*文字隐藏后添加省略号*/
   /*white-space: nowrap; !*强制不换行*!*/
-  width: 30vw; /*不允许出现半汉字截断*/
+  width: 35vw; /*不允许出现半汉字截断*/
   height: 20vh;
   font-weight: lighter;
   line-height: 1.5rem;
   font-family: "Microsoft JhengHei UI";
 }
 
-.Blog_pushDate {
+.blogOther {
   position: absolute;
-  bottom: 0;
-  font-size: 1vw;
-  color: #ffffff;
-  background-image: linear-gradient(150deg, #017ca5 -50%, #13202b 100%);
-  border-radius: 10px;
+  min-width: 12rem;
+  /*background-color: red;*/
+  bottom: -.5rem;
+}
+
+.blogOtherStyle {
+  float: left;
+  margin: .2rem;
   padding: .5rem;
+  font-size: 1rem;
+  color: #ffffff;
+  border-radius: 10px;
+}
+
+.Blog_pushDate {
+  background-image: linear-gradient(150deg, #017ca5 -50%, #13202b 100%);
   box-shadow: 0 0 30px rgba(27, 123, 148, .35);
+}
+
+.blogOtherStyle.iconfont {
+  background-image: linear-gradient(150deg, #112937 -50%, #13202b 100%);
+  box-shadow: 0 0 30px rgba(27, 123, 148, .35);
+  font-weight: bold;
+  font-size: 1rem;
 }
 
 .Blog_li:hover .Blog_img {
@@ -204,14 +237,64 @@ export default {
   box-shadow: 1px 1px 1px rgba(255, 255, 255, 0.05) inset, 0 0 0px #017ca5;
   border-radius: 10px;
   float: left;
-  margin: .5vw;
-  padding: .8vw;
+  margin: .5rem;
+  padding: .6rem;
   transition: transform ease .3s, box-shadow ease 1s, background-color ease .5s;
 }
 
 .Blog_page > li:hover {
   background-color: #017ca5;
   box-shadow: 0 0 20px #017ca5;
+}
+
+@media screen and (max-width: 1200px) {
+  .Blog_li {
+    width: 100%;
+    height: 33rem;
+    margin-bottom: 5rem;
+  }
+
+  .Blog_img > img {
+    min-width: 52vw;
+    min-height: 40vh;
+  }
+
+  .BlogContent {
+    min-width: 52vw;
+    min-height: 13rem;
+  }
+
+  .Blog_content {
+    min-width: 50vw;
+    min-height: 13rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .Blog_li {
+    width: 100%;
+    height: 30rem;
+    margin-bottom: 5rem;
+  }
+
+  .Blog_img > img {
+    min-width: 100vw;
+    min-height: 15rem;
+  }
+
+  .BlogContent {
+    min-width: 100vw;
+    min-height: 12rem;
+  }
+
+  .Blog_content {
+    min-width: 100vw;
+    min-height: 10rem;
+  }
+
+  .BlogContent > * {
+    margin: 0;
+  }
 }
 
 </style>

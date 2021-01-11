@@ -26,8 +26,8 @@ export default {
   width: 18vw;
   min-width: 10rem;
   height: 60vh;
-  background-image: linear-gradient(to bottom right, #385c84 -150%, #152033 100%); /*对角渐变*/
-  box-shadow: .5px .5px 1px inset rgba(226, 226, 226, .3), 2px 2px 5px rgba(0, 0, 0, .3);
+  background-image: linear-gradient(to bottom right, #385c84 -80%, #0d1925 50%); /*对角渐变*/
+  box-shadow: .3px .3px 1px inset rgba(226, 226, 226, .3), 15px 15px 40px rgba(0, 0, 0, .3);
 }
 
 .logo {

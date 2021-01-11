@@ -2,7 +2,7 @@
   <div class="articleContent">
     <h1 class="goBack" id="goback" @click="goback">返回</h1>
     <h1 class="articleTitle">{{ this.title }}</h1>
-    <p class="articlePushDate">{{ this.pushDate }}</p>
+    <p class="articlePushDate">{{ this.pushDate }} 点击量{{this.clickNum}}</p>
     <p class="article" v-html="this.content"></p>
   </div>
 </template>
@@ -23,7 +23,8 @@ export default {
     return {
       title: '',
       content: this.value,
-      pushDate: ''
+      pushDate: '',
+      clickNum:''
     }
   },
   methods: {
@@ -31,41 +32,62 @@ export default {
       this.$router.push('/home')
       // $('html,body').animate({scrollTop: $(".HomeContent").offset().top - 100}, 500)
     },
-    getArticle(id){
+    // 外部地址跳转进来的
+    getArticle(id) {
       request({
-        url:'/article_show',
-        params:{
-          id:id,
-          code:'getArticle'
+        url: '/article_show',
+        params: {
+          id: id,
+          code: 'getArticle'
         }
-      }).then(res=>{
+      }).then(res => {
         this.title = res.data[0].title
         this.content = res.data[0].content
         this.pushDate = res.data[0].pushDate
         // 其他地方跳转过来的，动态增加title
-        this.$router.push({query:{...this.$route.query,title:res.data[0].title}})
+        this.$router.push({query: {...this.$route.query, title: res.data[0].title}})
         $('html,body').animate({scrollTop: $(".HomeContent").offset().top - 100}, 500)
-      }).catch(err=>{
+      }).catch(err => {
         this.$router.push('/404')
+      })
+    },
+    hasArticle() {
+      // 接收blog传来query.id
+      // 判断本地是否有，减少重复请求
+      let id = parseInt(this.$route.query.id);
+      if (JSON.parse(localStorage.getItem('article')) === null) {
+        this.getArticle(id)
+      } else {
+        let local_article = JSON.parse(localStorage.getItem('article'))
+        if (local_article.id !== id) {
+          this.getArticle(id)
+        } else {
+          this.title = local_article.title
+          this.content = local_article.content
+          this.pushDate = local_article.pushDate
+          this.clickNum = local_article.clickNum
+        }
+      }
+    },
+    readNum(){
+      let id = parseInt(this.$route.query.id);
+      request({
+        url:'/readNum',
+        method:'post',
+        data:{
+          code:'addRead1',
+          id:id
+        }
+      }).then(res=>{
+        console.log(res)
+      }).catch(err=>{
+        console.log(err)
       })
     }
   },
   created() {
-    // 接收id
-    // 判断本地是否有，减少重复请求
-    let id = parseInt(this.$route.query.id);
-    if (JSON.parse(localStorage.getItem('article')) === null) {
-      this.getArticle(id)
-    } else {
-      let local_article = JSON.parse(localStorage.getItem('article'))
-      if (local_article.id !== id) {
-        this.getArticle(id)
-      } else {
-        this.title = local_article.title
-        this.content = local_article.content
-        this.pushDate = local_article.pushDate
-      }
-    }
+    this.hasArticle()
+    this.readNum()
   }
 }
 </script>
@@ -136,16 +158,23 @@ export default {
 
 .articleContent {
   width: 52vw;
-  /*position: absolute;*/
 }
 
 .article {
   line-height: 1.5rem;
-  /*background-color: #55a532;*/
   width: 52vw;
   display: inline-block;
-  /*margin-top: 2rem;*/
   color: white;
+}
+
+@media screen and (max-width: 600px) {
+  .articleContent {
+    width: 100vw;
+  }
+
+  .article {
+    width: 100vw;
+  }
 }
 
 </style>

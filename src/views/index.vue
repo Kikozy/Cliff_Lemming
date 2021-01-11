@@ -108,17 +108,17 @@ export default {
 <style scoped>
 /* scoped是局部使用 */
 /*导入外部css*/
-@import 'http://at.alicdn.com/t/font_2290624_l5nyg5ml6gj.css';
+/*阿里巴巴图标*/
+@import 'http://at.alicdn.com/t/font_2290624_fw50t7gl6x.css';
 @import '../assets/CSS/CommonHead.css';
 
+
 .Banner {
-  position: relative;
-  z-index: -2;
-  height: 120vh;
+  /*position: relative;*/
+  /*height: 120vh;*/
 }
 
 .HomeContent {
-  /*position: relative;*/
   padding-top: 3rem;
   width: 100%;
   background-image: linear-gradient(to bottom, #0d161e, #0d2b4d); /*对角渐变*/
@@ -134,9 +134,11 @@ export default {
   width: 1100px;
 }
 
+
 .CONTENT {
   width: 52vw;
 }
+
 
 .INFO_ME_BOX {
   float: right;
@@ -221,4 +223,26 @@ export default {
 }
 
 /*登录组件的动画end*/
+/* 当屏幕宽度小于600px 的时候执行 */
+@media screen and (max-width: 600px) {
+  .INFO_ME_BOX {
+    display: none;
+  }
+
+  .HContent {
+    margin-left: 0vw;
+    margin-right: 0vw;
+    width: 100%;
+  }
+
+  .CONTENT {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .HContent {
+    width: 2880px;
+  }
+}
 </style>

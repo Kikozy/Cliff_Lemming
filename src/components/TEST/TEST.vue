@@ -50,7 +50,7 @@ export default {
 
 <style scoped>
 .TEST{
-  /*height: 1800px;*/
+  height: 1800px;
 }
 section {
   position: relative;

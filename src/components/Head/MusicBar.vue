@@ -271,6 +271,34 @@ export default {
   box-shadow: 0px 5px 5px rgba(0, 0, 0, .5);
 }
 
+.Mpic:after{
+  content: '》';
+  position: absolute;
+  z-index: 99;
+  bottom: 0;
+  width: 100%;
+  font-size: 2em;
+  text-align: center;
+  color: #0d161e;
+  animation: ease-in-out toDown 6s infinite;
+}
+
+@keyframes toDown {
+  /* 这样会有延迟效果 */
+  0%{
+    transform: rotateZ(90deg) translateX(15px);
+  }
+  /* 这样会有延迟效果 */
+  50%,100%{
+    transform: rotateZ(90deg) translateX(15px);
+  }
+  75%{
+    color: white;
+    text-shadow: 8px 0 4px #000;
+    transform: rotateZ(90deg) translateX(25px);
+  }
+}
+
 
 .MusicControl {
   width: 10rem;
@@ -329,7 +357,7 @@ export default {
   width: 0;
   height: 100%;
   background-color: #017ca5;
-  box-shadow: 0 0 8px #017ca5;
+  box-shadow: 0 0 15px 4px #017ca5;
 }
 
 .Mlist {

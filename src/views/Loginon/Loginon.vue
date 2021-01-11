@@ -67,7 +67,7 @@ export default {
 
 
 .move {
-  animation:ease run 1s;
+  animation:ease run .5s;
 }
 
 @keyframes run {
