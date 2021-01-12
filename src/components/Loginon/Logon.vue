@@ -4,24 +4,37 @@
     <div class="logonInput">
       <!-- 注册表单   -->
       <!--      <form class="Logon" :action=logon_url method="post">-->
-      <input class="username input" v-model="logon_form.username" type="text" style="--i:4;" name='username'
-             placeholder="用户名"
-             @keyup="matchUsername">
-      <span class="hidden movestyle" id="matchUsername">请输入用户名（4-15位）！💤</span>
-      <input class="password input" v-model="logon_form.password" type="password" style="--i:5;" name='password'
-             placeholder="密码"
-             @keyup="matchPassword">
-      <span class="hidden movestyle" id="matchPassword">两次密码不一致（4-12位）！💤</span>
-      <!--当输入完成后自动执行函数-->
-      <input class="repassword input" v-model="logon_form.repassword" type="password" style="--i:6;" name='repassword'
-             placeholder="确认密码"
-             @keyup="matchPassword">
-      <input class="email input" type="text" v-model="logon_form.mail" style="--i:7;" name='mail'
-             placeholder="邮箱"
-             @keyup="matchMail1">
-      <span class="hidden movestyle" id="matchMail">请输入正确的邮箱格式！💤</span>
-      <input class="logonBtn isErr" id="isErr" type="submit" value="注册" disabled="ture" style="--i:8;" @click="post_logon">
-      <!--      </form>-->
+      <div class="INPUT" style="--i:4;">
+        <input class="username input" required v-model="logon_form.username" type="text" name='username'
+               @keyup="matchUsername">
+        <h3>用户名</h3>
+        <span class="hidden movestyle" id="matchUsername">请输入用户名（4-15位）！💤</span>
+      </div>
+
+      <div class="INPUT" style="--i:5;">
+        <input class="password input" required v-model="logon_form.password" type="password" name='password'
+               @keyup="matchPassword">
+        <h3>密码</h3>
+        <span class="hidden movestyle" id="matchPassword">两次密码不一致（4-12位）！💤</span>
+      </div>
+
+      <div class="INPUT" style="--i:6;">
+        <!--当输入完成后自动执行函数-->
+        <input class="repassword input" required v-model="logon_form.repassword" type="password" name='repassword'
+               @keyup="matchPassword">
+        <h3>重复密码</h3>
+      </div>
+
+      <div class="INPUT" style="--i:7;">
+        <input class="email input" type="text" required v-model="logon_form.mail" name='mail'
+               @keyup="matchMail1">
+        <h3>邮箱</h3>
+        <span class="hidden movestyle" id="matchMail">请输入正确的邮箱格式！💤</span>
+      </div>
+      <div class="INPUT" style="--i:8;">
+        <input class="logonBtn isErr" id="isErr" type="submit" value="注册" disabled="ture"
+               @click="post_logon">
+      </div>
     </div>
   </div>
 </template>
@@ -36,7 +49,7 @@ export default {
     return {
       back: '',
       logon_url: '不要乱搞哥哥！',
-      qq_icon:'',
+      qq_icon: '',
       logon_form: {
         username: '',
         password: '',
@@ -46,11 +59,11 @@ export default {
     }
   },
   methods: {
-    matchMail1(){
+    matchMail1() {
       if (this.logon_form.mail.indexOf('@') >= 0) {
         let qq = this.logon_form.mail.split('@')[0]
         this.qq_icon = 'http://q1.qlogo.cn/g?b=qq&nk=' + qq + '&s=640'
-      }else {
+      } else {
         this.qq_icon = ''
       }
       if (this.logon_form.mail.indexOf('@') <= 0 && this.logon_form.mail.indexOf('.') <= 0) {
@@ -60,9 +73,9 @@ export default {
       if (this.logon_form.mail.indexOf('@') >= 0 && this.logon_form.mail.indexOf('.') >= 0) {
         $("#matchMail").addClass('hidden');
       }
-      if (this.logon_form.username.length >= 4 &&this.logon_form.username.length <= 15 &&
-        this.logon_form.password === this.logon_form.repassword &&
-        this.logon_form.mail.indexOf('@') >= 0 && this.logon_form.mail.indexOf('.') >= 0) {
+      if (this.logon_form.username.length >= 4 && this.logon_form.username.length <= 15 &&
+          this.logon_form.password === this.logon_form.repassword &&
+          this.logon_form.mail.indexOf('@') >= 0 && this.logon_form.mail.indexOf('.') >= 0) {
         $("#isErr").attr("disabled", false);
       }
     },
@@ -75,9 +88,9 @@ export default {
       if (this.logon_form.password === this.logon_form.repassword) {
         $("#matchPassword").addClass('hidden');
       }
-      if (this.logon_form.username.length >= 4 &&this.logon_form.username.length <= 15 &&
-        this.logon_form.password === this.logon_form.repassword &&
-        this.logon_form.mail.indexOf('@') >= 0 && this.logon_form.mail.indexOf('.') >= 0) {
+      if (this.logon_form.username.length >= 4 && this.logon_form.username.length <= 15 &&
+          this.logon_form.password === this.logon_form.repassword &&
+          this.logon_form.mail.indexOf('@') >= 0 && this.logon_form.mail.indexOf('.') >= 0) {
         $("#isErr").attr("disabled", false);
       }
     },
@@ -89,9 +102,9 @@ export default {
         $("#matchUsername").removeClass('hidden');
         $("#isErr").attr("disabled", true);
       }
-      if (this.logon_form.username.length >= 4 &&this.logon_form.username.length <= 15 &&
-        this.logon_form.password === this.logon_form.repassword &&
-        this.logon_form.mail.indexOf('@') >= 0 && this.logon_form.mail.indexOf('.') >= 0) {
+      if (this.logon_form.username.length >= 4 && this.logon_form.username.length <= 15 &&
+          this.logon_form.password === this.logon_form.repassword &&
+          this.logon_form.mail.indexOf('@') >= 0 && this.logon_form.mail.indexOf('.') >= 0) {
         $("#isErr").attr("disabled", false);
       }
     },
@@ -121,33 +134,19 @@ export default {
 </script>
 
 <style scoped>
-.iconHead{
+.iconHead {
   z-index: -1;
   width: 40%;
   border-radius: 50%;
   position: absolute;
   left: -3rem;
 }
+
 .logonInput {
   margin-left: 20%;
   margin-top: 30%;
 }
 
-input::-webkit-input-placeholder {
-  color: #000000;
-}
-
-input::-moz-placeholder { /* Mozilla Firefox 19+ */
-  color: #000000;
-}
-
-input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-  color: #000000;
-}
-
-input:-ms-input-placeholder { /* Internet Explorer 10-11 */
-  color: #000000;
-}
 
 .logonBtn {
   font-weight: bold;
@@ -170,7 +169,7 @@ input:-ms-input-placeholder { /* Internet Explorer 10-11 */
 #matchUsername {
   position: absolute;
   margin-top: 1.5%;
-  left: -7rem;
+  left: -15rem;
   z-index: -1;
   font-weight: bold;
   color: #000000;
@@ -181,11 +180,10 @@ input:-ms-input-placeholder { /* Internet Explorer 10-11 */
 }
 
 #matchPassword {
-  /*font-size: 1rem;*/
   position: absolute;
   margin-top: 8%;
   z-index: -1;
-  left: -4rem;
+  left: -16rem;
   font-weight: bold;
   color: #000000;
   background-color: rgba(255, 192, 203, .8);
@@ -198,13 +196,31 @@ input:-ms-input-placeholder { /* Internet Explorer 10-11 */
   position: absolute;
   z-index: -1;
   margin-top: 2%;
-  left: -7rem;
+  left: -14rem;
   font-weight: bold;
   color: #000000;
   background-color: rgba(255, 192, 203, .8);
   padding: 2%;
   border-radius: 10px;
   float: right;
+}
+
+@media screen and (max-width: 600px){
+  #matchMail{
+    left: 8rem;
+    right: -8rem;
+    top: -2rem;
+  }
+  #matchPassword{
+    left: 8rem;
+    right: -8rem;
+    top: 1rem;
+  }
+  #matchUsername{
+    left: 8rem;
+    right: -8rem;
+    top: -1.5rem;
+  }
 }
 
 .movestyle {
@@ -228,15 +244,15 @@ input:-ms-input-placeholder { /* Internet Explorer 10-11 */
   }
 }
 
-input{
+.INPUT {
   animation: ease showDown calc(.1s * var(--i));
 }
 
 @keyframes showDown {
-  0%{
+  0% {
     transform: translateY(calc(-40px * var(--i)));
   }
-  100%{
+  100% {
     transform: translateY(0px);
   }
 }

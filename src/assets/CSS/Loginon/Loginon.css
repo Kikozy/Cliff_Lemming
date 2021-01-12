@@ -26,7 +26,7 @@ body {
     -moz-pointer-events: none;
     -ms-pointer-events: none;
     -o-pointer-events: none;
-    pointer-events: none; /*这个最有用！*/
+    pointer-events: none; /*这个兼容大！*/
     float: left;
     z-index: 50;
     right: 0px;
@@ -40,11 +40,12 @@ body {
 }
 
 .loginInBox {
+    padding: 1rem;
     position: absolute;
-    width: 30vw;
+    width: 26vw;
     min-width: 20rem;
+    height: 55vh;
     min-height: 20rem;
-    height: 60vh;
     top: 22vh;
     right: 28vw;
     background-color: rgba(61, 61, 61, 0.8);
@@ -53,6 +54,27 @@ body {
     backdrop-filter: blur(10px);
     box-shadow: .8px .8px 1px rgba(103, 130, 117, .8) inset, 3px 4px 5px rgba(0, 0, 0, .5);
     transform: translateY(0px);
+    z-index: 2;
+}
+
+.loginInBox::before{
+    content: '';
+    color: #cfcfcf;
+    text-align: end;
+    background-image: url("../../../assets/GIF/cute.gif");
+    position: absolute;
+    border-radius: 20px;
+    z-index: -2;
+    right: 0;
+    bottom: 0;
+    width: 220px;
+    height: 180px;
+}
+
+@media screen and (max-width: 600px) {
+    .loginInBox{
+        right: 20vw;
+    }
 }
 
 .goback {
@@ -74,22 +96,6 @@ body {
     box-shadow: 0 3px 5px rgba(0, 0, 0, .5);
 }
 
-.input {
-    box-shadow: 1px 1px 1px rgba(103, 130, 117, .5) inset, 2px 2px 5px rgba(0, 0, 0, .5);
-    background-color: rgba(61, 61, 61, 0.8);
-    background-image: linear-gradient(to right, rgba(42, 74, 52, .7), rgba(255, 255, 255, 0.2)); /*对角渐变*/
-    backdrop-filter: blur(10px);
-    padding-left: 1rem;
-    font-weight: bold;
-    font-size: 1rem;
-    margin-bottom: 3%;
-    border: 0px;
-    width: 15vw;
-    min-width: 12rem;
-    height: 3vw;
-    min-height: 2.5rem;
-    border-radius: 10pt;
-}
 
 .el-icon-arrow-left {
     position: absolute;
@@ -104,8 +110,8 @@ body {
 }
 
 .logBar {
+    padding: .5rem;
     border-radius: 10pt;
-    padding: 2%;
     float: left;
     background-color: #cfcfcf;
     font-size: 2.5em;
@@ -113,8 +119,8 @@ body {
     color: #000000;
     transform: translateY(0px);
     transition: transform ease .3s;
-
 }
+
 
 .logBar:hover {
     transform: translateY(-3px);
@@ -123,8 +129,8 @@ body {
 .logonBar {
     position: absolute;
     z-index: -1;
-    margin-top: 3%;
-    margin-left: 10%;
+    margin-top: 1.5rem;
+    margin-left: 3rem;
 }
 
 .active1 {

@@ -11,10 +11,10 @@
       </div>
       <div class="Login_logon">
         <div class="logBar loginBar" @click="active(1)" :class="{active1:style===1}">
-          <router-link id="loginbtn" to="/login">Login</router-link>
+          <router-link id="loginbtn" to="/login">Sign In</router-link>
         </div>
         <div class="logBar logonBar" @click="active(2)" :class="{active1:style===2}">
-          <router-link id="logonbtn" to="/logon">Logon</router-link>
+          <router-link id="logonbtn" to="/logon">Register</router-link>
         </div>
       </div>
       <!--定义组件动画-->
@@ -32,6 +32,7 @@
 //导入外部JS
 // import '../../assets/JS/Loginon/Loginon.js'
 import $ from 'jquery'
+
 export default {
   data() {
     return {
@@ -50,24 +51,50 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 @import "../../assets/CSS/Loginon/Loginon.css";
 
-.turn180{
-  animation: ease turn180 5s infinite;
-}
-@keyframes turn180 {
- 0%{
-   transform: rotateY(0deg);
- }
-  100%{
-    transform: rotateY(180deg);
-  }
+.INPUT {
+  position: relative;
 }
 
+input {
+  background-color: transparent;
+  margin-bottom: 2rem;
+  width: 70%;
+  height: 1.5rem;
+  border: none;
+  top: 0;
+  border-bottom: 2px solid #857961;
+  display: inline-block;
+  position: relative;
+  color: #cfcfcf;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+h3 {
+  top: 0;
+  color: #cfcfcf;
+  position: absolute;
+  transition: all .3s;
+  /*图像穿透*/
+  pointer-events: none;
+  -webkit-pointer-events: none;
+  -moz-pointer-events: none;
+  -ms-pointer-events: none;
+  -o-pointer-events: none;
+}
+
+input:focus + h3,
+input:valid + h3 {
+  font-size: smaller;
+  color: #737674;
+  top: -1rem;
+}
 
 .move {
-  animation:ease run .5s;
+  animation: ease run .5s;
 }
 
 @keyframes run {
@@ -75,14 +102,14 @@ export default {
     border-radius: 20rem;
     top: -40vh;
     left: -50%;
-    transform:scale(.10);
+    transform: scale(.10);
   }
 
   100% {
     border-radius: 0;
     top: 0;
     left: 0;
-    transform:scale(1);
+    transform: scale(1);
   }
 }
 

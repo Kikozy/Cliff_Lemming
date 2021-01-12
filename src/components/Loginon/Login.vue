@@ -1,16 +1,22 @@
 <template>
   <div class="LoginForm">
-    <img class="iconHead" :src="qq_icon" alt="">
     <div class="loginInput move">
-      <!--  登录表单   -->
-      <!--      加了form点击登录会自动刷新-->
-      <!--      <form class="Login" action="">-->
-      <input class="mail input" v-model="login_form.mail" type="text" name="mail" style="--i:5" placeholder="邮箱"
-             @keyup="ismatch">
-      <input class="password input" v-model="login_form.password" type="password" style="--i:6" name="password" placeholder="密码"
-             @keyup="ismatch">
-      <input class="loginBtn" type="submit" style="--i:7" value="登录" disabled="true" @click="post_login">
-      <!--      </form>-->
+      <img class="iconHead" :src="qq_icon">
+      <div class="INPUT" style="--i:5">
+        <input class="mail input" required v-model="login_form.mail" type="text" name="mail"
+               @keyup="ismatch">
+        <h3>🌲邮箱</h3>
+      </div>
+
+      <div class="INPUT" style="--i:6">
+        <input class="password input" required v-model="login_form.password" type="password" name="password"
+               @keyup="ismatch">
+        <h3>🍃密码</h3>
+      </div>
+
+      <div class="INPUT" style="--i:7">
+        <input class="loginBtn" type="submit" style="--i:7" value="登录" disabled="true" @click="post_login">
+      </div>
     </div>
   </div>
 
@@ -86,34 +92,21 @@ export default {
 </script>
 
 <style scoped>
+
+.LoginForm{
+  position: relative;
+}
+
 .iconHead {
-  left: -3rem;
-  top: 30%;
-  z-index: -1;
-  width: 40%;
+  width: 5rem;
   border-radius: 50%;
   position: absolute;
+  left: -1rem;
 }
 
 .loginInput {
   margin-left: 20%;
   margin-top: 40%;
-}
-
-input::-webkit-input-placeholder {
-  color: #000000;
-}
-
-input::-moz-placeholder { /* Mozilla Firefox 19+ */
-  color: #000000;
-}
-
-input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-  color: #000000;
-}
-
-input:-ms-input-placeholder { /* Internet Explorer 10-11 */
-  color: #000000;
 }
 
 
@@ -132,15 +125,15 @@ input:-ms-input-placeholder { /* Internet Explorer 10-11 */
   cursor: pointer;
 }
 
-input{
+.INPUT {
   animation: ease showDown calc(.1s * var(--i));
 }
 
 @keyframes showDown {
-  0%{
+  0% {
     transform: translateY(calc(-40px * var(--i)));
   }
-  100%{
+  100% {
     transform: translateY(0px);
   }
 }
