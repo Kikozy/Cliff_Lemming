@@ -58,6 +58,8 @@ import userMsgBar from "@/components/Head/userMsgBar";
 import itemHtml from "@/components/Head/itemHtml";
 import logined from "@/components/Head/logined/logined";
 import $ from "jquery";
+import {iprequests} from "@/network/iprequests";
+import {request} from "@/network/requests";
 
 export default {
   provide() {
@@ -72,6 +74,7 @@ export default {
       islogin: false
     }
   },
+
   components: {
     jumpTop,
     endBanner,
@@ -84,18 +87,50 @@ export default {
     Login,
     MusicBar
   },
-  methods: {},
-  // 局部刷新
-  reload() {
-    this.isRouteAlive = false
-    this.$nextTick(() => {
-      this.isRouteAlive = true
-    })
+  methods: {
+    // 局部刷新
+    reload() {
+      this.isRouteAlive = false
+      this.$nextTick(() => {
+        this.isRouteAlive = true
+      })
+    },
+    getIp() {
+      iprequests({
+        url: '/cityjson'
+      }).then(res => {
+        let data = JSON.parse(res.data.slice(19, -1));
+        // this.post_ip(data)
+        let data_ip = {
+          ip: data.cip,
+          city: data.cname,
+          cid: data.cid
+        }
+        localStorage.setItem('ipdata', JSON.stringify(data_ip))
+      }).catch(err => {
+        console.log(err)
+      })
+    },
+    // post_ip(data){
+    //   request({
+    //     url:'/get_ip',
+    //     method:'post',
+    //     data:{
+    //       id:'get_ip069',
+    //       ipdata:data
+    //     }
+    //   }).then(res=>{
+    //     // console.log(res)
+    //   }).catch(err=>{
+    //     console.log(err)
+    //   })
+    // }
   },
   created() {
     if (this.$store.state.username) {
       this.islogin = true;
     }
+    this.getIp()
   },
   watch: {
     // 监听值的变化

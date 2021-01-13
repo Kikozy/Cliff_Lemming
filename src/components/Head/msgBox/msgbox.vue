@@ -1,47 +1,238 @@
 <template>
   <div class="MSGBOX">
-    <div class="msgInfo">
-      <img class="userLogo" src="" alt="">
+    <div class="msgWrite">
+      <textarea v-model="msgContent" maxlength="100" placeholder="想说什么就说叭，知道的都会回复你的~" class="msgArea"></textarea>
+      <button @click="Post_Msg" class="post_msg_btn">发送✉</button>
+      <p class="maxLength">{{ this.msgLen }}/100</p>
     </div>
-    <div class="msgContent">内容</div>
-
+    <div class="userInfo">
+      <div class="avatar">
+        <img :src="qq_icon">
+      </div>
+      <div class="msgUsername">
+        <input v-model="userid" required type="text">
+        <h3>用户名💢</h3>
+      </div>
+      <div class="msgMail">
+        <input v-model="mail" @keyup="matchMail" required type="text">
+        <h3>邮箱💢</h3>
+      </div>
+      <div class="isOpen">
+        <el-switch
+            v-model="isopen"
+            active-text="私密"
+            active-color="#017ca5"
+            inactive-color="#ff4949">
+        </el-switch>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import {request} from "@/network/requests";
+
 export default {
-  name: "msgbox"
+  name: "msgbox",
+  inject:['reload'],
+  data() {
+    return {
+      userid:'',
+      isopen: false,
+      qq_icon: '',
+      mail: '',
+      msgContent: '',
+      msgLength: null,
+    }
+  },
+  methods: {
+    matchMail() {
+      if (this.mail.indexOf('@') >= 0) {
+        let qq = this.mail.split('@')[0]
+        this.qq_icon = 'http://q1.qlogo.cn/g?b=qq&nk=' + qq + '&s=640'
+      } else {
+        this.qq_icon = ''
+      }
+    },
+    Post_Msg() {
+      let ip_info = JSON.parse(localStorage.getItem('ipdata'))
+      request({
+        url:'/msg_save',
+        method:'post',
+        data:{
+          isopen:this.isopen,
+          msgContent:this.msgContent,
+          mail:this.mail,
+          ip:ip_info.ip,
+          city:ip_info.city,
+          userid:this.userid,
+          code:'msg_save069'
+        }
+      }).then(res=>{
+        if (res.data.code === 200){
+          console.log('留言成功！');
+          this.reload();
+        }
+      }).catch(err=>{
+        console.log(err)
+      })
+    }
+  },
+  computed: {
+    msgLen() {
+      this.msgLength = this.msgContent.length
+      return this.msgLength
+    }
+  },
 }
 </script>
 
 <style scoped>
+
 .MSGBOX {
-  width: 30vw;
-  height: 20vh;
-  background-color: #55a532;
+  width: 30rem;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, .5);
+  background-color: #0d1d2c;
   border-radius: 10px;
-  padding: 1%;
+  padding: .5rem;
+  position: relative;
 }
 
-.msgInfo {
+.msgWrite {
+  position: relative;
+}
+
+.msgArea {
+  background-color: #a0a0a0;
+  font-size: 1em;
+  resize: none;
+  padding: .5rem;
+  border-radius: 10px;
+  width: 29rem;
+  height: 5rem;
+  transition: ease all .3s;
+}
+
+.msgArea:focus {
+  background-color: #999;
+}
+
+.post_msg_btn {
+  color: #cfcfcf;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1em;
+  position: absolute;
+  right: .5rem;
+  bottom: .5rem;
+  border-radius: 5px;
+  border: none;
+  width: 4rem;
+  height: 2rem;
+  background-color: #017ca5;
+  box-shadow: 0 0 10px #017ca5;
+  transition: all ease .3s;
+}
+
+.post_msg_btn:hover {
+  box-shadow: 0 0 20px #017ca5;
+}
+
+.maxLength {
+  position: absolute;
+  color: #fff;
+  bottom: .5rem;
+  left: .5rem;
+  padding: .2rem;
+  border-radius: 5px;
+  background-color: #017ca5;
+  box-shadow: 0 0 10px #017ca5;
+}
+
+.userInfo {
+  width: 100%;
+  height: 4rem;
+  display: flex;
+  color: white;
+  font-weight: bold;
+  justify-content: space-between;
+}
+
+.userInfo > * {
   float: left;
-  width: 10%;
-  height: 95%;
-  background-color: #1e4655;
-  padding: 1%;
+  /*垂直居中*/
+  align-self: center;
+  margin-right: 1rem;
+  flex: 2;
 }
 
-.userLogo {
-  width: 5vw;
-  height: 5vw;
-  background-color: red;
-  border-radius: 50%;
+input {
+  /*border-radius: 10px;*/
+  position: absolute;
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid white;
+  z-index: 2;
+  color: #fff;
+  font-weight: bold;
+  width: 9em;
+  font-size: 1em;
 }
 
-.msgContent {
-  width: 98%;
-  height: 95%;
+h3 {
+  font-size: 1em;
+  color: white;
+  pointer-events: none;
+  transition: ease all .3s;
+}
+
+input:focus + h3,
+input:valid + h3 {
+  font-size: smaller;
+  text-shadow: 1px 1px 2px #000;
+  color: #666666;
+  transform: translateY(-1rem);
+}
+
+input:focus,
+input:valid {
+  border-bottom: 2px solid #666666;
+}
+
+.avatar {
+  flex: .8;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 100%;
   background-color: #cfcfcf;
-  padding: 1%;
 }
+
+.avatar > img {
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+}
+
+/* 没有图片时不显示边框 */
+img[src=""], img:not([src]) {
+  opacity: 0;
+}
+
+.isOpen {
+  margin-right: 0;
+  position: relative;
+  left: 1rem;
+  flex: 1.5;
+}
+
+/deep/ .el-switch__label {
+  color: #a0a0a0;
+  font-weight: bold;
+}
+
+/deep/ .el-switch__label * {
+  line-height: 1.1rem;
+}
+
+
 </style>

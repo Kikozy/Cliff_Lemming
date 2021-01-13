@@ -134,6 +134,45 @@ export default {
 </script>
 
 <style scoped>
+.INPUT {
+  position: relative;
+}
+
+input {
+  background-color: transparent;
+  margin-bottom: 2rem;
+  width: 70%;
+  height: 1.5rem;
+  border: none;
+  top: 0;
+  border-bottom: 2px solid #857961;
+  display: inline-block;
+  position: relative;
+  color: #cfcfcf;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+h3 {
+  top: 0;
+  color: #cfcfcf;
+  position: absolute;
+  transition: all .3s;
+  /*图像穿透*/
+  pointer-events: none;
+  -webkit-pointer-events: none;
+  -moz-pointer-events: none;
+  -ms-pointer-events: none;
+  -o-pointer-events: none;
+}
+
+input:focus + h3,
+input:valid + h3 {
+  font-size: smaller;
+  color: #737674;
+  top: -1rem;
+}
+
 .iconHead {
   z-index: -1;
   width: 40%;

@@ -29,7 +29,7 @@ export default {
 
 img {
   cursor: pointer;
-  animation: ease-in-out jump-in 5s infinite;
+  animation: cubic-bezier(0.4, 0.4, 0.35, 1.64) jump-in 5s infinite;
 }
 
 
