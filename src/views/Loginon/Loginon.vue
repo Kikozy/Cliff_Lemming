@@ -19,7 +19,7 @@
       </div>
       <!--定义组件动画-->
       <div class="Log_Box">
-        <transition name="showUp">
+        <transition name="showUp" mode="out-in">
           <router-view/>
         </transition>
       </div>

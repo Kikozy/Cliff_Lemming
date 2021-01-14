@@ -15,15 +15,9 @@
 <script>
 //导入需要的包
 import Blog from '@/components/HomeContent/Blog';
-// import GameInfo from "@/components/HomeContent/OtherInfo/gameInfo";
-// import MusicInfo from "@/components/HomeContent/OtherInfo/musicInfo";
-// import MovieInfo from "@/components/HomeContent/OtherInfo/movieInfo";
 
 export default {
   components: {
-    // MusicInfo,
-    // MovieInfo,
-    // GameInfo,
     Blog,
   }
 }

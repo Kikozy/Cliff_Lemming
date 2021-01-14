@@ -1,8 +1,10 @@
 <template>
   <div class="MSGBOX">
     <div class="msgWrite">
-      <textarea v-model="msgContent" maxlength="100" placeholder="想说什么就说叭，知道的都会回复你的~" class="msgArea"></textarea>
-      <button @click="Post_Msg" class="post_msg_btn">发送✉</button>
+      <textarea @keyup="match" v-model="msgContent" maxlength="100"
+                placeholder="说点什么吧~(都要写点东西才能给提交哦)" class="msgArea"></textarea>
+      <button disabled="true" @click="Post_Msg" class="post_msg_btn"><p id="clickMove">发送✉</p>
+      </button>
       <p class="maxLength">{{ this.msgLen }}/100</p>
     </div>
     <div class="userInfo">
@@ -10,14 +12,14 @@
         <img :src="qq_icon">
       </div>
       <div class="msgUsername">
-        <input v-model="userid" required type="text">
+        <input maxlength="11" @keyup="match" v-model="userid" required type="text">
         <h3>用户名💢</h3>
       </div>
       <div class="msgMail">
-        <input v-model="mail" @keyup="matchMail" required type="text">
+        <input @keyup="match" v-model="mail" required type="text">
         <h3>邮箱💢</h3>
       </div>
-      <div class="isOpen">
+      <div class="isOpen" title="开启即可和博主说悄悄话">
         <el-switch
             v-model="isopen"
             active-text="私密"
@@ -31,13 +33,15 @@
 
 <script>
 import {request} from "@/network/requests";
+import $ from 'jquery'
+
 
 export default {
   name: "msgbox",
-  inject:['reload'],
+  inject: ['reload'],
   data() {
     return {
-      userid:'',
+      userid: '',
       isopen: false,
       qq_icon: '',
       mail: '',
@@ -46,36 +50,55 @@ export default {
     }
   },
   methods: {
-    matchMail() {
-      if (this.mail.indexOf('@') >= 0) {
+    sendMove() {
+      if ($('.post_msg_btn').attr('disabled') === 'disabled') {
+        return false;
+      } else {
+        $('#clickMove').animate({
+          top: '-30px'
+        }, 500).animate({
+          top: '0'
+        }, 500);
+        this.userid = ''
+        this.isopen = false
+        this.msgContent = ''
+        this.mail = ''
+      }
+    },
+    match() {
+      if (this.mail.indexOf('@') >= 0 && this.userid.length > 1 && this.msgContent.length > 5) {
         let qq = this.mail.split('@')[0]
         this.qq_icon = 'http://q1.qlogo.cn/g?b=qq&nk=' + qq + '&s=640'
+        $('.post_msg_btn').css('cursor', 'pointer').attr('disabled', false);
       } else {
         this.qq_icon = ''
+        $('.post_msg_btn').css('cursor', 'not-allowed').attr('disabled', true);
       }
     },
     Post_Msg() {
       let ip_info = JSON.parse(localStorage.getItem('ipdata'))
       request({
-        url:'/msg_save',
-        method:'post',
-        data:{
-          isopen:this.isopen,
-          msgContent:this.msgContent,
-          mail:this.mail,
-          ip:ip_info.ip,
-          city:ip_info.city,
-          userid:this.userid,
-          code:'msg_save069'
+        url: '/msg_save',
+        method: 'post',
+        data: {
+          isopen: this.isopen,
+          msgContent: this.msgContent,
+          mail: this.mail,
+          ip: ip_info.ip,
+          city: ip_info.city,
+          userid: this.userid,
+          code: 'msg_save069'
         }
-      }).then(res=>{
-        if (res.data.code === 200){
+      }).then(res => {
+        if (res.data.code === 200) {
           console.log('留言成功！');
-          this.reload();
         }
-      }).catch(err=>{
-        console.log(err)
-      })
+      }).catch(err => {
+        this.$message.error({
+          message: '留言失败！目前只支持纯文本内容~',
+        });
+      });
+      this.sendMove()
     }
   },
   computed: {
@@ -119,7 +142,7 @@ export default {
 
 .post_msg_btn {
   color: #cfcfcf;
-  cursor: pointer;
+  cursor: not-allowed;
   font-weight: bold;
   font-size: 1em;
   position: absolute;
@@ -136,6 +159,10 @@ export default {
 
 .post_msg_btn:hover {
   box-shadow: 0 0 20px #017ca5;
+}
+
+#clickMove {
+  position: relative;
 }
 
 .maxLength {

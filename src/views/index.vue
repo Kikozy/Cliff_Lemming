@@ -20,6 +20,7 @@
     <div class="HOME">
       <div class="Banner">
         <Banner/>
+        <!--        <TEST/>-->
       </div>
       <div class="HomeContent">
         <div class="HContent">
@@ -60,6 +61,7 @@ import logined from "@/components/Head/logined/logined";
 import $ from "jquery";
 import {iprequests} from "@/network/iprequests";
 import {request} from "@/network/requests";
+import TEST from "@/components/TEST/TEST";
 
 export default {
   provide() {
@@ -76,6 +78,7 @@ export default {
   },
 
   components: {
+    TEST,
     jumpTop,
     endBanner,
     logined,

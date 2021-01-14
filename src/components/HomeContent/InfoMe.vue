@@ -3,7 +3,11 @@
     <img class="logo" src="../../assets/IMAGE/Home/HeadB.png"/>
     <div class="nav_info_me">
       <ul class="nav_ul">
-        <li>友链</li>
+        <li>
+          <router-link to="/usermsgs">
+            留言
+          </router-link>
+        </li>
         <li>其他</li>
         <li>其他</li>
         <li>其他</li>

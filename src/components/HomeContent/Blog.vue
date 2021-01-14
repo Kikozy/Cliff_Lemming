@@ -272,8 +272,6 @@ export default {
 
 @media screen and (max-width: 600px) {
   .Blog_li {
-    /*margin-left: 1rem;*/
-    /*margin-right: 1rem;*/
     padding-left: 1rem;
     padding-right: 1rem;
     width: 100%;

@@ -4,11 +4,7 @@ import store from "@/store";
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Head from '../views/index.vue'
-// import Home from '../views/indexViews/Home.vue'
 import Loginon from '../views/Loginon/Loginon.vue'
-// import About from '../views/indexViews/About.vue'
-// import Login from "@/components/Loginon/Login";
-// import Logon from "@/components/Loginon/Logon";
 import LCCenter from '@/views/LemControlCenter/LCCenter.vue'
 
 
@@ -66,8 +62,15 @@ const routes = [
                 meta: {title: 'Lemming', keepAlive: true},
                 component: () => import('@/views/indexViews/Lemming')
             },
+            {
+                path: '/usermsgs',
+                name:'msgs',
+                meta: {title: '留言',keepAlive: true},
+                component:()=>import('@/components/Msgs/Msgs')
+            },
         ]
     },
+
     //默认重定向路径
     // 登录
     {path: '/loginon', redirect: '/login'}, //默认跳转路径
@@ -121,16 +124,16 @@ const routes = [
                 meta: {title: '用户管理'}, // 由于控制标签名称
                 component: () => import('@/components/adminControls/users_admin.vue')
             },
-            {
-                path: '/lemming_admin/game_admin',
-                meta: {title: '娱乐管理'}, // 由于控制标签名称
-                component: () => import('@/components/adminControls/game_admin.vue')
-            },
-            {
-                path: '/lemming_admin/movie_admin',
-                meta: {title: '影视管理'},
-                component: () => import('@/components/adminControls/movie_admin.vue')
-            }
+            // {
+            //     path: '/lemming_admin/game_admin',
+            //     meta: {title: '娱乐管理'}, // 由于控制标签名称
+            //     component: () => import('@/components/adminControls/game_admin.vue')
+            // },
+            // {
+            //     path: '/lemming_admin/movie_admin',
+            //     meta: {title: '影视管理'},
+            //     component: () => import('@/components/adminControls/movie_admin.vue')
+            // }
         ]
     },
     // 404 页面

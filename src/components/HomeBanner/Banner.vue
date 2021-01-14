@@ -65,7 +65,7 @@ export default {
       // transform: translateY();
       mountain1.style.transform = 'translateY('+value * 1+'px)';
       mountain2.style.transform = 'translateY('+value * 0.4+'px)';
-      aboutBox.style.transform = 'translateY(-'+value * 0.5+'px)';
+      // aboutBox.style.transform = 'translateY(-'+value * 0.5+'px)';
     })
   }
 }
@@ -125,6 +125,7 @@ section img {
 
 
 #text {
+  font-family: "Microsoft JhengHei UI" blod;
   position: relative;
   text-shadow: 2px 2px 1px rgba(0, 0, 0, .7);
   color: #ffffff;
