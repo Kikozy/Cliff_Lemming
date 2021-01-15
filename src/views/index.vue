@@ -3,19 +3,7 @@
     <!--  加载动画  -->
     <LoadCloud/>
     <div class="headTop">
-      <div v-if="islogin===true">
-        <transition name="showLogin">
-          <logined/>
-        </transition>
-      </div>
-      <div v-else>
-        <transition name="showLogin">
-          <Login/>
-        </transition>
-      </div>
-      <MusicBar/>
-      <userMsgBar/>
-      <itemHtml/>
+      <Header/>
     </div>
     <div class="HOME">
       <div class="Banner">
@@ -48,17 +36,12 @@
 </template>
 
 <script>
+import Header from "@/views/Header/Header";
 import jumpTop from "@/components/jumpTop/jumpTop";
 import endBanner from "@/components/EndFoot/endBanner";
 import Banner from '@/components/HomeBanner/Banner';
 import InfoMe from "@/components/HomeContent/InfoMe";
 import LoadCloud from "@/components/Loading/LoadCloud";
-import MusicBar from "@/components/Head/MusicBar";
-import Login from "@/components/Head/loginBar";
-import userMsgBar from "@/components/Head/userMsgBar";
-import itemHtml from "@/components/Head/itemHtml";
-import logined from "@/components/Head/logined/logined";
-import $ from "jquery";
 import {iprequests} from "@/network/iprequests";
 import {request} from "@/network/requests";
 import TEST from "@/components/TEST/TEST";
@@ -81,14 +64,10 @@ export default {
     TEST,
     jumpTop,
     endBanner,
-    logined,
     Banner,
     InfoMe,
     LoadCloud,
-    itemHtml,
-    userMsgBar,
-    Login,
-    MusicBar
+    Header
   },
   methods: {
     // 局部刷新
@@ -114,32 +93,9 @@ export default {
         console.log(err)
       })
     },
-    // post_ip(data){
-    //   request({
-    //     url:'/get_ip',
-    //     method:'post',
-    //     data:{
-    //       id:'get_ip069',
-    //       ipdata:data
-    //     }
-    //   }).then(res=>{
-    //     // console.log(res)
-    //   }).catch(err=>{
-    //     console.log(err)
-    //   })
-    // }
   },
   created() {
-    if (this.$store.state.username) {
-      this.islogin = true;
-    }
     this.getIp()
-  },
-  watch: {
-    // 监听值的变化
-    '$store.state.username': function () {
-      this.islogin = !this.islogin
-    }
   }
 }
 </script>
@@ -149,12 +105,6 @@ export default {
 /*阿里巴巴图标*/
 @import 'http://at.alicdn.com/t/font_2290624_fw50t7gl6x.css';
 @import '../assets/CSS/CommonHead.css';
-
-
-.Banner {
-  /*position: relative;*/
-  /*height: 120vh;*/
-}
 
 .HomeContent {
   padding-top: 3rem;
@@ -187,33 +137,8 @@ export default {
 
 .JUMPTOP {
   position: fixed;
-  bottom: 10px;
-}
-
-/* 登录后信息 */
-.UserInfoBar {
-  animation: ease .5s toDown;
-}
-
-.loginBar {
-  animation: ease .5s toDown;
-}
-
-.musicBar {
-  animation: ease 1s toDown;
-}
-
-.userMsgBar {
-  animation: ease 1.5s toDown;
-}
-
-@keyframes toDown {
-  0% {
-    transform: translateY(-100%);
-  }
-  100% {
-    transform: translateY(0);
-  }
+  z-index: 99999;
+  bottom: 0;
 }
 
 
@@ -240,25 +165,7 @@ export default {
 
 /*定义组件动画end*/
 
-/*登录组件的动画*/
-.showLogin-leave-to {
-  transform: translateX(50px);
-  opacity: 0;
-  height: 0;
-  position: absolute;
-}
 
-.showLogin-enter {
-  transform: translateX(50px);
-  opacity: 0;
-  height: 0;
-  position: absolute;
-}
-
-/*进入和离开执行的时间*/
-.showLogin-enter-active, .showLogin-leave-active {
-  transition: all ease 1s;
-}
 
 /*登录组件的动画end*/
 /* 当屏幕宽度小于600px 的时候执行 */

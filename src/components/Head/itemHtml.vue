@@ -43,15 +43,19 @@ export default {
 
 <style scoped>
 .itemHtml {
+  display: flex;
+  margin-right: .5rem;
+  justify-content: flex-end;
+  align-items: center;
+  flex-direction: row;
+  /*background-color: #0077aa;*/
   opacity: 100%;
-  float: right;
-  margin: .2%;
-  padding: 1rem;
-  border-radius: 10px;
 }
 
 li {
+  float: left;
   margin-left: 1rem;
+  padding: .3rem;
   font-weight: bold;
   border-radius: 10px;
   transition: box-shadow ease 1s, background-color ease .5s;

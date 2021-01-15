@@ -27,9 +27,19 @@ export default {
 
 <style scoped>
 
+.jumpTop{
+  position: relative;
+}
+
 img {
   cursor: pointer;
   animation: cubic-bezier(0.4, 0.4, 0.35, 1.64) jump-in 5s infinite;
+}
+
+@media screen and (max-width: 600px){
+  img{
+    width: 100px;
+  }
 }
 
 

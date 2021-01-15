@@ -30,9 +30,9 @@
       <div class="Mlist" v-if="show">
         <ul class="Mul">
           <li class="Mli" v-for="(music,index) in music_data" @click="Mlistplay(index)">
-            <span class="songNum">{{ index + 1 }}</span>
-            <span class="songName">{{ music.name }}</span>
-            <span class="singer">{{ music.singer }}</span>
+            <p class="songNum">{{ index + 1 }}</p>
+            <p class="songName">{{ music.name }}</p>
+            <p class="singer">{{ music.singer }}</p>
           </li>
         </ul>
       </div>
@@ -238,20 +238,20 @@ export default {
 /*musicStart*/
 .musicBar {
   cursor: pointer;
-  margin: .2%;
-  height: 90%;
-  width: 200px;
+  margin: .2rem;
+  height: 3.5rem;
   border-radius: 10px;
   /*background-color: rgba(97, 123, 136, .7);*/
   background-image: linear-gradient(to bottom right, rgba(58, 95, 137, .5) -100%, rgba(20, 31, 49, .5) 100%); /*对角渐变*/
   backdrop-filter: blur(10px);
   box-shadow: 1px 1px 1px rgba(255, 255, 255, 0.1) inset, 1px 1px 5px rgba(0, 0, 0, .5);
-  transform: translateY(0px);
-  transition: transform ease .3s;
 }
 
-.musicBar:hover {
-  transform: translateY(5px);
+.MusicControl {
+  width: 10rem;
+  z-index: -1;
+  right: 0;
+  position: absolute;
 }
 
 .musicBox {
@@ -271,7 +271,7 @@ export default {
   box-shadow: 0px 5px 5px rgba(0, 0, 0, .5);
 }
 
-.Mpic:after{
+.Mpic:after {
   content: '》';
   position: absolute;
   z-index: 99;
@@ -285,26 +285,18 @@ export default {
 
 @keyframes toDown {
   /* 这样会有延迟效果 */
-  0%{
+  0% {
     transform: rotateZ(90deg) translateX(15px);
   }
   /* 这样会有延迟效果 */
-  50%,100%{
+  50%, 100% {
     transform: rotateZ(90deg) translateX(15px);
   }
-  75%{
+  75% {
     color: white;
     text-shadow: 8px 0 4px #000;
     transform: rotateZ(90deg) translateX(25px);
   }
-}
-
-
-.MusicControl {
-  width: 10rem;
-  z-index: -1;
-  right: 0;
-  position: absolute;
 }
 
 
@@ -324,6 +316,7 @@ export default {
 
 
 .Mcontrol {
+  display: flex;
   float: right;
   margin-top: .5rem;
 }
@@ -361,41 +354,30 @@ export default {
 }
 
 .Mlist {
+  overflow-y: scroll;
+  position: relative;
   z-index: -1;
-  margin-top: 38px;
-  padding: .5rem;
+  margin-top: 60px;
   border-radius: 10px;
   width: 300px;
   height: 400px;
-  /*background-color: rgba(97, 123, 136, .7);*/
-  background-image: linear-gradient(to bottom right, rgba(58, 95, 137, .5) -100%, rgba(20, 31, 49, .5) 100%); /*对角渐变*/
-  box-shadow: 1px 1px 2px rgba(255, 255, 255, 0.05) inset, 1px 1px 5px rgba(0, 0, 0, .5);
-}
-
-.Mul {
-  border-radius: 10px;
-  width: 100%;
-  height: 100%;
-  /*滑动*/
-  overflow-y: scroll;
-  opacity: 10;
+  background-color: #0d1117;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, .5);
 }
 
 .Mli {
-  color: #cfcfcf;
-  width: 100%;
-  height: 2rem;
-
+  color: white;
+  display: flex;
+  /*background-color: #0077aa;*/
+  padding-top: .5rem;
+  justify-content: space-between;
 }
 
 .songNum {
-  padding: 5px;
-  text-align: center;
-  width: 1em;
-  background-color: #617b88;
-  border-radius: 10px;
-  /*position: absolute;*/
-  margin-right: 5px;
+  background-color: #0077aa;
+  margin-left: .3rem;
+  padding: .3rem;
+  border-radius: 10px 4px 4px 10px;
 }
 
 .songName {
@@ -403,31 +385,91 @@ export default {
   text-overflow: ellipsis; /*文字隐藏后添加省略号*/
   white-space: nowrap; /*强制不换行*/
   width: 10em; /*不允许出现半汉字截断*/
-  background-color: #183743;
-  border-radius: 10px;
-  padding: 5px;
-  box-shadow: 0 0 0 #000000;
-  transform: translateY(0px);
-  transition: background-color ease .3s, transform ease .3s, box-shadow ease .3s;
-}
-
-.songName:hover {
-  background-color: #1e4655;
-  transform: translateY(-2px);
-  box-shadow: 0 3px 5px rgba(0, 0, 0, .3);
+  flex: 2;
+  margin: 0 10px 0 10px;
+  padding: .3rem;
+  border-radius: 4px;
 }
 
 .singer {
-  margin-right: 2px;
   overflow: hidden; /*自动隐藏文字*/
   text-overflow: ellipsis; /*文字隐藏后添加省略号*/
   white-space: nowrap; /*强制不换行*/
   width: 5em; /*不允许出现半汉字截断*/
-  background-color: #183743;
-  border-radius: 10px;
-  float: right;
-  padding: 5px;
+  margin-right: .3rem;
+  padding: .3rem;
+  border-radius: 4px 10px 10px 4px;
 }
+
+.songName, .singer {
+  box-shadow: 0 0 0 #0077aa;
+  transition: ease background-color .3s, ease box-shadow .3s;
+}
+
+.songName:hover, .songName:hover ~ .singer {
+  background-color: #0077aa;
+  box-shadow: 0 0 10px #0077aa;
+}
+
+.songName:active {
+  background-color: pink;
+}
+
+/*.Mul {*/
+/*  background-color: red;*/
+/*  padding-top: 20px;*/
+/*  border-radius: 10px;*/
+/*  width: 100%;*/
+/*  height: 100%;*/
+/*  !*滑动*!*/
+/*  overflow-y: scroll;*/
+/*  opacity: 10;*/
+/*}*/
+
+/*.Mli {*/
+/*  background-color: #0077aa;*/
+/*  color: #cfcfcf;*/
+/*  width: 100%;*/
+/*  height: 2rem;*/
+/*}*/
+
+/*.songNum {*/
+/*  padding: 5px;*/
+/*  text-align: center;*/
+/*  width: 1em;*/
+/*  background-color: #0077aa;*/
+/*  border-radius: 10px 4px 4px 10px;*/
+/*  margin-right: 5px;*/
+/*  transition: background-color ease .3s;*/
+/*}*/
+
+/*.songName {*/
+/*  overflow: hidden; !*自动隐藏文字*!*/
+/*  text-overflow: ellipsis; !*文字隐藏后添加省略号*!*/
+/*  white-space: nowrap; !*强制不换行*!*/
+/*  width: 10em; !*不允许出现半汉字截断*!*/
+/*  !*background-color: #183743;*!*/
+/*  border-radius: 4px;*/
+/*  padding: 5px;*/
+/*  box-shadow: 0 0 0 #000000;*/
+/*  transition: background-color ease .3s;*/
+/*}*/
+
+/*.songName:hover {*/
+/*  background-color: #0077aa;*/
+/*}*/
+
+/*.singer {*/
+/*  margin-right: 2px;*/
+/*  overflow: hidden; !*自动隐藏文字*!*/
+/*  text-overflow: ellipsis; !*文字隐藏后添加省略号*!*/
+/*  white-space: nowrap; !*强制不换行*!*/
+/*  width: 5em; !*不允许出现半汉字截断*!*/
+/*  !*background-color: #183743;*!*/
+/*  border-radius: 4px 10px 10px 4px;*/
+/*  float: right;*/
+/*  padding: 5px;*/
+/*}*/
 
 ::-webkit-scrollbar {
   width: 2px;

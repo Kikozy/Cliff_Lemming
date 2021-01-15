@@ -99,6 +99,14 @@ export default {
         });
       });
       this.sendMove()
+    },
+    matchIslogined() {
+      if (localStorage.getItem('keepLogin')) {
+        let logined_info = JSON.parse(localStorage.getItem('keepLogin'))
+        this.userid = logined_info.username
+        this.mail = logined_info.mail
+        this.qq_icon = logined_info.qqHead
+      }
     }
   },
   computed: {
@@ -107,6 +115,9 @@ export default {
       return this.msgLength
     }
   },
+  created() {
+    this.matchIslogined()
+  }
 }
 </script>
 
@@ -115,7 +126,7 @@ export default {
 .MSGBOX {
   width: 30rem;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, .5);
-  background-color: #0d1d2c;
+  background-color: #0d1117;
   border-radius: 10px;
   padding: .5rem;
   position: relative;

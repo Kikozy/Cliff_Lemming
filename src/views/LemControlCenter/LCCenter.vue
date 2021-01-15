@@ -26,16 +26,6 @@
           <div class="compBtn"><i class="iconfont icon-yinle"></i>
             <h1> 音乐管理</h1></div>
         </router-link>
-        <router-link  to='/lemming_admin/game_admin'>
-          <div class="compBtn">
-            <h1>娱乐管理</h1>
-          </div>
-        </router-link>
-        <router-link to="/lemming_admin/movie_admin">
-          <div class="compBtn">
-            <h1>影视管理</h1>
-          </div>
-        </router-link>
         <div class="compBtn"><h1>-</h1></div>
         <div class="compBtn"><h1>-</h1></div>
         <div class="compBtn"><h1>-</h1></div>
@@ -212,5 +202,6 @@ export default {
   box-shadow: .5px .5px 1px inset rgba(226, 226, 226, .5), 2px 2px 5px rgba(0, 0, 0, .5);
   /*backdrop-filter: blur(10px);*/
 }
+
 
 </style>

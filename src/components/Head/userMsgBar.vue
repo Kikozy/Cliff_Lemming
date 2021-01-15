@@ -72,28 +72,37 @@ export default {
 
 .WriteMsg {
   position: relative;
+  top: 4rem;
   right: 12rem;
 }
 
 /*点击播放列表动画end*/
 /*用户留言开始*/
 .userMsgBar {
+  /*padding: .7rem;*/
   cursor: pointer;
+  width: 3.5rem;
+  height: 3.5rem;
+  /*width: 4rem;*/
   margin: .2%;
-  height: 90%;
-  width: 65px;
+  display: flex;
   border-radius: 10px;
-  /*background-color: rgba(97, 123, 136, .7);*/
-  background-image: linear-gradient(to bottom right, rgba(58, 95, 137, .5) -100%, rgba(20, 31, 49, .5) 100%); /*对角渐变*/
   backdrop-filter: blur(10px);
-  box-shadow: 1px 1px 1px rgba(255, 255, 255, 0.1) inset, 1px 1px 5px rgba(0, 0, 0, .5);
+
 }
 
 .msgIcon {
-  /*background-color: red;*/
+  /*background-color: gold;*/
+  background-image: linear-gradient(to bottom right, rgba(58, 95, 137, .5) -100%, rgba(20, 31, 49, .5) 100%); /*对角渐变*/
+  box-shadow: 1px 1px 1px rgba(255, 255, 255, 0.1) inset, 1px 1px 5px rgba(0, 0, 0, .5);
+  position: relative;
+  padding: .7rem;
   color: #cfcfcf;
-  padding: 1rem;
   border-radius: 10px;
+  align-self: center;
+  /*margin: 1rem;*/
+  /*top: 50%;*/
+  /*position: absolute;*/
   font-size: 2rem;
 }
 

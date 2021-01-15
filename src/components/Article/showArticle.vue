@@ -1,8 +1,15 @@
 <template>
   <div class="articleContent">
-    <h1 class="goBack" id="goback" @click="goback">返回</h1>
-    <h1 class="articleTitle">{{ this.title }}</h1>
-    <p class="articlePushDate">{{ this.pushDate }} 点击量{{this.clickNum}}</p>
+    <div class="articleHead">
+      <h1 class="goBack" id="goback" @click="goback">返回</h1>
+      <h1 class="articleTitle">{{ this.title }}</h1>
+    </div>
+    <div class="articleInfo">
+      <p class="articlePushDate">{{ this.pushDate }}</p>
+      <p class="clickNum iconfont icon-liulan">{{ this.clickNum }}</p>
+      <p class="author iconfont icon-zuozhe">Lemming</p>
+    </div>
+
     <p class="article" v-html="this.content"></p>
   </div>
 </template>
@@ -24,7 +31,7 @@ export default {
       title: '',
       content: this.value,
       pushDate: '',
-      clickNum:''
+      clickNum: ''
     }
   },
   methods: {
@@ -69,18 +76,18 @@ export default {
         }
       }
     },
-    readNum(){
+    readNum() {
       let id = parseInt(this.$route.query.id);
       request({
-        url:'/readNum',
-        method:'post',
-        data:{
-          code:'addRead1',
-          id:id
+        url: '/readNum',
+        method: 'post',
+        data: {
+          code: 'addRead1',
+          id: id
         }
-      }).then(res=>{
+      }).then(res => {
         console.log(res)
-      }).catch(err=>{
+      }).catch(err => {
         console.log(err)
       })
     }
@@ -106,7 +113,6 @@ export default {
   margin-bottom: 1rem;
   border-radius: 10px 0px 10px 10px;
   z-index: 1;
-  right: 2rem;
   box-shadow: 0 0 0px #55a532;
   transition: ease box-shadow .4s;
 }
@@ -134,26 +140,37 @@ export default {
   right: 2rem;
 }
 
+.articleHead {
+  display: flex;
+}
 
 .articleTitle {
   position: relative;
   font-family: "Microsoft JhengHei UI";
-  float: right;
-  font-size: 3vw;
   width: 45vw;
+  float: right;
+  padding: .5em;
+  font-size: 3vw;
   color: white;
   display: inline-block;
   /*background-color: #55a532;*/
+  text-shadow: 2px 2px 3px #000;
   z-index: 1;
 }
 
-.articlePushDate {
-  /*background-color: #55a532;*/
-  /*background-color: red;*/
-  padding: .5rem;
-  display: inline-block;
+.articleInfo {
   width: 100%;
-  color: #cfcfcf;
+  display: flex;
+  margin: 2rem;
+  color: #999;
+}
+
+.articleInfo > * {
+  background-color: #0d1117;
+  border-radius: 10px;
+  margin: .2rem;
+  padding: .5rem;
+  box-shadow: 3px 3px 5px rgba(13, 17, 23, .5);
 }
 
 .articleContent {

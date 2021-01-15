@@ -1,12 +1,14 @@
 <template>
   <div id="MSGS">
     <ul>
-      <li class="msg" v-for="msg in this.Msg_data">
+      <li class="msg" v-for="(msg,index) in this.Msg_data">
         <div class="msgHead">
           <img class="head_icon" :src="matchHead(msg.mail)" alt="图片">
+                        <!--    Msg_data.length-index倒序      -->
           <h3>{{ msg.userid }}</h3>
         </div>
         <div class="msgBody">
+          <p class="num">#{{Msg_data.length-index}}</p>
           <p class="message">{{ msg.message }}</p>
           <p class="datetime">{{ msg.datetime }}</p>
         </div>
@@ -40,6 +42,7 @@ export default {
     getMsg() {
       request({
         url: 'msgs_show',
+        method:'GET',
         params: {
           code: 'getMsgs069'
         }
@@ -75,20 +78,34 @@ export default {
 }
 
 .msgHead {
+  position: relative;
+  z-index: 2;
   color: #c9d1d9;
 }
 
 .msgBody {
+  position: relative;
   padding: 1rem;
   background-color: #0d1117;
   border-radius: 10px;
   box-shadow: 3px 3px 5px rgba(0, 0, 0, .5);
 }
 
+.num{
+  color: white;
+  position: absolute;
+  right: -.5rem;
+  padding: .2rem;
+  border-radius: 5px;
+  background-color: #0077aa;
+  box-shadow: 0 0 10px #0077aa;
+}
+
 .message {
   line-height: 1.4em;
   color: #8b949e;
   font-size: 1.4em;
+
 }
 
 .datetime {

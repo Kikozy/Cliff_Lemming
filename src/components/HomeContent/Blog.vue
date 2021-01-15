@@ -4,7 +4,7 @@
       <li class="Blog_li">
         <h1 class="Blog_title dog" @click="showArticle(item.id,item.title,item.content,item.pushDate,item.click)">
           <img id="dog" :src="require('../../assets/ICON/dogs/'+index+'.png')" alt="">
-          {{item.title }}
+          {{ item.title }}
         </h1>
         <div class="Blog_info">
           <div class="Blog_img" @click="showArticle(item.id,item.title,item.content,item.pushDate,item.click)">
@@ -42,8 +42,8 @@ export default {
       data: []
     }
   },
-  computed:{
-    dogUrl(index){
+  computed: {
+    dogUrl(index) {
       console.log(index)
     }
   },
@@ -149,15 +149,25 @@ export default {
 .Blog_img {
   float: left;
   border-radius: 10px;
-  transition: ease transform .3s;
+}
+
+.Blog_img>img{
+  box-shadow: 0 0 0 rgba(13, 17, 23, .5);
+  transition: ease transform .3s,ease box-shadow .3s;
+}
+
+.Blog_li:hover .Blog_img>img {
+  transform: scale(1.05);
+  box-shadow: 3px 3px 10px rgba(13, 17, 23, .5);
 }
 
 .Blog_img > img {
+
   cursor: pointer;
   width: 20vw;
-  max-width: 20rem;
+  /*max-width: 20rem;*/
   height: 13vw;
-  max-height: 13rem;
+  /*max-height: 13rem;*/
   border-radius: 10px;
 }
 
@@ -202,20 +212,20 @@ export default {
 }
 
 .Blog_pushDate {
-  background-image: linear-gradient(150deg, #017ca5 -50%, #13202b 100%);
-  box-shadow: 0 0 30px rgba(27, 123, 148, .35);
+  background-color: #0d1117;
+  /*background-image: linear-gradient(150deg, #017ca5 -50%, #13202b 100%);*/
+  box-shadow: 3px 3px 5px rgba(13, 17, 23, .5);
 }
 
 .blogOtherStyle.iconfont {
-  background-image: linear-gradient(150deg, #112937 -50%, #13202b 100%);
-  box-shadow: 0 0 30px rgba(27, 123, 148, .35);
+  /*background-image: linear-gradient(150deg, #112937 -50%, #13202b 100%);*/
+  /*box-shadow: 0 0 30px rgba(27, 123, 148, .35);*/
+  background-color: #0d1117;
+  box-shadow: 3px 3px 5px rgba(13, 17, 23, .5);
   font-weight: bold;
   font-size: 1rem;
 }
 
-.Blog_li:hover .Blog_img {
-  transform: scale(1.05);
-}
 
 .pages {
   display: inline-block;
@@ -233,18 +243,19 @@ export default {
 .Blog_page > li {
   color: white;
   cursor: pointer;
+  background-color: #0d1117;
   background-image: linear-gradient(to bottom right, rgba(58, 95, 137, .5) -100%, rgba(20, 31, 49, .5) 100%); /*对角渐变*/
-  box-shadow: 1px 1px 1px rgba(255, 255, 255, 0.05) inset, 0 0 0px #017ca5;
+  box-shadow: 1px 1px 1px rgba(255, 255, 255, 0.05) inset, 0 0 0 #017ca5;
   border-radius: 10px;
   float: left;
   margin: .5rem;
   padding: .6rem;
-  transition: transform ease .3s, box-shadow ease 1s, background-color ease .5s;
+  transition:box-shadow ease .7s, background-color ease .3s;
 }
 
 .Blog_page > li:hover {
   background-color: #017ca5;
-  box-shadow: 0 0 20px #017ca5;
+  box-shadow:1px 1px 1px rgba(255, 255, 255, 0.05) inset, 0 0 10px #017ca5;
 }
 
 @media screen and (max-width: 1200px) {

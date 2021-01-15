@@ -103,6 +103,11 @@ export default {
   box-shadow: .5px .5px 1px inset rgba(226, 226, 226, .5), 1px 1px 3px rgba(0, 0, 0, .5);
 }
 
+.base_color {
+  background-color: rgba(61, 73, 90, .1);
+  backdrop-filter: blur(10px);
+}
+
 
 /*elTable表格样式*/
 .el-table {
@@ -169,8 +174,4 @@ export default {
 
 /*elTable表格样式end*/
 
-.base_color {
-  background-color: rgba(61, 73, 90, .1);
-  backdrop-filter: blur(10px);
-}
 </style>

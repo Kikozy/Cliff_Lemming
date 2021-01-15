@@ -1,15 +1,15 @@
-a {
-  text-decoration: none;
-  color: black;
-}
+/*a {*/
+/*  text-decoration: none;*/
+/*  color: black;*/
+/*}*/
 
-.headTop {
-  z-index: 99;
-  position: fixed;
-  width: 100%;
-  height: 4rem;
-}
+/*.headTop {*/
+/*  z-index: 99;*/
+/*  position: fixed;*/
+/*  width: 100%;*/
+/*  height: 4rem;*/
+/*}*/
 
-.headTop * {
-  float: left;
-}
+/*.headTop * {*/
+/*  float: left;*/
+/*}*/

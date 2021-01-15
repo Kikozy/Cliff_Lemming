@@ -3,7 +3,7 @@
     <div class="headInfo">
       <img class="qqHead" :src="qqHead">
       <div class="userInfo">
-        <h2 class="username">{{ username }}</h2>
+        <h2 class="username" :title="username">{{ username }}</h2>
         <p class="logout" @click="logout">退出</p>
       </div>
     </div>
@@ -50,10 +50,12 @@ export default {
 }
 
 .userInfo {
+  /*background-color: red;*/
   display: none;
   color: white;
   position: absolute;
-  left: 3.5rem;
+  left: 3.3rem;
+  top: .4rem;
 }
 
 .UserInfoBar:hover .userInfo {
@@ -70,7 +72,7 @@ export default {
 }
 
 .headInfo {
-  margin: .3rem;
+  padding: .3rem;
 }
 
 .qqHead {
@@ -80,7 +82,8 @@ export default {
 
 .logout {
   cursor: pointer;
-  padding: .2rem;
+  position: absolute;
+  padding: .3rem;
   background-color: #55a532;
   border-radius: 10px;
 }

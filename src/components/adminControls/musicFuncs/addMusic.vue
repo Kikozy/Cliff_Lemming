@@ -123,6 +123,7 @@ input {
 }
 
 .addInfoBtn {
+  cursor: pointer;
   margin-left: 10rem;
   margin-bottom: 0;
 }

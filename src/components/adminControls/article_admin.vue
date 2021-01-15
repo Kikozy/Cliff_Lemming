@@ -2,6 +2,15 @@
   <div>
     <div class="articleTable">
       <el-table :data="article_info" border height="650">
+        <el-table-column type="expand">
+          <template slot-scope="prop">
+            <el-form label-position="left" inline class="demo-table-expand">
+              <el-form-item label="文章内容">
+                <span v-html="prop.row.content.substr(0,1000)" ></span>
+              </el-form-item>
+            </el-form>
+          </template>
+        </el-table-column>
         <el-table-column type="index" label="序号" width="50"></el-table-column>
         <el-table-column prop="id" label="id" width="50"></el-table-column>
         <el-table-column prop="pushDate" label="添加日期" width="100"></el-table-column>
