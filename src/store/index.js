@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import el from "element-ui/src/locale/lang/el";
 
 // 安装
 Vue.use(Vuex)
@@ -9,6 +10,7 @@ const store = new Vuex.Store({
         username: '', // 用户名
         mail: '', // 邮箱
         iconHead: '', // 头像
+        posted_msg:false
     },
     // 计算函数
     getters: {},
@@ -38,6 +40,13 @@ const store = new Vuex.Store({
             state.mail = ''
             state.iconHead = ''
         },
+        isposted_msg(state,value){
+            if (value === false){
+                state.posted_msg = false;
+            }else{
+                state.posted_msg = true;
+            }
+        }
     },
     actions: {},
     modules: {}

@@ -13,7 +13,7 @@
       </div>
     </div>
     <MusicBar/>
-    <userMsgBar/>
+    <userMsgBar title="交流一下"/>
     <itemHtml/>
   </div>
 </template>

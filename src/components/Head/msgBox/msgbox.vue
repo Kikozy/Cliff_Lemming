@@ -99,6 +99,7 @@ export default {
         });
       });
       this.sendMove()
+      this.$store.commit('isposted_msg',true)
     },
     matchIslogined() {
       if (localStorage.getItem('keepLogin')) {
@@ -107,7 +108,7 @@ export default {
         this.mail = logined_info.mail
         this.qq_icon = logined_info.qqHead
       }
-    }
+    },
   },
   computed: {
     msgLen() {

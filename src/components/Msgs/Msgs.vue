@@ -4,11 +4,11 @@
       <li class="msg" v-for="(msg,index) in this.Msg_data">
         <div class="msgHead">
           <img class="head_icon" :src="matchHead(msg.mail)" alt="图片">
-                        <!--    Msg_data.length-index倒序      -->
+          <!--    Msg_data.length-index倒序      -->
           <h3>{{ msg.userid }}</h3>
         </div>
         <div class="msgBody">
-          <p class="num">#{{Msg_data.length-index}}</p>
+          <p class="num">#{{ Msg_data.length - index }}</p>
           <p class="message">{{ msg.message }}</p>
           <p class="datetime">{{ msg.datetime }}</p>
         </div>
@@ -22,6 +22,7 @@ import {request} from "@/network/requests";
 
 export default {
   name: "Msgs",
+  inject: ['reload'],
   data() {
     return {
       Msg_data: ''
@@ -36,13 +37,13 @@ export default {
           return 'http://q1.qlogo.cn/g?b=qq&nk=' + qq.split('@')[0] + '&s=640'
         }
       }
-    }
+    },
   },
   methods: {
     getMsg() {
       request({
         url: 'msgs_show',
-        method:'GET',
+        method: 'GET',
         params: {
           code: 'getMsgs069'
         }
@@ -52,10 +53,22 @@ export default {
       }).catch(err => {
         console.log(err)
       })
-    }
+    },
   },
   created() {
     this.getMsg()
+  },
+  watch: {
+    // 实时监听vuex的内容是否发送改变！！
+    // 如果只有改变就执行内容！
+    '$store.state.posted_msg': function () {
+      if (this.$store.state.posted_msg === true) {
+        console.log(this.$store.state.posted_msg);
+        this.reload();
+        // 关掉
+        this.$store.commit('isposted_msg', false)
+      }
+    }
   }
 }
 </script>
@@ -91,7 +104,7 @@ export default {
   box-shadow: 3px 3px 5px rgba(0, 0, 0, .5);
 }
 
-.num{
+.num {
   color: white;
   position: absolute;
   right: -.5rem;

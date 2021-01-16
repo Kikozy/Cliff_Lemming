@@ -20,7 +20,7 @@
         <el-table-column label="操作" width="150">
           <template slot-scope="scope">
             <el-button type="text">修改</el-button>
-            <el-button type="text">删除</el-button>
+            <el-button type="text" @click="post_del(scope.row.id)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -37,6 +37,7 @@ import $ from 'jquery'
 
 export default {
   name: 'MSGS_admin',
+  inject:['reload'],
   data() {
     return {
       Msg_data: [],
@@ -47,6 +48,27 @@ export default {
     this.get_msgs()
   },
   methods: {
+    post_del(id){
+      request({
+        url:'del_msg069',
+        method:'POST',
+        data:{
+          id:id,
+          code:'lemming069del'
+        }
+      }).then(res=>{
+        this.$message({
+          message:id+'删除成功！',
+          type:'success'
+        })
+        this.reload();
+      }).catch(err=>{
+        this.$message.error({
+          message:id+'删除失败！请查看控制台打印'
+        })
+        console.log(err);
+      })
+    },
     // 筛选
     formatter(row, column) {
       return row.isopen;
