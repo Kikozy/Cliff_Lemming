@@ -4,8 +4,8 @@ import Vue from 'vue';
 import tinymce from 'tinymce'
 import VueTinymce from '@packy-tang/vue-tinymce'
 import 'tinymce/skins/content/default/content.min.css'
-import 'tinymce/skins/ui/oxide-dark/skin.min.css'
-import 'tinymce/skins/ui/oxide-dark/content.min.css'
+import 'tinymce/skins/ui/oxide/skin.min.css'
+import 'tinymce/skins/ui/oxide/content.min.css'
 
 //主题
 import 'tinymce/themes/silver/theme.min.js'

@@ -104,7 +104,6 @@ export default {
 /*导入外部css*/
 /*阿里巴巴图标*/
 @import 'http://at.alicdn.com/t/font_2290624_fw50t7gl6x.css';
-@import '../assets/CSS/CommonHead.css';
 
 .HomeContent {
   padding-top: 3rem;

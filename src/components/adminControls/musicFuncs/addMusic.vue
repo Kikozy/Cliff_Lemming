@@ -70,46 +70,34 @@ export default {
 
 <style scoped>
 .add_base_color {
-  background-color: rgba(61, 73, 90, .5);
-  backdrop-filter: blur(10px);
+  background-image: linear-gradient(to right, #25427e, #39599a);
+  background-color: #fff;
 }
 
 .addInfo {
   float: left;
   width: 35rem;
-  box-shadow: 1px 1px 1px rgba(255, 255, 255, 0.3) inset, 1px 1px 5px rgba(0, 0, 0, .5);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, .5);
   border-radius: 10px;
-  margin: 10rem;
+  position: absolute;
+  left: 10rem;
+  top: 10rem;
   padding: 2rem;
 }
 
-input::-webkit-input-placeholder {
-  color: #000000;
-}
-
-input::-moz-placeholder { /* Mozilla Firefox 19+ */
-  color: #000000;
-}
-
-input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-  color: #000000;
-}
-
-input:-ms-input-placeholder { /* Internet Explorer 10-11 */
-  color: #000000;
-}
 
 input {
-  background-color: rgba(61, 73, 90, .8);
+  /*background-color: rgba(61, 73, 90, .8);*/
+  /*background-color: #50689a;*/
   box-shadow: .5px .5px 1px inset rgba(226, 226, 226, .5), 1px 1px 3px rgba(0, 0, 0, .5);
   padding-left: 1rem;
   font-weight: bold;
   font-size: 1rem;
   margin-bottom: 3%;
-  border: 0px;
+  border: none;
   width: 15vw;
   height: 3vw;
-  border-radius: 10pt;
+  border-radius: 10px;
 }
 
 .leftInput {

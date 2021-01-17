@@ -1,0 +1,93 @@
+/*elTable表格样式*/
+.el-table {
+    min-height: 40rem;
+    border: none;
+    margin-top: .5rem;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,.5);
+}
+
+.data_info{
+    display: flex;
+    background-image: linear-gradient(to right, #25427e, #39599a);
+    border-radius: 10px;
+    padding: 1rem;
+}
+
+.data_info div{
+    cursor: pointer;
+    font-weight: bold;
+    padding: 10px 10px 10px 10px;
+    border-radius: 6px;
+    color: #fff;
+    background-color: #50689a;
+    margin-left: 1rem;
+    transition: all ease .3s;
+}
+
+.data_info div:hover{
+    background-color: #0077aa;
+}
+
+.baseHide{
+    display: none;
+}
+
+/*!*表格外最外层样式*!*/
+/*/deep/ .el-table, /deep/ .el-table__expanded-cell {*/
+/*    border-radius: 10px;*/
+/*    !*背景样式透明*!*/
+/*    background-color: transparent;*/
+/*    box-shadow: 0px 2px 5px rgba(0, 0, 0, .4);*/
+/*}*/
+
+/* 表格内背景颜色 */
+/*/deep/ .el-table th,*/
+/*/deep/ .el-table tr,*/
+/*/deep/ .el-table td {*/
+/*    border: none;*/
+/*    color: #000000;*/
+/*    background-color: transparent;*/
+/*}*/
+
+/*.el-table::before {*/
+/*    !*去除底部白线 *!*/
+/*    left: 0;*/
+/*    bottom: 0;*/
+/*    width: 100%;*/
+/*    height: 0;*/
+/*}*/
+
+/*去除侧边白线*/
+/*.el-table--border::after, .el-table--group::after {*/
+/*    top: 0;*/
+/*    right: 0;*/
+/*    width: 0px;*/
+/*    height: 100%;*/
+/*}*/
+
+/*设置选中高亮*/
+/*.el-table >>> .el-table__body tr:hover > td {*/
+/*    background-color: #9c0606;*/
+/*}*/
+
+/*.el-button {*/
+/*    border: none;*/
+/*    color: white;*/
+/*    padding: .6rem;*/
+/*    border-radius: 10px;*/
+/*    background-color: #017CA5;*/
+/*    box-shadow: 1px 1px 0px inset rgba(226, 226, 226, .2);*/
+/*    transform: translateX(0);*/
+/*    transition: transform ease .4s;*/
+/*}*/
+
+/*.worryStyle {*/
+/*    background-color: #A57983;*/
+/*}*/
+
+/*.el-button:hover {*/
+/*    transform: translateX(2px);*/
+/*}*/
+
+/*!*elTable表格样式end*!*/

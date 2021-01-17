@@ -1,6 +1,6 @@
 <template>
   <div id="MSGS">
-    <ul>
+    <ul class="Waterfalls">
       <li class="msg" v-for="(msg,index) in this.Msg_data">
         <div class="msgHead">
           <img class="head_icon" :src="matchHead(msg.mail)" alt="图片">
@@ -74,6 +74,7 @@ export default {
 </script>
 
 <style scoped>
+
 #MSGS {
   width: 52vw;
 }

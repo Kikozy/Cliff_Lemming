@@ -1,36 +1,39 @@
 <template>
   <div id="Lcenter">
-    <div class="center_left_box  base_linear">
-      <div id="admin_toback" @click="center_toback">
-        <i class="el-icon-arrow-left">Home</i>
+    <input class="showLeft" type="checkbox">
+    <span id="showLeft_icon" class="iconfont icon-all"></span>
+    <div class="center_left_box">
+      <div id="admin_toback" class="admin_toback" @click="center_toback">
+        <span class="el-icon-arrow-left">Home</span>
       </div>
-      <h1 class="centerTitle"></h1>
-      <div class="linkBox">
-        <router-link to="/lemming_admin/data_info">
-          <div class="compBtn"><i class="iconfont icon-shuju"></i>
-            <h1> 数据信息</h1></div>
+      <h2 class="centerTitle"></h2>
+      <div class="routerBox">
+        <router-link :class="{activeBtn:activeNum===0}" class="routerBtn Btn_hover" to="/lemming_admin/data_info">
+          <div @click="isactive(0)" class="compBtn">
+            <i class="iconfont icon-data"></i>
+            <h2> 数据信息</h2>
+          </div>
         </router-link>
-        <router-link to="/lemming_admin/users_admin">
-          <div class="compBtn"><i class="iconfont icon-yonghu"></i>
-            <h1> 用户管理</h1></div>
+        <span class="routerBtn">DATA</span>
+        <router-link :class="{activeBtn:activeNum===1}" class="routerBtn Btn_hover" to="/lemming_admin/users_admin">
+          <div @click="isactive(1)" class="compBtn"><i class="iconfont icon-users"></i>
+            <h2> 用户管理</h2></div>
         </router-link>
-        <router-link to="/lemming_admin/article_admin">
-          <div class="compBtn"><i class="iconfont icon-wenzhang"></i>
-            <h1> 文章管理</h1></div>
+        <router-link :class="{activeBtn:activeNum===2}" class="routerBtn Btn_hover" to="/lemming_admin/article_admin">
+          <div @click="isactive(2)" class="compBtn"><i class="iconfont icon-article"></i>
+            <h2> 文章管理</h2></div>
         </router-link>
-        <router-link to="/lemming_admin/userMsg_admin">
-          <div class="compBtn"><i class="iconfont icon-liuyan1"></i>
-            <h1> 留言管理</h1></div>
+        <router-link :class="{activeBtn:activeNum===3}" class="routerBtn Btn_hover" to="/lemming_admin/userMsg_admin">
+          <div @click="isactive(3)" class="compBtn"><i class="iconfont icon-msgs"></i>
+            <h2> 留言管理</h2></div>
         </router-link>
-        <router-link to="/lemming_admin/music_admin">
-          <div class="compBtn"><i class="iconfont icon-yinle"></i>
-            <h1> 音乐管理</h1></div>
+        <router-link :class="{activeBtn:activeNum===4}" class="routerBtn Btn_hover" to="/lemming_admin/music_admin">
+          <div @click="isactive(4)" class="compBtn"><i class="iconfont icon-music"></i>
+            <h2> 音乐管理</h2></div>
         </router-link>
-        <div class="compBtn"><h1>-</h1></div>
-        <div class="compBtn"><h1>-</h1></div>
-        <div class="compBtn"><h1>-</h1></div>
-
+        <span class="routerBtn">OTHERS</span>
       </div>
+      <div class="water"></div>
     </div>
     <div class="center_right_info base_linear">
       <!--      // 局部刷新-->
@@ -40,6 +43,8 @@
 </template>
 
 <script>
+import $ from 'jquery'
+
 export default {
   name: "LCCenter",
   provide() {
@@ -51,10 +56,17 @@ export default {
   data() {
     return {
       // 局部刷新
+      activeNum: 0,
       isRouteAlive: true
     }
   },
   methods: {
+    isactive(num) {
+      $('.routerBtn').removeClass('active');
+      this.activeNum = num
+      console.log(num)
+      console.log(this.activeNum)
+    },
     center_toback() {
       this.$router.push('/')
     },
@@ -71,136 +83,313 @@ export default {
 
 <style scoped>
 /*导入外部css ICON*/
-@import 'http://at.alicdn.com/t/font_2266444_6eftw463mcr.css';
+@import 'http://at.alicdn.com/t/font_2290624_fen9t0ofkbw.css';
+@import "baseTable.css";
 
 #Lcenter {
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-image: linear-gradient(to bottom right, rgba(48, 67, 82, 1), rgba(52, 49, 66, 1)); /*对角渐变*/
-  width: 100%;
-  height: 100%;
+  position: relative;
+  background-color: #d8e2ff;
+  /*background-image: linear-gradient(to bottom right, rgba(48, 67, 82, 1), rgba(52, 49, 66, 1)); !*对角渐变*!*/
+  width: 100vw;
+  height: 100vh;
 }
 
-#admin_toback {
+.admin_toback {
   cursor: pointer;
-  position: fixed;
-  z-index: 99999;
-  left: 11.5rem;
-  top: 2rem;
-  width: 4.5rem;
-  height: 1.8rem;
+  position: absolute;
+  right: 4rem;
+  z-index: 2;
+}
+
+.admin_toback span {
+  padding: .3rem;
   border-radius: 10px;
-  background-color: rgba(1, 124, 165, .1);
-  backdrop-filter: blur(10px);
-  transition: transform ease .6s, box-shadow ease .4s;
+  background-color: #50689a;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, .5);
 }
 
-#admin_toback i {
-  font-size: 1rem;
-  font-weight: bold;
+.showLeft {
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  opacity: 0;
+  position: absolute;
+  display: none;
+  z-index: 889;
+  margin: .7rem;
 }
 
-#admin_toback:hover {
-  transform: translateX(-10px);
-}
-
-
-.centerTitle {
-  position: fixed;
-  background-image: url("../../assets/IMAGE/Lcenter/HeadLogo.png");
-  background-size: 100%;
-  width: 5rem;
-  height: 5rem;
-  margin-left: 4rem;
-  border-radius: 50%;
-  text-align: center;
-  font-size: 3rem;
+#showLeft_icon {
+  color: white;
+  display: none;
+  pointer-events: none;
+  position: absolute;
+  z-index: 890;
+  margin: .8rem;
+  width: 3rem;
+  border-radius: 10px;
+  font-size: 3em;
+  background-color: #25427e;
 }
 
 .center_left_box {
-  z-index: 999;
+  position: absolute;
+  z-index: 888;
+  background-image: linear-gradient(to bottom, #25427e, #39599a);
+  width: 12rem;
+  min-width: 12rem;
   border-radius: 10px;
-  position: fixed;
-  overflow-y: scroll;
-  /*float: left;*/
-  box-shadow: 10px 5px 20px rgba(0, 0, 0, 0.5);
-  margin: 1rem;
-  width: 13rem;
-  height: 45rem;
+  height: 98vh;
+  margin: .5rem;
 }
 
-::-webkit-scrollbar {
-  width: 3px;
-  display: none;
-  background-color: #617b88;
+.centerTitle {
+  color: white;
+  text-align: center;
+  margin: 1rem 1rem 0 2rem;
+  position: relative;
+  background-image: url("../../assets/IMAGE/Home/HeadB.png");
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  /*z-index: 1;*/
 }
 
-/*定义滑块 内阴影+圆角*/
-::-webkit-scrollbar-thumb {
-  display: none;
-  background-color: #cfcfcf;
+.centerTitle:after {
+  content: 'Lemming';
+  font-size: .8em;
+  position: absolute;
+  opacity: 50%;
+  bottom: 25%;
+  /*z-index: -1;*/
 }
 
-.linkBox {
-  margin-top: 4rem;
+.routerBox {
+  margin-top: 3rem;
 }
 
-.compBtn {
-  cursor: pointer;
-  padding: 1rem;
-  border-radius: 10px;
-  margin: 1.5rem;
-  transform: translateY(0);
-  background-color: #4a5063; /*不支持渐变默认的颜色*/
-  background-image: linear-gradient(to bottom right, rgba(170, 170, 170, .5) -100%, rgba(48, 67, 82, .5) 100%); /*对角渐变*/
-  box-shadow: 1px 1px 1px inset rgba(226, 226, 226, .5), 1px 1px 3px rgba(0, 0, 0, .5);
-  backdrop-filter: blur(10px);
-  transition: transform ease .4s, box-shadow ease .4s;
+.routerBox span {
+  font-size: .8em;
 }
 
 .iconfont {
+  font-size: 1.5em;
+  width: 2.5rem;
+}
+
+.routerBtn {
+  color: #95a4c5;
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  transition: all .3s ease;
+}
+
+.Btn_hover:hover {
+  background-color: #50689a;
+  border-radius: 6px;
+}
+
+.compBtn {
+  align-self: center;
+  padding: .5rem 1rem .5rem 1rem;
+  display: flex;
+}
+
+.compBtn h2 {
+  font-size: 1em;
+  line-height: 1.5rem;
+
+}
+
+.activeBtn {
+  background-color: #50689a;
+  color: #fff;
+  border-radius: 6px;
+}
+
+/*================== water start ====================*/
+@keyframes move1 {
+  0% {
+    left: 0%;
+  }
+  100% {
+    left: -160%;
+  }
+}
+
+@keyframes move2 {
+  0% {
+    left: -40%;
+  }
+  100% {
+    left: -200%;
+  }
+}
+
+.water {
   position: absolute;
-  padding: .5rem;
-  background-color: rgba(1, 124, 165, .5);
-  backdrop-filter: blur(10px);
-  box-shadow: 1px 1px 1px inset rgba(226, 226, 226, .2);
-  border-radius: 10px;
-  left: -1rem;
-  top: -1rem;
+  display: flex;
+  justify-content: center;
+  bottom: 0;
+  width: 100%;
+  height: 20%;
+  font-size: 12px;
+  border-radius: 0 0 10px 10px;
+  font-weight: bold;
+  line-height: 24px;
+  overflow: hidden;
+  color: rgb(30, 29, 20);
+  transform: translateZ(0);
 }
 
-.compBtn > h1 {
-  text-align: center;
+.water::before,
+.water::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
   left: 0;
-  font-size: 1.5rem;
-  color: #ffffff;
+  z-index: 0;
+  width: 320%;
+  height: 50%;
+  clip-path: polygon(
+      0% 20%,
+      2% 18%,
+      3% 16%,
+      5% 14%,
+      7% 13%,
+      8% 11%,
+      10% 10%,
+      12% 10%,
+      13% 10%,
+      15% 10%,
+      17% 11%,
+      18% 13%,
+      20% 14%,
+      22% 16%,
+      23% 18%,
+      25% 20%,
+      27% 22%,
+      28% 24%,
+      30% 26%,
+      32% 27%,
+      33% 29%,
+      35% 30%,
+      37% 30%,
+      38% 30%,
+      40% 30%,
+      42% 29%,
+      43% 27%,
+      45% 26%,
+      47% 24%,
+      48% 22%,
+      50% 20%,
+      52% 18%,
+      53% 16%,
+      55% 14%,
+      57% 13%,
+      58% 11%,
+      60% 10%,
+      62% 10%,
+      63% 10%,
+      65% 10%,
+      67% 11%,
+      68% 13%,
+      70% 14%,
+      72% 16%,
+      73% 18%,
+      75% 20%,
+      77% 22%,
+      78% 24%,
+      80% 26%,
+      82% 27%,
+      83% 29%,
+      85% 30%,
+      87% 30%,
+      88% 30%,
+      90% 30%,
+      92% 29%,
+      93% 27%,
+      95% 26%,
+      97% 24%,
+      98% 22%,
+      100% 20%,
+      100% 100%,
+      0% 100%
+  );
 }
 
-.center_left_box .linkBox div:hover {
-  box-shadow: .5px .5px 1px inset rgba(226, 226, 226, .5), 3px 3px 5px rgba(0, 0, 0, .7);
-  transform: translateY(-4px);
+.water::before {
+  background-color: #2d4b88;
+  animation: move1 infinite 4s linear;
 }
 
-.center_left_box > div > h1, .iconfont {
-  color: #ffffff;
-  font-size: 1.5rem;
+.water::after {
+  background-color: #25427e;
+  animation: move2 infinite 8s linear;
 }
+
+/*================= water end=====================*/
+
 
 .center_right_info {
   position: absolute;
-  border-radius: 10px;
-  right: 2%;
-  width: 80%;
-  margin: 2%;
+  top: 0;
+  right: 0;
+  padding: 1rem;
+  width: 84%;
 }
 
-.base_linear {
-  border-radius: 20px;
-  background-color: #4a5063; /*不支持渐变默认的颜色*/
-  background-image: linear-gradient(to bottom right, rgba(48, 67, 82, .5), rgba(52, 49, 66, .5)); /*对角渐变*/
-  box-shadow: .5px .5px 1px inset rgba(226, 226, 226, .5), 2px 2px 5px rgba(0, 0, 0, .5);
-  /*backdrop-filter: blur(10px);*/
+@media screen and (max-width: 1200px) {
+  #admin_toback {
+    bottom: 3rem;
+  }
+
+  .center_right_info {
+    width: 99%;
+    padding: .2rem;
+  }
+
+  .showLeft {
+    display: block;
+  }
+
+  #showLeft_icon {
+    display: block;
+    opacity: 50%;
+  }
+
+  .center_left_box {
+    display: none;
+    margin: .3rem;
+    text-align: center;
+    width: 4rem;
+    min-width: 4rem;
+  }
+
+  .showLeft:checked ~ .center_left_box {
+    display: block;
+  }
+  .routerBox{
+    margin-top: 6rem;
+  }
+  .routerBox span {
+    display: none;
+  }
+
+  .compBtn h2 {
+    display: none;
+  }
+
+  .centerTitle {
+    margin: 0.4rem 0.4rem 2rem .4rem;
+    top: 4rem;
+  }
+
+  .centerTitle:after {
+    display: none;
+  }
 }
 
 

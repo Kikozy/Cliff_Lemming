@@ -22,9 +22,6 @@ Vue.use(VueTinymce)
 export default {
   inject: ['reload'],
   name: "article_write",
-  // components: {
-  //   Tiny
-  // },
   data() {
     return {
       title: '',
@@ -109,9 +106,11 @@ input {
 }
 
 .add_article_box {
-  margin: 10rem;
+  position: absolute;
+  top: 10rem;
+  left: 10rem;
   border-radius: 10px;
-  background-color: rgba(62, 71, 88, .9);
+  background-image: linear-gradient(to right, #25427e, #39599a);
   box-shadow: 0px 0px 15px rgba(0, 0, 0, .5);
 }
 </style>

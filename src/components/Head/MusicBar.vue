@@ -16,7 +16,7 @@
             <p class="Mplay iconfont icon-icon_play"></p>
           </div>
           <div @click="Mnext">
-            <p class="Mnext iconfont icon-Nextsong"></p>
+            <p class="Mnext iconfont icon-shangyishou"></p>
           </div>
         </div>
       </div>
@@ -326,6 +326,10 @@ export default {
   margin-right: .7rem;
   color: #cfcfcf;
   transition: ease color .3s;
+}
+
+.Mnext{
+  transform: rotateZ(180deg);
 }
 
 .Mcontrol *:hover {
