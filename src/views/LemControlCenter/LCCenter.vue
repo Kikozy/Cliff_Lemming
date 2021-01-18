@@ -32,6 +32,11 @@
             <h2> 音乐管理</h2></div>
         </router-link>
         <span class="routerBtn">OTHERS</span>
+        <router-link :class="{activeBtn:activeNum===5}" class="routerBtn Btn_hover" to="/lemming_admin/postInfo_admin">
+          <div @click="isactive(5)" class="compBtn"><i class="iconfont icon-earth"></i>
+            <h2>ip信息</h2>
+          </div>
+        </router-link>
       </div>
       <div class="water"></div>
     </div>
@@ -64,8 +69,6 @@ export default {
     isactive(num) {
       $('.routerBtn').removeClass('active');
       this.activeNum = num
-      console.log(num)
-      console.log(this.activeNum)
     },
     center_toback() {
       this.$router.push('/')
@@ -83,7 +86,7 @@ export default {
 
 <style scoped>
 /*导入外部css ICON*/
-@import 'http://at.alicdn.com/t/font_2290624_fen9t0ofkbw.css';
+@import 'http://at.alicdn.com/t/font_2290624_sx9vwqaa3.css';
 @import "baseTable.css";
 
 #Lcenter {

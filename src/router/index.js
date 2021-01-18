@@ -64,9 +64,9 @@ const routes = [
             },
             {
                 path: '/usermsgs',
-                name:'msgs',
-                meta: {title: '留言',keepAlive: true},
-                component:()=>import('@/components/Msgs/Msgs')
+                name: 'msgs',
+                meta: {title: '留言', keepAlive: true},
+                component: () => import('@/components/Msgs/Msgs')
             },
         ]
     },
@@ -124,16 +124,11 @@ const routes = [
                 meta: {title: '用户管理'}, // 由于控制标签名称
                 component: () => import('@/components/adminControls/users_admin.vue')
             },
-            // {
-            //     path: '/lemming_admin/game_admin',
-            //     meta: {title: '娱乐管理'}, // 由于控制标签名称
-            //     component: () => import('@/components/adminControls/game_admin.vue')
-            // },
-            // {
-            //     path: '/lemming_admin/movie_admin',
-            //     meta: {title: '影视管理'},
-            //     component: () => import('@/components/adminControls/movie_admin.vue')
-            // }
+            {
+                path: '/lemming_admin/postInfo_admin',
+                meta: {title: 'ip信息'},
+                component: () => import('@/components/adminControls/ip_admin.vue')
+            }
         ]
     },
     // 404 页面

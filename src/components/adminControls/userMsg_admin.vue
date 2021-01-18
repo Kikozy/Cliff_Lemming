@@ -5,7 +5,8 @@
     </div>
     <div class="msgTable">
       <el-table :data="Msg_data" border height="100%"
-                :default-sort="{prop:'datetime', order: 'descending'}">
+                :default-sort="{prop:'datetime', order: 'descending'}"
+                :row-class-name="isopen_style">
         <el-table-column type="index" label="序号" width="50"></el-table-column>
         <el-table-column prop="id" label="id" width="50"></el-table-column>
         <el-table-column prop="userid" label="用户名" width="100"></el-table-column>
@@ -37,7 +38,7 @@ import $ from 'jquery'
 
 export default {
   name: 'MSGS_admin',
-  inject:['reload'],
+  inject: ['reload'],
   data() {
     return {
       Msg_data: [],
@@ -48,23 +49,30 @@ export default {
     this.get_msgs()
   },
   methods: {
-    post_del(id){
+    isopen_style({row}) {
+      if (row.isopen === true) {
+        console.log(row)
+        return 'warning-row';
+      }
+      return ''
+    },
+    post_del(id) {
       request({
-        url:'del_msg069',
-        method:'POST',
-        data:{
-          id:id,
-          code:'lemming069del'
+        url: 'del_msg069',
+        method: 'POST',
+        data: {
+          id: id,
+          code: 'lemming069del'
         }
-      }).then(res=>{
+      }).then(res => {
         this.$message({
-          message:id+'删除成功！',
-          type:'success'
+          message: id + '删除成功！',
+          type: 'success'
         })
         this.reload();
-      }).catch(err=>{
+      }).catch(err => {
         this.$message.error({
-          message:id+'删除失败！请查看控制台打印'
+          message: id + '删除失败！请查看控制台打印'
         })
         console.log(err);
       })
@@ -86,8 +94,6 @@ export default {
         }
       }).then(res => {
         this.Msg_data = res.data.data
-        console.log(this.Msg_data)
-        // console.log(res)
       }).catch(err => {
         console.log(err)
       })
@@ -96,6 +102,8 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style>
+.el-table .warning-row {
+  background: pink;
+}
 </style>

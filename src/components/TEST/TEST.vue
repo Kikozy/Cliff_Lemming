@@ -49,9 +49,9 @@ export default {
 </script>
 
 <style scoped>
-/*.TEST{*/
-/*  height: 1800px;*/
-/*}*/
+.TEST{
+  height: 1800px;
+}
 section {
   position: relative;
   width: 100%;

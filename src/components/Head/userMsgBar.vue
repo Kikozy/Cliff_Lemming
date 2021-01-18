@@ -84,7 +84,7 @@ export default {
   width: 3.5rem;
   height: 3.5rem;
   /*width: 4rem;*/
-  margin: .2%;
+  margin: .2rem;
   display: flex;
   border-radius: 10px;
   backdrop-filter: blur(10px);

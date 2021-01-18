@@ -4,7 +4,7 @@
     <div class="bannerInfo">
       <h4 class="Name">
         Hi! 我是
-        <span>Lem</span>
+        <span v-text="'<Lem/>'"></span>
         <br>
         <p>一个努力学习成长热爱<span>学习</span>普通年轻人</p>
       </h4>
@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  name: "AboutBox"
+  name: "AboutBox",
 }
 </script>
 

@@ -1,11 +1,13 @@
 <template>
   <div class="musicBar" @mouseleave="show=false">
     <div class="musicBox">
-      <div class="Mpic" @click="show =!show"><img
-          src="">
+      <div class="Mpic" @click="show =!show">
+        <img src="">
       </div>
       <div class="MusicControl">
-        <div class="Mname">{{ music_url['name'] }}-{{ music_url['singer'] }}</div>
+        <div class="Mname" :title="music_url['singer']">
+          {{ music_url['name'] }}-{{ music_url['singer'] }}
+        </div>
         <!--        <br>-->
         <div class="Mcontrol">
           <div @click="Mlast">
@@ -31,7 +33,7 @@
         <ul class="Mul">
           <li class="Mli" v-for="(music,index) in music_data" @click="Mlistplay(index)">
             <p class="songNum">{{ index + 1 }}</p>
-            <p class="songName">{{ music.name }}</p>
+            <p class="songName" :title="music.name">{{ music.name }}</p>
             <p class="singer">{{ music.singer }}</p>
           </li>
         </ul>
@@ -214,12 +216,12 @@ export default {
 }
 
 .showList-leave-active {
-  animation: showList-in .3s reverse;
+  animation: showList-in .5s reverse;
 }
 
 @keyframes showList-in {
   0% {
-    transform: translateY(0px);
+    transform: translateY(-50px);
     opacity: 0;
   }
   50% {
@@ -328,7 +330,7 @@ export default {
   transition: ease color .3s;
 }
 
-.Mnext{
+.Mnext {
   transform: rotateZ(180deg);
 }
 
@@ -414,66 +416,6 @@ export default {
   background-color: #0077aa;
   box-shadow: 0 0 10px #0077aa;
 }
-
-.songName:active {
-  background-color: pink;
-}
-
-/*.Mul {*/
-/*  background-color: red;*/
-/*  padding-top: 20px;*/
-/*  border-radius: 10px;*/
-/*  width: 100%;*/
-/*  height: 100%;*/
-/*  !*滑动*!*/
-/*  overflow-y: scroll;*/
-/*  opacity: 10;*/
-/*}*/
-
-/*.Mli {*/
-/*  background-color: #0077aa;*/
-/*  color: #cfcfcf;*/
-/*  width: 100%;*/
-/*  height: 2rem;*/
-/*}*/
-
-/*.songNum {*/
-/*  padding: 5px;*/
-/*  text-align: center;*/
-/*  width: 1em;*/
-/*  background-color: #0077aa;*/
-/*  border-radius: 10px 4px 4px 10px;*/
-/*  margin-right: 5px;*/
-/*  transition: background-color ease .3s;*/
-/*}*/
-
-/*.songName {*/
-/*  overflow: hidden; !*自动隐藏文字*!*/
-/*  text-overflow: ellipsis; !*文字隐藏后添加省略号*!*/
-/*  white-space: nowrap; !*强制不换行*!*/
-/*  width: 10em; !*不允许出现半汉字截断*!*/
-/*  !*background-color: #183743;*!*/
-/*  border-radius: 4px;*/
-/*  padding: 5px;*/
-/*  box-shadow: 0 0 0 #000000;*/
-/*  transition: background-color ease .3s;*/
-/*}*/
-
-/*.songName:hover {*/
-/*  background-color: #0077aa;*/
-/*}*/
-
-/*.singer {*/
-/*  margin-right: 2px;*/
-/*  overflow: hidden; !*自动隐藏文字*!*/
-/*  text-overflow: ellipsis; !*文字隐藏后添加省略号*!*/
-/*  white-space: nowrap; !*强制不换行*!*/
-/*  width: 5em; !*不允许出现半汉字截断*!*/
-/*  !*background-color: #183743;*!*/
-/*  border-radius: 4px 10px 10px 4px;*/
-/*  float: right;*/
-/*  padding: 5px;*/
-/*}*/
 
 ::-webkit-scrollbar {
   width: 2px;

@@ -95,7 +95,7 @@ export default {
         }
       }).catch(err => {
         this.$message.error({
-          message: '留言失败！目前只支持纯文本内容~',
+          message: '异常出错',
         });
       });
       this.sendMove()

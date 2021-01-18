@@ -63,8 +63,8 @@ export default {
       cloud.style.transform = 'translateY('+value * 0.5+'px)';
       text.style.transform = 'translateY('+value * 1.2+'px)';
       // transform: translateY();
-      mountain1.style.transform = 'translateY('+value * 1+'px)';
-      mountain2.style.transform = 'translateY('+value * 0.4+'px)';
+      mountain1.style.transform = 'translateY('+value * .6+'px)';
+      mountain2.style.transform = 'translateY('+value * 0.3+'px)';
       // aboutBox.style.transform = 'translateY(-'+value * 0.5+'px)';
     })
   }

@@ -40,13 +40,15 @@ export default {
   width: 3.5rem;
   height: 3.5rem;
   margin: .3rem;
-  background-color: #294c43;
+  background-color: transparent;
   border-radius: 10px;
-  transition: ease width .5s;
+  transition: ease all .5s;
 }
 
 .UserInfoBar:hover {
   width: 10rem;
+  background-color: #0077aa;
+  box-shadow: 0 0 15px  #0077aa;
 }
 
 .userInfo {
@@ -84,7 +86,10 @@ export default {
   cursor: pointer;
   position: absolute;
   padding: .3rem;
-  background-color: #55a532;
   border-radius: 10px;
+  transition: ease all .5s;
+}
+.logout:hover{
+  background-color: #3e7eaf;
 }
 </style>

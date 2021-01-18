@@ -129,6 +129,7 @@ export default {
   font-size: 2em;
   padding: 1rem;
   min-font-size: 5rem;
+  line-height: 1.5em;
   /*width: 55vw;*/
   font-family: "Microsoft JhengHei UI";
   transition: ease color .3s;

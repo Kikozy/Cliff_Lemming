@@ -54,7 +54,9 @@ export default {
         username: '',
         password: '',
         repassword: '',
-        mail: ''
+        mail: '',
+        ip:'',
+        city:''
       }
     }
   },
@@ -109,10 +111,13 @@ export default {
       }
     },
     post_logon() {
+      let ip_info = JSON.parse(localStorage.getItem('ipdata'))
+      this.logon_form.ip = ip_info.ip;
+      this.logon_form.city = ip_info.city;
       request({
         method: 'post',
         url: '/user_register',
-        data: this.logon_form
+        data: this.logon_form,ip_info
       }).then(res => {
         if (res.data.code === 201) {
           this.$message({

@@ -68,6 +68,7 @@ export default {
 }
 .musicBar{
   width: 12rem;
+  min-width: 12rem;
 }
 .userMsgBar{
   flex: .5;
