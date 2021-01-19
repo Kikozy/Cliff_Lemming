@@ -67,11 +67,15 @@ export default {
           this.$router.push('/lemming_admin')
         } else if (res.data.code === 200) {
           this.$message({
-            message: res.data.username + '登录成功！',
+            message: res.data.data.username + '登录成功！',
             type: 'success'
           });
           // 提交到vuex
-          let login_infos = {username: res.data.username, qqHead: this.qq_icon, mail: this.login_form.mail}
+          let login_infos = {
+            username: res.data.data.username,
+            uuid:res.data.data.token,
+            qqHead:this.qq_icon,
+            mail: this.login_form.mail}
           this.$store.commit('saveLogin', login_infos) //提交
           // this.$store.commit('saveLogin'方法名, login_infos参数)
           this.$router.push('/')

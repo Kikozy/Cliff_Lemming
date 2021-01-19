@@ -127,7 +127,7 @@ export default {
 .MSGBOX {
   width: 30rem;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, .5);
-  background-color: #0d1117;
+  background-color: #292a2d;
   border-radius: 10px;
   padding: .5rem;
   position: relative;

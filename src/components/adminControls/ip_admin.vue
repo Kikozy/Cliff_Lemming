@@ -3,11 +3,12 @@
     <div class="data_info">
       <div class="Cont">总{{ ip_data.length }}条</div>
       <div class="Cont">今日总{{ ContToday }}条</div>
+      <div class="Cont">筛选总{{ filterNum }}条</div>
     </div>
     <div class="ipTable">
       <el-table :data="ip_data" border height="100%"
                 :default-sort="{prop:'datetime', order: 'descending'}">
-        <el-table-column type="index" label="序号" width="50"></el-table-column>
+        <el-table-column type="index" :index="get_filterNum" label="序号" width="50"></el-table-column>
         <el-table-column prop="id" label="id" width="50"></el-table-column>
         <el-table-column prop="ip" label="ip地址" width="150"></el-table-column>
         <el-table-column prop="city" label="城市" width="150"></el-table-column>
@@ -30,13 +31,18 @@ export default {
     return {
       ip_data: [],
       norepeatdate: [],
-      todayNum: null,
+      todayNum: 0,
+      filterNum:null
     }
   },
   created() {
     this.get_ipdata()
   },
   methods: {
+    get_filterNum(index){
+      this.filterNum = index+1;
+      return index+1
+    },
     // 筛选
     formatter(row, column) {
       return row.datetime;
@@ -72,6 +78,7 @@ export default {
     },
   },
   computed: {
+
     ContToday() {
       let datetime = [];
       let date = new Date();

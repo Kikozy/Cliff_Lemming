@@ -27,7 +27,7 @@ export default {
   },
   methods: {
     logout() {
-      localStorage.clear()
+      localStorage.removeItem('keepLogin')
       this.$store.commit('logOut')
     }
   }
