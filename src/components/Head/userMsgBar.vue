@@ -79,31 +79,32 @@ export default {
 /*点击播放列表动画end*/
 /*用户留言开始*/
 .userMsgBar {
-  /*padding: .7rem;*/
   cursor: pointer;
   width: 3.5rem;
   height: 3.5rem;
-  /*width: 4rem;*/
   margin: .2rem;
   display: flex;
+  text-shadow: 2px 2px 2px #000;
   border-radius: 10px;
-  backdrop-filter: blur(10px);
-
 }
 
 .msgIcon {
-  /*background-color: gold;*/
-  background-image: linear-gradient(to bottom right, rgba(58, 95, 137, .5) -100%, rgba(20, 31, 49, .5) 100%); /*对角渐变*/
-  box-shadow: 1px 1px 1px rgba(255, 255, 255, 0.1) inset, 1px 1px 5px rgba(0, 0, 0, .5);
+  /*background-color: #0d1117;*/
+  /*box-shadow: 1px 1px 1px rgba(255, 255, 255, 0.1) inset, 1px 1px 5px rgba(0, 0, 0, .5);*/
   position: relative;
   padding: .7rem;
   color: #cfcfcf;
   border-radius: 10px;
   align-self: center;
-  /*margin: 1rem;*/
-  /*top: 50%;*/
-  /*position: absolute;*/
-  font-size: 2rem;
+  transition: ease all .3s;
+}
+.msgIcon:after{
+  padding-left: .2rem;
+  content: 'Message';
+}
+.msgIcon:hover{
+  background-color: #0d1117;
+  box-shadow: 1px 1px 1px rgba(255, 255, 255, 0.1) inset, 1px 1px 5px rgba(0, 0, 0, .5);
 }
 
 /*用户留言结束*/

@@ -13,21 +13,27 @@ export default {}
 <style scoped>
 .loginBar {
   cursor: pointer;
-  font-weight: bold;
   display: flex;
-  margin: 1rem .3rem .5rem .3rem;
+  margin: 1.5rem .3rem .5rem .3rem;
+  text-shadow: 2px 2px 2px #000;
 }
 
 .logIcon {
-  background-color: rgba(48, 87, 71, .8);
   border-radius: 10px;
-  box-shadow: 1px 1px 1px rgba(255, 255, 255, 0.05) inset, 1px 1px 5px rgba(0, 0, 0, .5);
-  backdrop-filter: blur(10px);
   position: relative;
   align-self: center;
   padding: .6rem;
   color: #cfcfcf;
-  font-size: 2rem;
+  transition: ease all .3s;
+}
+.logIcon:after{
+  content: 'SignIn';
+  padding-left: .2rem;
+}
+.logIcon:hover{
+  text-shadow: none;
+  background-color: #305044;
+  box-shadow: 1px 1px 1px rgba(255, 255, 255, 0.1) inset, 1px 1px 5px rgba(0, 0, 0, .5);
 }
 
 </style>

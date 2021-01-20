@@ -25,13 +25,13 @@ export default {
 
 <style scoped>
 .infoMe {
-  z-index: 99;
+  z-index: 999;
   border-radius: 20px;
   width: 18vw;
   min-width: 10rem;
   height: 60vh;
   background-image: linear-gradient(to bottom right, #385c84 -80%, #0d1117 50%); /*对角渐变*/
-  box-shadow: .3px .3px 1px inset rgba(226, 226, 226, .3), 15                              px 15px 40px rgba(0, 0, 0, .3);
+  box-shadow: .3px .3px 1px inset rgba(226, 226, 226, .3), 15px 15px 40px rgba(0, 0, 0, .3);
 }
 
 .logo {
@@ -52,8 +52,8 @@ export default {
   width: 13vw;
   min-width:9rem;
   height: 6vh;
-  background-image: linear-gradient(to bottom right, #017ca5 -200%, #152033 100%); /*对角渐变*/
-  box-shadow: .5px .5px 1px inset rgba(226, 226, 226, .3);
+  /*background-image: linear-gradient(to bottom right, #017ca5 -200%, #152033 100%); !*对角渐变*!*/
+  /*box-shadow: .5px .5px 1px inset rgba(226, 226, 226, .3);*/
   border-radius: 5px;
   margin: 2vw;
   text-align: center;

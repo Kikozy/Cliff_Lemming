@@ -41,11 +41,12 @@ export default {
   height: 3.5rem;
   margin: .3rem;
   background-color: transparent;
-  border-radius: 10px;
+  border-radius: 50%;
   transition: ease all .5s;
 }
 
 .UserInfoBar:hover {
+  border-radius: 10px;
   width: 10rem;
   background-color: #0077aa;
   box-shadow: 0 0 15px  #0077aa;

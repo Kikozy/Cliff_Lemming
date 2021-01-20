@@ -86,7 +86,7 @@ export default {
 
 <style scoped>
 /*导入外部css ICON*/
-@import 'http://at.alicdn.com/t/font_2290624_sx9vwqaa3.css';
+@import 'http://at.alicdn.com/t/font_2290624_n21gkufdf7n.css';
 @import "baseTable.css";
 
 #Lcenter {

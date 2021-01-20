@@ -48,8 +48,9 @@ body {
     min-height: 20rem;
     top: 22vh;
     right: 28vw;
-    background-color: rgba(61, 61, 61, 0.8);
-    background-image: linear-gradient(to bottom right, rgba(42, 74, 52, .7), rgba(207, 207, 207, 0.1)); /*对角渐变*/
+    background-color:rgba(153, 153, 153,.5);
+    /*background-color:rgba(153, 153, 153,.5);*/
+    /*background-image: linear-gradient(to bottom right, rgba(42, 74, 52, .7), rgba(207, 207, 207, 0.1)); !*对角渐变*!*/
     border-radius: 20px;
     backdrop-filter: blur(10px);
     box-shadow: .8px .8px 1px rgba(103, 130, 117, .8) inset, 3px 4px 5px rgba(0, 0, 0, .5);

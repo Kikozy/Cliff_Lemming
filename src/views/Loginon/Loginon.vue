@@ -14,7 +14,7 @@
           <router-link id="loginbtn" to="/login">Sign In</router-link>
         </div>
         <div class="logBar logonBar" @click="active(2)" :class="{active1:style===2}">
-          <router-link id="logonbtn" to="/logon">Register</router-link>
+          <router-link id="logonbtn" to="/logon">Sign On</router-link>
         </div>
       </div>
       <!--定义组件动画-->

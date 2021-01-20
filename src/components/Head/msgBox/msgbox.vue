@@ -126,8 +126,9 @@ export default {
 
 .MSGBOX {
   width: 30rem;
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, .5);
-  background-color: #292a2d;
+  /*box-shadow: 5px 5px 5px rgba(0, 0, 0, .5);*/
+  background-color:#0d1117;
+  box-shadow: 1px 1px 1px rgba(255, 255, 255, 0.1) inset, 1px 1px 5px rgba(0, 0, 0, .5);
   border-radius: 10px;
   padding: .5rem;
   position: relative;
@@ -178,6 +179,7 @@ export default {
 }
 
 .maxLength {
+  text-shadow: none;
   position: absolute;
   color: #fff;
   bottom: .5rem;
@@ -243,11 +245,11 @@ input:valid {
   width: 3rem;
   height: 3rem;
   border-radius: 100%;
-  background-color: #cfcfcf;
+  /*background-color: #cfcfcf;*/
 }
 
 .avatar > img {
-  width: 100%;
+  width: 95%;
   height: 100%;
   border-radius: 100%;
 }

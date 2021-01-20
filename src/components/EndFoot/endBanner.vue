@@ -59,10 +59,10 @@ export default {
 
 <style scoped>
 section {
-  z-index: -1;
+  z-index: 2;
   position: relative;
   width: 100%;
-  height: 130vh;
+  height: 120vh;
   overflow: hidden;
   display: flex;
   justify-content: center;

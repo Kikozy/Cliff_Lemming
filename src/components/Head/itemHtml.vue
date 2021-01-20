@@ -62,8 +62,8 @@ li {
 }
 
 li:hover {
+  box-shadow: 1px 1px 1px rgba(255, 255, 255, 0.1) inset, 0 0 20px #017ca5;
   background-color: #017ca5;
-  box-shadow: 0 0 20px #017ca5;
 }
 
 li > * {

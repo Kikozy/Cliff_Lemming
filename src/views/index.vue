@@ -107,9 +107,10 @@ export default {
 
 .HomeContent {
   padding-top: 3rem;
+  border-radius: 20px 20px 0 0;
   width: 100%;
-  background-image: linear-gradient(to bottom, #0d161e, #0d2b4d); /*对角渐变*/
-  box-shadow: 0 -80px 30px #0d161e;
+  background-image: linear-gradient(to bottom, #0c121a, #0d2b4d); /*对角渐变*/
+  box-shadow: -20px -20px 40px #000;
   display: flex;
   justify-content: center;
   align-items: center;

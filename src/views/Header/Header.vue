@@ -1,5 +1,6 @@
 <template>
   <div class="headers">
+    <MusicBar/>
     <div class="isLogined">
       <div v-if="islogin===true">
         <transition name="showLogin">
@@ -12,7 +13,6 @@
         </transition>
       </div>
     </div>
-    <MusicBar/>
     <userMsgBar title="交流一下"/>
     <itemHtml/>
   </div>
@@ -63,27 +63,31 @@ export default {
   display: flex;
   justify-content: space-between;
 }
-.isLogined{
+
+.isLogined {
   flex: .5;
 }
-.musicBar{
+
+.musicBar {
   width: 12rem;
   min-width: 12rem;
 }
-.userMsgBar{
+
+.userMsgBar {
   flex: .5;
 }
-.itemHtml{
+
+.itemHtml {
   flex: 12;
 }
 
 /* 登录后信息 */
 .UserInfoBar {
-  animation: ease .5s toDown;
+  animation: ease 1s toDown;
 }
 
 .loginBar {
-  animation: ease .5s toDown;
+  animation: ease 1s toDown;
 }
 
 .musicBar {

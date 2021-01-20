@@ -2,7 +2,7 @@
   <div class="blogNews">
     <ul class="Blogs" v-for="(item,index) in data">
       <li class="Blog_li">
-        <h1 class="Blog_title dog" @click="showArticle(item.id,item.title,item.content,item.pushDate,item.click)">
+        <h1 class="Blog_title" @click="showArticle(item.id,item.title,item.content,item.pushDate,item.click)">
           <img id="dog" :src="require('../../assets/ICON/dogs/'+index+'.png')" alt="">
           {{ item.title }}
         </h1>
@@ -110,6 +110,7 @@ export default {
 
 <style scoped>
 .Blog_li {
+  /*background-color: #252836;*/
   margin-bottom: 1.5rem;
   width: 55vw;
   min-width: 20rem;
@@ -127,18 +128,16 @@ export default {
   cursor: pointer;
   color: white;
   font-size: 2em;
-  padding: 1rem;
+  /*padding: 1rem;*/
   min-font-size: 5rem;
   line-height: 1.5em;
-  /*width: 55vw;*/
   font-family: "Microsoft JhengHei UI";
   transition: ease color .3s;
+  position: relative;
 }
 
 #dog {
-  position: relative;
-  top: 1.5rem;
-  width: 80px;
+  width: 5rem;
 }
 
 .Blog_info {

@@ -54,6 +54,8 @@ export default {
     let text = document.querySelector('#text')
     let mountain1 = document.querySelector('#mountain1')
     let mountain2 = document.querySelector('#mountain2')
+    let mountain3 = document.querySelector('#mountain3')
+    let mountain4 = document.querySelector('#mountain4')
     // let aboutBox = document.querySelector('#aboutBox')
     window.addEventListener('scroll', () => {
       let value = window.scrollY;
@@ -64,7 +66,9 @@ export default {
       text.style.transform = 'translateY('+value * 1.2+'px)';
       // transform: translateY();
       mountain1.style.transform = 'translateY('+value * .6+'px)';
-      mountain2.style.transform = 'translateY('+value * 0.3+'px)';
+      mountain2.style.transform = 'translateY('+value * 0.4+'px)';
+      mountain3.style.transform = 'translateY('+value * 0.2+'px)';
+      mountain4.style.transform = 'translateY('+value * 0.1+'px)';
       // aboutBox.style.transform = 'translateY(-'+value * 0.5+'px)';
     })
   }

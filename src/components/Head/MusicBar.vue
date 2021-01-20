@@ -75,11 +75,11 @@ export default {
     }).then(res => {
       // 设置音乐的初始值
       this.music_url = ({
-        name: res.data[0][0]['name'],
-        singer: res.data[0][0]['singer'],
-        url: res.data[0][0]['play_url']
+        name: res.data[0]['name'],
+        singer: res.data[0]['singer'],
+        url: res.data[0]['play_url']
       })
-      this.music_data = res.data[0]
+      this.music_data = res.data
     }).catch(err => {
       console.log('===music ERR===', err)
     })

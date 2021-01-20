@@ -4,7 +4,7 @@
       <div class="DataCont BaseStyle">总{{ music_data.length }}首</div>
       <div id="Updata" class="UpdataInfo musicMove " @click="updateMusic">更新音乐</div>
       <div id="Updating" class="UpdataInfo baseHide">更新中..</div>
-      <div class="addMusic musicMove" @click="show =! show;addMusic()">添加音乐</div>
+      <div class="addMusic musicMove" @click="show = 1">添加音乐</div>
     </div>
     <div class="Music_data">
       <el-table :data="music_data" height="100%" border>
@@ -19,15 +19,19 @@
         <el-table-column prop="play_url" label="播放地址" width="500"></el-table-column>
         <el-table-column label="操作" width="120">
           <template slot-scope="scope">
-            <el-button type="text" size="small" @click="music_change(scope.row.id)">修改</el-button>
+            <el-button type="text" size="small" @click="show = 2;NewMusic_info(scope.row)">修改</el-button>
             <el-button type="text" size="small" @click="music_del(scope.row.id,scope.row.name)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
     </div>
     <transition name="showUp">
-      <div v-if="show" class="addMusicFrom">
-        <addMusic/>
+      <div v-if="show === 1" class="MusicFrom">
+        <NewMusic_info :info="music_info" :mode="1"/>
+      </div>
+      <div v-else-if="show === 2" class="MusicFrom">
+<!--   :info="music_info"  把数据传给子组件  命名为info -->
+        <NewMusic_info :info="music_info" :mode="2"/>
       </div>
     </transition>
   </div>
@@ -37,34 +41,49 @@
 import {request} from "@/network/requests";
 import $ from 'jquery';
 import addMusic from "@/components/adminControls/musicFuncs/addMusic";
+import NewMusic_info from "@/components/adminControls/musicFuncs/changeMusic_info";
 
 export default {
   name: "music_admin",
   inject: ['reload'],// 组件刷新调用
   components: {
-    addMusic
+    NewMusic_info
   },
   data() {
-    // this.$forceUpdate();
     return {
       updateInfo: '',
       datetime: [],
       music_data: [],
-      show: false,
+      show: null,
+      music_info:{
+        id:'',
+        name:'',
+        singer:'',
+        playurl:'',
+        datetime:''
+      }
     }
   },
   methods: {
+    // 把值装好发给子组件
+    NewMusic_info(info){
+      this.music_info={
+        id:info.id,
+        name:info.name,
+        playurl:info.play_url,
+        singer:info.singer,
+        datetime: info.datetime,
+        picurl:''
+      }
+    },
     // 筛选
     formatter(row, column) {
       return row.datetime;
     },
     filterTag(value, row) {
-      return row.datetime === value;
+      return row.datetime.slice(0,10) === value;
     },
     ///////////////////////
-    music_change(id) {
-      console.log(id)
-    },
     music_del(id, name) {
       request({
         url: '/music_del',
@@ -83,8 +102,6 @@ export default {
       })
     },
     updateMusic() {
-      $('#Updating').removeClass('Mhide')
-      $('#Updata').addClass('Mhide')
       request({
         url: '/music_save',
         params: {id: '0609'},
@@ -110,25 +127,24 @@ export default {
         console.log(err)
       })
     },
-    addMusic() {
-      // if (this.show === false) {
-      //   $('.iscolor').animate({width: '0%'}, 500);
-      //   $('.addMusic').css('color', '#cfcfcf')
-      // } else if (this.show === true) {
-      //   $('.iscolor').animate({width: '100%'}, 100);
-      //   $('.addMusic').css('color', '#000000')
-      // }
-      this.Mhide = !this.Mhide
-    },
   },
   created() {
     request({
       url: "/muisic_info"
     }).then(res => {
       // console.log(res)
-      this.music_data = res.data[0];
-      for (let i = 0; i < res.data[1].length; i++) { // 循环添加内容
-        this.datetime.push({value: res.data[1][i][0], text: res.data[1][i][0]})  // 筛选的日期
+      this.music_data = res.data;
+      console.log(res.data)
+      let date = [];
+      for (let i in res.data){
+        date.push(res.data[i].datetime.slice(0,10))
+      }
+      // new Set();ES6的去重
+      let norepeatdate = new Set(date)
+      // ... 扩展 运算
+      norepeatdate = [...norepeatdate]
+      for (let i in norepeatdate){
+        this.datetime.push({value:norepeatdate[i],text:norepeatdate[i]})
       }
     }).catch(err => {
       console.log('===musicControl Err!!===', err)
@@ -139,10 +155,11 @@ export default {
 </script>
 
 <style scoped>
-.addMusicFrom{
+.MusicFrom{
   position: fixed;
   z-index: 999;
-  top: 0;
-  background-color: #0077aa;
+  right: 40%;
+  top: 20%;
+
 }
 </style>
