@@ -40,8 +40,9 @@ export default {
   props: ['info', 'mode'],
   data() {
     return {
-      id:this.info.id,
-      name:this.info.name
+      id: this.info.id,
+      name: this.info.name,
+      NewDate:''
     }
   },
   methods: {
@@ -72,34 +73,64 @@ export default {
         }
       }).catch(err => {
         this.$message.error({
-            message: this.info.name + '  添加失败!请查看控制台打印',
-          });
+          message: this.info.name + '  添加失败!请查看控制台打印',
+        });
         console.log(err)
       })
     },
     change_music() {
       request({
-        url:'/change_music',
-        method:'post',
+        url: '/change_music',
+        method: 'post',
         data: {
-          data:this.info,
-          id:this.id
+          data: this.info,
+          id: this.id
         }
-      }).then(res=>{
+      }).then(res => {
         this.reload()
         this.$message({
-          message:'(原)'+this.name+' 修改成功！',
+          message: '(原)' + this.name + ' 修改成功！',
           type: 'success'
         })
-      }).catch(err=>{
+      }).catch(err => {
         this.$message.error({
-          message:'(原)'+this.name+' 修改失败！请查看控制台打印'
+          message: '(原)' + this.name + ' 修改失败！请查看控制台打印'
         });
         console.log(err)
       })
     },
     close() {
       this.reload()
+    },
+    getDate() {
+      // 日期默认值
+      let date = new Date();
+      let year = date.getFullYear(); // 获取年份
+      let month = date.getMonth() + 1; // 获取月份
+      if (month < 10){
+        month = '0'+ month
+      }
+      let day = date.getDate(); //获取日
+      let hour = date.getHours();
+      if (hour < 10){
+        hour = '0'+ hour
+      }
+      let min = date.getMinutes();
+      if (min < 10){
+        min = '0'+ min
+      }
+      let sec = date.getSeconds();
+      if (sec < 10){
+        sec = '0'+ sec
+      }
+      let fullDate = year + '-' + month + '-' + day+' '+hour+':'+min+':'+sec;
+      this.NewDate = fullDate // 日期默认值
+    }
+  },
+  created() {
+    if (this.mode === 1){
+      this.getDate();
+      this.info.datetime = this.NewDate;
     }
   }
 }

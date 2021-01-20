@@ -54,7 +54,7 @@ export default {
 .Loadclouds {
   overflow-x: hidden;
   overflow-y: hidden;
-  z-index: 9999999;
+  z-index: 999999;
   width: 100%;
   height: 100%;
   position: fixed;

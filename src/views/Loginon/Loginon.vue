@@ -30,9 +30,6 @@
 
 <script>
 //导入外部JS
-// import '../../assets/JS/Loginon/Loginon.js'
-import $ from 'jquery'
-
 export default {
   data() {
     return {

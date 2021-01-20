@@ -1,6 +1,6 @@
 <template>
   <div class="headers">
-    <MusicBar/>
+    <!--    <MusicBar/>-->
     <div class="isLogined">
       <div v-if="islogin===true">
         <transition name="showLogin">
@@ -19,7 +19,6 @@
 </template>
 
 <script>
-import MusicBar from "@/components/Head/MusicBar";
 import userMsgBar from "@/components/Head/userMsgBar";
 import itemHtml from "@/components/Head/itemHtml";
 import logined from "@/components/Head/logined/logined";
@@ -28,7 +27,6 @@ import Login from "@/components/Head/loginBar";
 export default {
   name: "Header",
   components: {
-    MusicBar,
     userMsgBar,
     itemHtml,
     logined,
@@ -56,7 +54,7 @@ export default {
 <style scoped>
 
 .headers {
-  z-index: 999999;
+  z-index: 999997;
   width: 100%;
   position: fixed;
   /*background-color: red;*/
@@ -66,11 +64,7 @@ export default {
 
 .isLogined {
   flex: .5;
-}
-
-.musicBar {
-  width: 12rem;
-  min-width: 12rem;
+  margin-left: 13rem;
 }
 
 .userMsgBar {
@@ -83,14 +77,10 @@ export default {
 
 /* 登录后信息 */
 .UserInfoBar {
-  animation: ease 1s toDown;
+  animation: ease 2s toDown;
 }
 
-.loginBar {
-  animation: ease 1s toDown;
-}
-
-.musicBar {
+.isLogined {
   animation: ease 1s toDown;
 }
 

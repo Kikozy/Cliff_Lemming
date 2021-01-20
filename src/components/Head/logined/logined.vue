@@ -53,16 +53,16 @@ export default {
 }
 
 .userInfo {
-  /*background-color: red;*/
-  display: none;
+  opacity: 0;
   color: white;
   position: absolute;
   left: 3.3rem;
   top: .4rem;
+  transition: ease all .3s;
 }
 
 .UserInfoBar:hover .userInfo {
-  display: block;
+  opacity: 100%;
 }
 
 .username {
@@ -71,7 +71,12 @@ export default {
   overflow: hidden; /*自动隐藏文字*/
   text-overflow: ellipsis; /*文字隐藏后添加省略号*/
   white-space: nowrap; /*强制不换行*/
-  width: 6em; /*不允许出现半汉字截断*/
+  width: 0; /*不允许出现半汉字截断*/
+  transition: ease all .3s;
+}
+.UserInfoBar:hover .username {
+  display: block;
+  width: 6em;
 }
 
 .headInfo {
@@ -84,6 +89,7 @@ export default {
 }
 
 .logout {
+  white-space: nowrap; /*强制不换行*/
   cursor: pointer;
   position: absolute;
   padding: .3rem;

@@ -139,7 +139,6 @@ export default {
     }).then(res => {
       // console.log(res)
       this.music_data = res.data;
-      console.log(res.data)
       let date = [];
       for (let i in res.data) {
         date.push(res.data[i].datetime.slice(0, 10))

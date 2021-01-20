@@ -202,7 +202,7 @@ export default {
       let audio = this.$refs.audio;
       this.timer = setInterval(function () {
         if (audio.ended) {
-          clearInterval(timer) // 清空计时器
+          clearInterval(this.timer) // 清空计时器
         } else {
           let ratio = audio.currentTime / audio.duration;
           $('.Mbar').css('width', ratio * 100, '%');
@@ -243,8 +243,9 @@ export default {
 
 /*musicStart*/
 .musicBar {
-  cursor: pointer;
+  /*cursor: pointer;*/
   margin: .2rem;
+  width: 12rem;
   height: 3.5rem;
   border-radius: 10px;
   /*background-color: rgba(97, 123, 136, .7);*/
@@ -260,13 +261,12 @@ export default {
   position: absolute;
 }
 
-.musicBox {
-  margin: 10px 10px;
-}
-
 .Mpic {
+  cursor: pointer;
+  margin-left: 10px;
   background-size: 100%;
-  background-image: url("http://p2.music.126.net/YWeuBX08R4Lq8hLdpJGtmA==/109951164957278318.jpg?param=130y130");
+  /*默认图*/
+  background-image: url("http://d.musicapp.migu.cn/prod/file-service/file-down/b1899d500dda5db2da11df3efc89cba6/5513f311e612912ed77276103466308a/5e12f79f22e5e7b3f65abddebd9842e8");
   top: 0px;
   position: absolute;
   background-color: white;
@@ -321,6 +321,7 @@ export default {
   height: 1rem;
   color: #cfcfcf;
   font-weight: bold;
+  padding-top: .5em;
   float: right;
   margin-left: 4vw;
   animation: move ease .5;
@@ -370,10 +371,11 @@ export default {
 }
 
 .Mlist {
+  cursor: pointer;
   overflow-y: scroll;
   position: relative;
   z-index: -1;
-  margin-top: 60px;
+  top:60px;
   border-radius: 10px;
   width: 300px;
   height: 400px;
