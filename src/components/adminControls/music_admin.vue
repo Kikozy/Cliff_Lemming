@@ -17,6 +17,11 @@
         <el-table-column prop="name" label="歌名" width="100"></el-table-column>
         <el-table-column prop="singer" label="歌手" width="100"></el-table-column>
         <el-table-column prop="play_url" label="播放地址" width="500"></el-table-column>
+        <el-table-column label="图片地址" width="130">
+          <template slot-scope="scope">
+            <img class="musci_pic" :src="scope.row.pic_url">
+          </template>
+        </el-table-column>
         <el-table-column label="操作" width="120">
           <template slot-scope="scope">
             <el-button type="text" size="small" @click="show = 2;NewMusic_info(scope.row)">修改</el-button>
@@ -30,7 +35,7 @@
         <NewMusic_info :info="music_info" :mode="1"/>
       </div>
       <div v-else-if="show === 2" class="MusicFrom">
-<!--   :info="music_info"  把数据传给子组件  命名为info -->
+        <!--   :info="music_info"  把数据传给子组件  命名为info -->
         <NewMusic_info :info="music_info" :mode="2"/>
       </div>
     </transition>
@@ -55,25 +60,25 @@ export default {
       datetime: [],
       music_data: [],
       show: null,
-      music_info:{
-        id:'',
-        name:'',
-        singer:'',
-        playurl:'',
-        datetime:''
+      music_info: {
+        id: '',
+        name: '',
+        singer: '',
+        playurl: '',
+        datetime: ''
       }
     }
   },
   methods: {
     // 把值装好发给子组件
-    NewMusic_info(info){
-      this.music_info={
-        id:info.id,
-        name:info.name,
-        playurl:info.play_url,
-        singer:info.singer,
+    NewMusic_info(info) {
+      this.music_info = {
+        id: info.id,
+        name: info.name,
+        playurl: info.play_url,
+        singer: info.singer,
         datetime: info.datetime,
-        picurl:''
+        picurl: info.pic_url
       }
     },
     // 筛选
@@ -81,7 +86,7 @@ export default {
       return row.datetime;
     },
     filterTag(value, row) {
-      return row.datetime.slice(0,10) === value;
+      return row.datetime.slice(0, 10) === value;
     },
     ///////////////////////
     music_del(id, name) {
@@ -136,15 +141,15 @@ export default {
       this.music_data = res.data;
       console.log(res.data)
       let date = [];
-      for (let i in res.data){
-        date.push(res.data[i].datetime.slice(0,10))
+      for (let i in res.data) {
+        date.push(res.data[i].datetime.slice(0, 10))
       }
       // new Set();ES6的去重
       let norepeatdate = new Set(date)
       // ... 扩展 运算
       norepeatdate = [...norepeatdate]
-      for (let i in norepeatdate){
-        this.datetime.push({value:norepeatdate[i],text:norepeatdate[i]})
+      for (let i in norepeatdate) {
+        this.datetime.push({value: norepeatdate[i], text: norepeatdate[i]})
       }
     }).catch(err => {
       console.log('===musicControl Err!!===', err)
@@ -155,11 +160,15 @@ export default {
 </script>
 
 <style scoped>
-.MusicFrom{
+.MusicFrom {
   position: fixed;
   z-index: 999;
   right: 40%;
   top: 20%;
+}
 
+.musci_pic {
+  width: 100px;
+  /*height: 20px;*/
 }
 </style>

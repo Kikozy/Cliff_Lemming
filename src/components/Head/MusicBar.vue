@@ -2,7 +2,7 @@
   <div class="musicBar" @mouseleave="show=false">
     <div class="musicBox">
       <div class="Mpic" @click="show =!show">
-        <img src="">
+        <img :src='music_url.pic'>
       </div>
       <div class="MusicControl">
         <div class="Mname" :title="music_url['singer']">
@@ -77,7 +77,8 @@ export default {
       this.music_url = ({
         name: res.data[0]['name'],
         singer: res.data[0]['singer'],
-        url: res.data[0]['play_url']
+        url: res.data[0]['play_url'],
+        pic:res.data[0]['pic_url']
       })
       this.music_data = res.data
     }).catch(err => {
@@ -91,7 +92,8 @@ export default {
       this.music_url = ({
         name: this.music_data[index]['name'],
         singer: this.music_data[index]['singer'],
-        url: this.music_data[index]['play_url']
+        url: this.music_data[index]['play_url'],
+        pic: this.music_data[index]['pic_url']
       })
       if (audio.paused || audio.play) {
         audio.play();
@@ -146,7 +148,8 @@ export default {
       this.music_url = ({
         name: this.music_data[num]['name'],
         singer: this.music_data[num]['singer'],
-        url: this.music_data[num]['play_url']
+        url: this.music_data[num]['play_url'],
+        pic: this.music_data[num]['pic_url']
       })
       if (audio.paused || audio.play) {
         audio.play();
@@ -176,6 +179,7 @@ export default {
         name: this.music_data[num]['name'],
         singer: this.music_data[num]['singer'],
         url: this.music_data[num]['play_url'],
+        pic: this.music_data[num]['pic_url']
       });
       if (audio.paused || audio.play) {
         audio.play();
@@ -271,6 +275,12 @@ export default {
   width: 30%;
   float: left;
   box-shadow: 0px 5px 5px rgba(0, 0, 0, .5);
+}
+
+.Mpic img{
+  position: absolute;
+  width: 100%;
+  border-radius: 50%;
 }
 
 .Mpic:after {
