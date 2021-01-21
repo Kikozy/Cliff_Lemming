@@ -110,7 +110,6 @@ export default {
 
 <style scoped>
 .Blog_li {
-  /*background-color: #252836;*/
   margin-bottom: 1.5rem;
   width: 55vw;
   min-width: 20rem;

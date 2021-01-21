@@ -6,7 +6,7 @@
     </div>
     <div class="articleTable">
       <el-table :data="article_info" border height="100%">
-        <el-table-column type="expand">
+        <el-table-column label="文章详情" width="50" type="expand">
           <template slot-scope="prop">
             <el-form label-position="left" inline class="demo-table-expand">
               <el-form-item label="文章内容">
@@ -18,14 +18,9 @@
         <el-table-column type="index" label="序号" width="50"></el-table-column>
         <el-table-column prop="id" label="id" width="50"></el-table-column>
         <el-table-column prop="pushDate" label="添加日期" width="100"></el-table-column>
-        <el-table-column prop="changeDate" label="修改日期" width="100"></el-table-column>
+        <el-table-column prop="changeDate" label="最近编辑时间" width="200"></el-table-column>
         <el-table-column prop="title" label="标题" width="200"></el-table-column>
-        <el-table-column prop="content" label="内容" width="300">
-          <template slot-scope="scope">
-            <!--substr 只显示0,40的字符，超出显示...-->
-            <p v-html="scope.row.content.substr(0,40)+'...'"></p>
-          </template>
-        </el-table-column>
+        <el-table-column prop="click" label="点击量" width="50"></el-table-column>
         <el-table-column label="操作" width="150">
           <template slot-scope="scope">
             <el-button type="text" size="small" @click="show = 2;New_article(scope.row)">修改</el-button>

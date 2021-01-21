@@ -224,7 +224,6 @@ export default {
   box-shadow: 2px 2px 2px #000;
   color: #cfcfcf;
 }
-
 /deep/ pre .operator {
   background: transparent;
 }
