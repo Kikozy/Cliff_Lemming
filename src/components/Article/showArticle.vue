@@ -31,7 +31,8 @@ export default {
       title: '',
       content: this.value,
       pushDate: '',
-      clickNum: ''
+      clickNum: '',
+      changeDate: ''
     }
   },
   methods: {
@@ -39,7 +40,25 @@ export default {
       this.$router.push('/home')
       // $('html,body').animate({scrollTop: $(".HomeContent").offset().top - 100}, 500)
     },
-    // 外部地址跳转进来的
+    // 本地没有就存
+    matchTime(id) {
+      let oldDate = this.changeDate;
+      request({
+        url: '/get_newTime',
+        method: 'POST',
+        data: {
+          id: id
+        }
+      }).then(res => {
+        // 判断旧时间和新时间，来获取最新文章文章
+        if (res.data.date !== oldDate) {
+          this.getArticle(id)
+        }
+      }).catch(err => {
+        console.log(err)
+      })
+
+    },
     getArticle(id) {
       request({
         url: '/article_show',
@@ -50,9 +69,21 @@ export default {
       }).then(res => {
         this.title = res.data[0].title
         this.content = res.data[0].content
+        this.clickNum = res.data[0].click
         this.pushDate = res.data[0].pushDate
+        this.changeDate = res.data[0].changeDate
+        // 存进本地
+        let localStrange_article = {
+          'id': id,
+          'title': this.title,
+          'content': this.content,
+          'pushDate': this.pushDate,
+          'clickNum': this.clickNum,
+          'changeDate': this.changeDate
+        }
+        localStorage.setItem(res.data[0].id, JSON.stringify(localStrange_article));
         // 其他地方跳转过来的，动态增加title
-        this.$router.push({query: {...this.$route.query, title: res.data[0].title}})
+        this.$router.push({query: {...this.$route.query, title: res.data[0].title, clickNum: res.data[0].click}})
         $('html,body').animate({scrollTop: $(".HomeContent").offset().top - 100}, 500)
       }).catch(err => {
         this.$router.push('/404')
@@ -60,20 +91,22 @@ export default {
     },
     hasArticle() {
       // 接收blog传来query.id
-      // 判断本地是否有，减少重复请求
+      // 判断本地是否有，有的话就取本地的内容，减少重复请求
+      let clickNum = this.$route.query.clickNum;
       let id = parseInt(this.$route.query.id);
-      if (JSON.parse(localStorage.getItem('article')) === null) {
+      if (JSON.parse(localStorage.getItem(id)) === null) {
         this.getArticle(id)
       } else {
-        let local_article = JSON.parse(localStorage.getItem('article'))
-        if (local_article.id !== id) {
-          this.getArticle(id)
-        } else {
-          this.title = local_article.title
-          this.content = local_article.content
-          this.pushDate = local_article.pushDate
-          this.clickNum = local_article.clickNum
-        }
+        let local_article = JSON.parse(localStorage.getItem(id))
+        this.title = local_article.title
+        this.content = local_article.content
+        this.pushDate = local_article.pushDate
+        this.changeDate = local_article.changeDate
+        this.clickNum = clickNum
+        // 把路径也存最新的点击量
+        this.$router.push({query: {...this.$route.query, title: this.title, clickNum: clickNum}})
+        // 对比时间
+        this.matchTime(id)
       }
     },
     readNum() {
@@ -182,6 +215,18 @@ export default {
   width: 52vw;
   display: inline-block;
   color: white;
+}
+
+/deep/ pre {
+  border-radius: 10px;
+  background-color: #0c121a;
+  text-shadow: 1px 1px 1px #000;
+  box-shadow: 2px 2px 2px #000;
+  color: #cfcfcf;
+}
+
+/deep/ pre .operator {
+  background: transparent;
 }
 
 @media screen and (max-width: 600px) {

@@ -2,7 +2,7 @@
   <div>
     <div class="data_info">
       <div class="articleCont BaseStyle">总{{ article_info.length }}篇</div>
-      <div id="add_article" class="add_article articleMove" @click="show =! show;addArticle()">添加文章</div>
+      <div id="add_article" class="add_article articleMove" @click="show = 1">添加文章</div>
     </div>
     <div class="articleTable">
       <el-table :data="article_info" border height="100%">
@@ -28,15 +28,20 @@
         </el-table-column>
         <el-table-column label="操作" width="150">
           <template slot-scope="scope">
-            <el-button type="text" size="small" @click="">修改</el-button>
+            <el-button type="text" size="small" @click="show = 2;New_article(scope.row)">修改</el-button>
             <el-button type="text" size="small" @click="post_del(scope.row.id,scope.row.title)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
     </div>
     <transition name="showUp">
-      <div v-if="show" class="addArticle">
-        <article_write/>
+<!--   添加文章   -->
+      <div v-if="show === 1" class="addArticle">
+        <article_write :article="article" :mode="1"/>
+      </div>
+<!--   修改文章   -->
+      <div v-if="show === 2" class="addArticle">
+        <article_write :article="article" :mode="2"/>
       </div>
     </transition>
   </div>
@@ -56,7 +61,13 @@ export default {
   data() {
     return {
       article_info: [],
-      show: false
+      show: null,
+      article:{
+        title:'',
+        id:'',
+        content:'',
+        datetime:''
+      }
     }
   },
   created() {
@@ -67,20 +78,20 @@ export default {
       }
     }).then(res => {
       this.article_info = res.data[0]
+      console.log(this.article_info)
     }).catch(err => {
       console.log(err)
     })
   },
   methods: {
-    // addArticle() {
-    //   if (this.show === false) {
-    //     $('.iscolor').animate({width: '0%'}, 500);
-    //     $('.add_article').css('color', '#cfcfcf')
-    //   } else if (this.show === true) {
-    //     $('.iscolor').animate({width: '100%'}, 200);
-    //     $('.add_article').css('color', "#000000")
-    //   }
-    // },
+    New_article(info){
+      this.article={
+        title: info.title,
+        id:info.id,
+        datetime:info.datetime,
+        content:info.content
+      }
+    },
     post_del(id,title){
       request({
         url:'/article_del',
@@ -89,9 +100,15 @@ export default {
           code:'LemmingArticleDel069'
         }
       }).then(res=>{
-        console.log(res)
-        this.reload()
+        this.reload();
+        this.$message({
+          message:title+' 删除成功！',
+          type:'success'
+        })
       }).catch(err=>{
+        this.$message.error({
+          message:title+' 删除失败！请查看控制台打印'
+        })
         console.log(err)
       })
 

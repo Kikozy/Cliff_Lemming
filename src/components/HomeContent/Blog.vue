@@ -2,16 +2,16 @@
   <div class="blogNews">
     <ul class="Blogs" v-for="(item,index) in data">
       <li class="Blog_li">
-        <h1 class="Blog_title" @click="showArticle(item.id,item.title,item.content,item.pushDate,item.click)">
+        <h1 class="Blog_title" @click="showArticle(item.id,item.title,item.click)">
           <img id="dog" :src="require('../../assets/ICON/dogs/'+index+'.png')" alt="">
           {{ item.title }}
         </h1>
         <div class="Blog_info">
-          <div class="Blog_img" @click="showArticle(item.id,item.title,item.content,item.pushDate,item.click)">
+          <div class="Blog_img" @click="showArticle(item.id,item.title,item.click)">
             <img src="https://p.pstatp.com/origin/137560001eb95836ce26a.jpg">
           </div>
           <div class="BlogContent">
-            <p class="Blog_content" v-html="item.content.substr(0,300)+'...'"></p>
+            <p class="Blog_content" v-html="item.content"></p>
             <div class="blogOther">
               <p class="Blog_pushDate blogOtherStyle">{{ item.pushDate }}</p>
               <p class="blogOtherStyle iconfont icon-liulan" title="点击量"> {{ item.click }}</p>
@@ -42,30 +42,46 @@ export default {
       data: []
     }
   },
-  computed: {
-    dogUrl(index) {
-      console.log(index)
-    }
-  },
   methods: {
-    showArticle(id, title, content, pushDate, clickNum) {
-      $('html,body').animate({scrollTop: $(".HomeContent").offset().top - 100}, 500)
-      let localStrange_article = {
-        'id': id,
-        'title': title,
-        'content': content,
-        'pushDate': pushDate,
-        'clickNum': clickNum
+    // 清除富文本标签
+    removeTag(data) {
+      for (let i in data){
+        // console.log( data[i].content.replace(/<[^>]+>/g, "").replace(/\n/, "").replace(/&nbsp;/, "").slice(0,300));
+        this.data[i].content = data[i].content
+            .replace(/<[^>]+>/g, "")
+            .replace(/\n/, "")
+            .replace(/&nbsp;/, "")
+            .slice(0,300)+'...';
       }
-      // 存进本地
-      localStorage.removeItem('article')
-      localStorage.setItem('article', JSON.stringify(localStrange_article));
+    },
+    get_data() {
+      // 获取一页博客
+      request({
+        url: '/article_show',
+        params: {
+          code: 'article069',
+          page: 0
+        }
+      }).then(res => {
+        this.data = res.data[0] //数据
+        this.removeTag(this.data)
+        let page = res.data[1].length //传来的数据数量
+        // parseInt取整型不要余数
+        // 取页码：如果数据除余数不等于0，那么就除10加1；如果等于0，那么就除10不加1
+        this.page = page % 10 !== 0 ? parseInt(page / 10) + 1 : parseInt(page / 10) + 1
+      }).catch(err => {
+        console.log('===jianshu ERR===', err)
+      });
+    },
+    showArticle(id, title,click) {
+      $('html,body').animate({scrollTop: $(".HomeContent").offset().top - 100}, 500)
       this.$router.push({
         path: '/article',
         // 传id过去
         query: {
           id: id,
-          title: title
+          title: title,
+          clickNum:click
         }
       })
     },
@@ -77,8 +93,8 @@ export default {
           page: page - 1
         }
       }).then(res => {
-        console.log(res.data[0])
         this.data = res.data[0] //数据
+        this.removeTag(this.data);
         $('html,body').animate({scrollTop: $(".HomeContent").offset().top - 100}, 500)
       }).catch(err => {
         console.log(err);
@@ -86,24 +102,8 @@ export default {
     }
   },
   created() {
-    // 获取一页博客
-    request({
-      url: '/article_show',
-      params: {
-        code: 'article069',
-        page: 0
-      }
-    }).then(res => {
-      // console.log(res.data[0]);
-      this.data = res.data[0] //数据
-      let page = res.data[1].length //传来的数据数量
-      // parseInt取整型不要余数
-      // 取页码：如果数据除余数不等于0，那么就除10加1；如果等于0，那么就除10不加1
-      this.page = page % 10 !== 0 ? parseInt(page / 10) + 1 : parseInt(page / 10) + 1
-    }).catch(err => {
-      console.log('===jianshu ERR===', err)
-    });
-  }
+    this.get_data()
+  },
 }
 </script>
 
@@ -151,12 +151,12 @@ export default {
   border-radius: 10px;
 }
 
-.Blog_img>img{
+.Blog_img > img {
   box-shadow: 0 0 0 rgba(13, 17, 23, .5);
-  transition: ease transform .3s,ease box-shadow .3s;
+  transition: ease transform .3s, ease box-shadow .3s;
 }
 
-.Blog_li:hover .Blog_img>img {
+.Blog_li:hover .Blog_img > img {
   transform: scale(1.05);
   box-shadow: 3px 3px 10px rgba(13, 17, 23, .5);
 }
@@ -250,12 +250,12 @@ export default {
   float: left;
   margin: .5rem;
   padding: .6rem;
-  transition:box-shadow ease .7s, background-color ease .3s;
+  transition: box-shadow ease .7s, background-color ease .3s;
 }
 
 .Blog_page > li:hover {
   background-color: #017ca5;
-  box-shadow:1px 1px 1px rgba(255, 255, 255, 0.05) inset, 0 0 10px #017ca5;
+  box-shadow: 1px 1px 1px rgba(255, 255, 255, 0.05) inset, 0 0 10px #017ca5;
 }
 
 @media screen and (max-width: 1200px) {
