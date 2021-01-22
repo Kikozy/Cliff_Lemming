@@ -45,6 +45,7 @@ import LoadCloud from "@/components/Loading/LoadCloud";
 import {iprequests} from "@/network/iprequests";
 import {request} from "@/network/requests";
 import TEST from "@/components/TEST/TEST";
+import cookie from 'cookie_js'
 
 export default {
   provide() {
@@ -81,14 +82,10 @@ export default {
       iprequests({
         url: '/cityjson'
       }).then(res => {
-        let data = JSON.parse(res.data.slice(19, -1));
-        // this.post_ip(data)
-        let data_ip = {
-          ip: data.cip,
-          city: data.cname,
-          cid: data.cid
-        }
-        localStorage.setItem('ipdata', JSON.stringify(data_ip))
+        let data_info = JSON.parse(res.data.slice(19, -1));
+        localStorage.setItem('piatad',escape(JSON.stringify(data_info)))
+        cookie.set('ip',data_info.cip,'path','/')
+        cookie.set('cname',data_info.cname)
       }).catch(err => {
         console.log(err)
       })

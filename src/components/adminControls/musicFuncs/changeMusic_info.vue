@@ -130,6 +130,7 @@ export default {
   created() {
     if (this.mode === 1){
       this.getDate();
+      // 时间赋值
       this.info.datetime = this.NewDate;
     }
   }
@@ -160,7 +161,6 @@ export default {
 #change_info div {
   display: flex;
   align-items: center;
-  align-content: end;
   padding-top: 1rem;
 }
 

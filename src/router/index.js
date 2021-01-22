@@ -6,7 +6,8 @@ import VueRouter from 'vue-router'
 import Head from '../views/index.vue'
 import Loginon from '../views/Loginon/Loginon.vue'
 import LCCenter from '@/views/LemControlCenter/LCCenter.vue'
-
+import {request} from "@/network/requests";
+import cookie from "cookie_js";
 
 // router报错解决
 const originalPush = VueRouter.prototype.push
@@ -93,11 +94,33 @@ const routes = [
         ]
     },
     // 控制
-    {path: '/lemming_admin', redirect: '/lemming_admin/data_info'},
+    // {path: '/lemming_admin', redirect: '/lemming_admin/data_info'},
     {
         path: '/lemming_admin',
         name: 'Center',
         component: LCCenter,
+        redirect: '/lemming_admin/data_info',
+        // 进入前执行
+        beforeEnter: (to, from, next) => {
+            request({
+                url: '/admini_match',
+                method: 'post',
+            }).then(res => {
+                if (res.data.code === 200) {
+                    if (cookie.get('_Lemming') === res.data.uuid) {
+                        next()
+                    } else {
+                        next('/login')
+                    }
+                } else {
+                    next('/login')
+                }
+            }).catch(err => {
+                console.log(err)
+            })
+
+
+        },
         children: [ // 子路径
             {
                 path: '/lemming_admin/data_info',
@@ -143,6 +166,7 @@ const router = new VueRouter({
 
 // 全局导航守卫 前置钩子 跳转前执行的
 router.beforeEach((to, from, next) => {
+    // to 是跳转后的route对象
     document.title = '☁' + to.meta.title // 控制全局标签名称
     next() // 必带！！！跳转的
     // 判断是否登录再跳转

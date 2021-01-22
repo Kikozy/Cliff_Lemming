@@ -76,7 +76,7 @@ export default {
       }
     },
     Post_Msg() {
-      let ip_info = JSON.parse(localStorage.getItem('ipdata'))
+      let piatad = JSON.parse(unescape(localStorage.getItem('piatad')))
       request({
         url: '/msg_save',
         method: 'post',
@@ -84,8 +84,8 @@ export default {
           isopen: this.isopen,
           msgContent: this.msgContent,
           mail: this.mail,
-          ip: ip_info.ip,
-          city: ip_info.city,
+          ip: piatad.cip,
+          city: piatad.cname,
           userid: this.userid,
           code: 'msg_save069'
         }

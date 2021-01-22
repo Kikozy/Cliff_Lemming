@@ -43,13 +43,21 @@ export default {
     post_id_fakedel(id) {
       request({
         url: '/users_del_fake',
-        params: {id}
+        params: {id},
+        method: 'POST'
       }).then(res => {
-        this.reload();
-        this.$message({
-          message: 'id:' + id + '  注销成功!',
-          type: 'success'
-        });
+
+        if (res.data.code === 200) {
+          this.$message({
+            message: 'id:' + id + '  注销成功!',
+            type: 'success'
+          });
+          this.reload();
+        } else {
+          this.$message.error({
+            message: 'id:' + id + '  权限不足!',
+          });
+        }
       }).catch(err => {
         this.$message.error({
           message: 'id:' + id + '  注销失败!',
@@ -61,13 +69,20 @@ export default {
     post_id_realdel(id) {
       request({
         url: '/users_del_real',
-        params: {id}
+        params: {id},
       }).then(res => {
-        this.reload()
-        this.$message({
-          message: 'id:' + id + '  移库成功!',
-          type: "warning"
-        });
+        if (res.data.code === 200) {
+          this.$message({
+            message: 'id:' + id + '  移库成功!',
+            type: "warning"
+          });
+          this.reload()
+        } else {
+          this.$message.error({
+            message: '权限不足！'
+          })
+        }
+
       }).catch(err => {
         this.$message.error({
           message: 'id:' + id + '  移库失败!',

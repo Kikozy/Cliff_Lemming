@@ -1,5 +1,6 @@
 <template>
   <div class="LoginForm">
+
     <div class="loginInput move">
       <img class="iconHead" :src="qq_icon">
       <div class="INPUT" style="--i:5">
@@ -26,7 +27,8 @@
 
 import {request} from "@/network/requests";
 import $ from "jquery";
-
+import md5 from 'js-md5'
+import cookie from "cookie_js"
 
 export default {
   name: "Login",
@@ -57,25 +59,35 @@ export default {
       request({
         method: 'post',
         url: '/user_login',
-        data: this.login_form
+        data: {
+          mail: this.login_form.mail,
+          password: md5(this.login_form.password)
+        }
       }).then(res => {
         if (res.data.code === 609) {
           this.$message({
             message: '管理员登录成功！',
-            type: 'success'
+            type: 'success',
           });
+          // 需要设置路径！！path
+          // document.cookie = '_Lemming=' + res.data.token+'; path=/;'
+          cookie.set('_Lemming',res.data.token,'path','/')
           this.$router.push('/lemming_admin')
         } else if (res.data.code === 200) {
           this.$message({
             message: res.data.data.username + '登录成功！',
             type: 'success'
           });
+          // 存进cookies
+          // document.cookie = 'uuid=' + res.data.data.token
+          cookie.set('uuid',res.data.data.token)
           // 提交到vuex
           let login_infos = {
             username: res.data.data.username,
-            uuid:res.data.data.token,
-            qqHead:this.qq_icon,
-            mail: this.login_form.mail}
+            uuid: res.data.data.token,
+            qqHead: this.qq_icon,
+            mail: this.login_form.mail
+          }
           this.$store.commit('saveLogin', login_infos) //提交
           // this.$store.commit('saveLogin'方法名, login_infos参数)
           this.$router.push('/')
@@ -89,6 +101,7 @@ export default {
         this.$message.error({
           message: '网络出错，请稍后再试！',
         });
+        console.log(err)
       })
     }
   },
@@ -134,7 +147,8 @@ input:valid + h3 {
   color: #737674;
   top: -1rem;
 }
-.LoginForm{
+
+.LoginForm {
   position: relative;
 }
 

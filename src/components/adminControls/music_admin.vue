@@ -45,7 +45,6 @@
 <script>
 import {request} from "@/network/requests";
 import $ from 'jquery';
-import addMusic from "@/components/adminControls/musicFuncs/addMusic";
 import NewMusic_info from "@/components/adminControls/musicFuncs/changeMusic_info";
 
 export default {
