@@ -9,7 +9,8 @@
                 :row-class-name="isopen_style">
         <el-table-column type="index" label="序号" width="50"></el-table-column>
         <el-table-column prop="id" label="id" width="50"></el-table-column>
-        <el-table-column prop="userid" label="用户名" width="100"></el-table-column>
+        <el-table-column prop="user_id" label="用户id" width="80"></el-table-column>
+        <el-table-column prop="article_id" label="文章id" width="80"></el-table-column>
         <el-table-column prop="isopen" label="是否私密💬" width="100"
                          :filters="isopen_value"
                          :filter-method="filterTag"
@@ -20,7 +21,6 @@
         </el-table-column>
         <el-table-column prop="message" label="留言内容" width="400"></el-table-column>
         <el-table-column prop="datetime" label="日期" width="100" sortable></el-table-column>
-        <el-table-column prop="mail" label="邮箱" width="150"></el-table-column>
         <el-table-column label="操作" width="150">
           <template slot-scope="scope">
             <el-button type="text">修改</el-button>
@@ -34,7 +34,6 @@
 
 <script>
 import {request} from "@/network/requests";
-import $ from 'jquery'
 
 export default {
   name: 'MSGS_admin',

@@ -87,7 +87,8 @@ export default {
           ip: piatad.cip,
           city: piatad.cname,
           userid: this.userid,
-          code: 'msg_save069'
+          code: 'msg_save069',
+          article_id : this.$route.query.id
         }
       }).then(res => {
         if (res.data.code === 200) {
@@ -125,10 +126,8 @@ export default {
 <style scoped>
 
 .MSGBOX {
-  width: 30rem;
-  /*box-shadow: 5px 5px 5px rgba(0, 0, 0, .5);*/
   background-color:#0d1117;
-  box-shadow: 1px 1px 1px rgba(255, 255, 255, 0.1) inset, 1px 1px 5px rgba(0, 0, 0, .5);
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, .5);
   border-radius: 10px;
   padding: .5rem;
   position: relative;
@@ -142,10 +141,9 @@ export default {
   background-color: #a0a0a0;
   font-size: 1em;
   resize: none;
-  padding: .5rem;
   border-radius: 10px;
-  width: 29rem;
-  height: 5rem;
+  width: 99%;
+  height: 6rem;
   transition: ease all .3s;
 }
 
@@ -208,7 +206,6 @@ export default {
 }
 
 input {
-  /*border-radius: 10px;*/
   position: absolute;
   background-color: transparent;
   border: none;
@@ -216,7 +213,7 @@ input {
   z-index: 2;
   color: #fff;
   font-weight: bold;
-  width: 9em;
+  width: 25%;
   font-size: 1em;
 }
 
@@ -249,8 +246,8 @@ input:valid {
 }
 
 .avatar > img {
-  width: 95%;
-  height: 100%;
+  width: 3.5rem;
+  height: 3.5rem;
   border-radius: 100%;
 }
 

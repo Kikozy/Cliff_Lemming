@@ -11,24 +11,26 @@ const store = new Vuex.Store({
         mail: '', // 邮箱
         iconHead: '', // 头像
         posted_msg:false,
-        uuid:''
+        uuid:'',
+        userid:''
     },
     // 计算函数
     getters: {},
     // 修改方法
     mutations: {
-
         // 接收登录参数并修改
         saveLogin(state,login_infos){
             state.username = login_infos.username
             state.iconHead = login_infos.qqHead
             state.mail = login_infos.mail
             state.uuid = login_infos.uuid
+            state.userid = login_infos.userid
             let localStorage_info = {
                 'uuid':login_infos.uuid,
                 'username':login_infos.username,
                 'qqHead':login_infos.qqHead,
                 'mail':login_infos.mail,
+                'id':login_infos.userid
             }
             // 存进本地存储
             localStorage.setItem('keepLogin',JSON.stringify(localStorage_info));

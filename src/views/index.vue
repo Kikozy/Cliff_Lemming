@@ -43,7 +43,6 @@ import Banner from '@/components/HomeBanner/Banner';
 import InfoMe from "@/components/HomeContent/InfoMe";
 import LoadCloud from "@/components/Loading/LoadCloud";
 import {iprequests} from "@/network/iprequests";
-import {request} from "@/network/requests";
 import TEST from "@/components/TEST/TEST";
 import cookie from 'cookie_js'
 
@@ -100,7 +99,7 @@ export default {
 /* scoped是局部使用 */
 /*导入外部css*/
 /*阿里巴巴图标*/
-@import 'http://at.alicdn.com/t/font_2290624_fw50t7gl6x.css';
+@import 'http://at.alicdn.com/t/font_2290624_rx9fwk3ah3.css';
 
 .HomeContent {
   padding-top: 3rem;

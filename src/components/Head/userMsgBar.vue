@@ -71,7 +71,10 @@ export default {
 }
 
 .WriteMsg {
-  position: relative;
+  left: 0;
+  width: 30rem;
+  height: 400px;
+  position: absolute;
   top: 4rem;
   right: 12rem;
 }

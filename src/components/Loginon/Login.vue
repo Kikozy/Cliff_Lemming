@@ -49,7 +49,7 @@ export default {
       } else {
         this.qq_icon = ''
       }
-      if (this.login_form.mail.length <= 30 && this.login_form.mail.indexOf('@') >= 0 && this.login_form.mail.indexOf('.') >= 0 && this.login_form.password.length >= 4) {
+      if (this.login_form.mail.length <= 30 && this.login_form.mail.indexOf('@') >= 0 && this.login_form.mail.indexOf('.') >= 0) {
         $(".loginBtn").attr("disabled", false)
       } else {
         $(".loginBtn").attr("disabled", true)
@@ -81,10 +81,12 @@ export default {
           // 存进cookies
           // document.cookie = 'uuid=' + res.data.data.token
           cookie.set('uuid',res.data.data.token)
+          cookie.set('userid',res.data.data.id)
           // 提交到vuex
           let login_infos = {
             username: res.data.data.username,
             uuid: res.data.data.token,
+            userid:res.data.data.id,
             qqHead: this.qq_icon,
             mail: this.login_form.mail
           }

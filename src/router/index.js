@@ -19,12 +19,12 @@ Vue.use(VueRouter)
 // 路由
 const routes = [
     {path: '/TEST1', component: () => import('@/components/TEST/TEST')},
-    //重定向，当访问/路径时，自动跳转到/home
     // 主页
-    {path: '/', redirect: '/home'},
     {
         path: '/',
         component: Head, //非按需求导入（加载慢）
+        //重定向，当访问/路径时，自动跳转到/home
+        redirect: '/home',
         // 子路由
         children: [
             {
@@ -71,13 +71,12 @@ const routes = [
             },
         ]
     },
-
     //默认重定向路径
     // 登录
-    {path: '/loginon', redirect: '/login'}, //默认跳转路径
     {
         path: '/loginon',
         component: Loginon,
+        redirect: '/login',
         children: [ //子路径
             {
                 path: '/login',
@@ -118,8 +117,6 @@ const routes = [
             }).catch(err => {
                 console.log(err)
             })
-
-
         },
         children: [ // 子路径
             {

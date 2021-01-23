@@ -15,7 +15,7 @@
           </div>
           <div @click="Mplay">
             <p class="Mpause Mhide iconfont icon-ai07"></p>
-            <p class="Mplay iconfont icon-icon_play"></p>
+            <p class="Mplay iconfont icon-play"></p>
           </div>
           <div @click="Mnext">
             <p class="Mnext iconfont icon-shangyishou"></p>

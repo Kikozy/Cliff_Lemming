@@ -4,10 +4,10 @@
       <li class="msg" v-for="(msg,index) in this.Msg_data">
         <div class="msgHead">
           <img class="head_icon" :src="matchHead(msg.mail)" alt="图片">
-          <!--    Msg_data.length-index倒序      -->
           <h3>{{ msg.userid }}</h3>
         </div>
         <div class="msgBody">
+          <!--    Msg_data.length-index倒序      -->
           <p class="num">#{{ Msg_data.length - index }}</p>
           <p class="message">{{ msg.message }}</p>
           <p class="datetime">{{ msg.datetime }}</p>
@@ -45,7 +45,8 @@ export default {
         url: 'msgs_show',
         method: 'GET',
         params: {
-          code: 'getMsgs069'
+          code: 'getMsgs069',
+          num:100
         }
       }).then(res => {
         //   reverse()倒序

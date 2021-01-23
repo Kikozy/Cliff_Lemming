@@ -14,8 +14,8 @@
             <p class="Blog_content" v-html="item.content"></p>
             <div class="blogOther">
               <p class="Blog_pushDate blogOtherStyle">{{ item.pushDate }}</p>
-              <p class="blogOtherStyle iconfont icon-liulan" title="点击量"> {{ item.click }}</p>
-              <p class="blogOtherStyle iconfont icon-zuozhe"> Lemming</p>
+              <p class="blogOtherStyle iconfont icon-liulan1" title="点击量"> {{ item.click }}</p>
+              <p class="blogOtherStyle iconfont icon-zuozhe1"> Lemming</p>
             </div>
           </div>
         </div>

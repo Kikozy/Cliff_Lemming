@@ -9,17 +9,22 @@
       <p class="clickNum iconfont icon-liulan">{{ this.clickNum }}</p>
       <p class="author iconfont icon-zuozhe">Lemming</p>
     </div>
-
     <p class="article" v-html="this.content"></p>
+    <div>
+      <comment/>
+    </div>
   </div>
 </template>
 
 <script>
 import $ from "jquery";
 import {request} from "@/network/requests";
+import Comment from "@/components/Article/artilce_message/comment";
+
 
 export default {
   name: "showArticle",
+  components: {Comment},
   props: {
     value: {
       type: String,
@@ -32,9 +37,10 @@ export default {
       content: this.value,
       pushDate: '',
       clickNum: '',
-      changeDate: ''
+      changeDate: '',
     }
   },
+
   methods: {
     goback() {
       this.$router.push('/home')
@@ -79,7 +85,7 @@ export default {
           'content': this.content,
           'pushDate': this.pushDate,
           'clickNum': this.clickNum,
-          'changeDate': this.changeDate
+          'changeDate': this.changeDate,
         }
         localStorage.setItem(res.data[0].id, JSON.stringify(localStrange_article));
         // 其他地方跳转过来的，动态增加title
@@ -224,9 +230,11 @@ export default {
   box-shadow: 2px 2px 2px #000;
   color: #cfcfcf;
 }
+
 /deep/ pre .operator {
   background: transparent;
 }
+
 
 @media screen and (max-width: 600px) {
   .articleContent {
