@@ -93,6 +93,11 @@ export default {
       }).then(res => {
         if (res.data.code === 200) {
           console.log('留言成功！');
+        }else if(res.data.code === 403){
+          this.$router.push('/login')
+          this.$message.error({
+            message:'登陆一下吧！'
+          })
         }
       }).catch(err => {
         this.$message.error({
