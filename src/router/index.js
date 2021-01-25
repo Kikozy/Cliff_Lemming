@@ -145,6 +145,11 @@ const routes = [
                 component: () => import('@/components/adminControls/users_admin.vue')
             },
             {
+                path: '/lemming_admin/video_admin',
+                meta: {title: '视频管理'},
+                component: () => import('@/components/adminControls/video_admin.vue')
+            },
+            {
                 path: '/lemming_admin/postInfo_admin',
                 meta: {title: 'ip信息'},
                 component: () => import('@/components/adminControls/ip_admin.vue')

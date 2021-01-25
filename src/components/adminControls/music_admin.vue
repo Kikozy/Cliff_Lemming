@@ -19,7 +19,9 @@
         <el-table-column prop="play_url" label="播放地址" width="500"></el-table-column>
         <el-table-column label="图片地址" width="130">
           <template slot-scope="scope">
-            <img class="musci_pic" :src="scope.row.pic_url">
+            <viewer>
+              <img class="musci_pic" :src="scope.row.pic_url">
+            </viewer>
           </template>
         </el-table-column>
         <el-table-column label="操作" width="120">

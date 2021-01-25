@@ -13,7 +13,7 @@
         <el-table-column prop="ip" label="ip地址" width="150"></el-table-column>
         <el-table-column prop="city" label="城市" width="150"></el-table-column>
         <el-table-column prop="from" label="请求内容" width="100"></el-table-column>
-        <el-table-column prop="datetime" label="日期" width="100" sortable
+        <el-table-column prop="datetime" label="日期" width="180" sortable
                          :filters="norepeatdate"
                          :filter-method="filterTag" :formatter="formatter"
         ></el-table-column>
