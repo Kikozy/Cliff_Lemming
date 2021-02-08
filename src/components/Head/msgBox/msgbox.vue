@@ -131,9 +131,8 @@ export default {
 <style scoped>
 
 .MSGBOX {
-  background-color:#0d1117;
-  box-shadow: 1px 1px 5px rgba(0, 0, 0, .5);
-  border-radius: 10px;
+  /* background-color:#0d1117; */
+  /* box-shadow: 1px 1px 5px rgba(0, 0, 0, .5); */
   padding: .5rem;
   position: relative;
 }
@@ -143,11 +142,12 @@ export default {
 }
 
 .msgArea {
-  background-color: #a0a0a0;
+  background-color: rgb(219, 219, 219);
   font-size: 1em;
+  padding: 10px;
   resize: none;
-  border-radius: 10px;
-  width: 99%;
+  border-radius: 5px;
+  width: 97%;
   height: 6rem;
   transition: ease all .3s;
 }
@@ -189,8 +189,8 @@ export default {
   left: .5rem;
   padding: .2rem;
   border-radius: 5px;
-  background-color: #017ca5;
-  box-shadow: 0 0 10px #017ca5;
+  background-color: #262b34;
+  box-shadow: 0 0 10px #262b34;
 }
 
 .userInfo {
@@ -268,12 +268,12 @@ img[src=""], img:not([src]) {
   flex: 1.5;
 }
 
-/deep/ .el-switch__label {
+::v-deep .el-switch__label {
   color: #a0a0a0;
   font-weight: bold;
 }
 
-/deep/ .el-switch__label * {
+::v-deep .el-switch__label * {
   line-height: 1.1rem;
 }
 

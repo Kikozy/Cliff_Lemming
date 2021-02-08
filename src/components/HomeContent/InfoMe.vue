@@ -46,7 +46,7 @@ export default {
   width: 18vw;
   min-width: 10rem;
   height: 25rem;
-  background-color: #0d1117;
+  background-color: #171b21;
   box-shadow: 15px 15px 40px rgba(0, 0, 0, .3);
 }
 

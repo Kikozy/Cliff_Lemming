@@ -13,13 +13,13 @@
         </transition>
       </div>
     </div>
-    <userMsgBar title="交流一下"/>
+    <!-- <userMsgBar title="交流一下"/> -->
     <itemHtml/>
   </div>
 </template>
 
 <script>
-import userMsgBar from "@/components/Head/userMsgBar";
+// import userMsgBar from "@/components/Head/userMsgBar";
 import itemHtml from "@/components/Head/itemHtml";
 import logined from "@/components/Head/logined/logined";
 import Login from "@/components/Head/loginBar";
@@ -27,7 +27,7 @@ import Login from "@/components/Head/loginBar";
 export default {
   name: "Header",
   components: {
-    userMsgBar,
+    // userMsgBar,
     itemHtml,
     logined,
     Login

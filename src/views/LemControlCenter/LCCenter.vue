@@ -1,6 +1,6 @@
 <template>
   <div id="Lcenter">
-    <input class="showLeft" type="checkbox">
+    <input class="showLeft" type="checkbox" />
     <span id="showLeft_icon" class="iconfont icon-all"></span>
     <div class="center_left_box">
       <div id="admin_toback" class="admin_toback" @click="center_toback">
@@ -8,36 +8,75 @@
       </div>
       <h2 class="centerTitle"></h2>
       <div class="routerBox">
-        <router-link :class="{activeBtn:activeNum===0}" class="routerBtn Btn_hover" to="/lemming_admin/data_info">
+        <router-link
+          :class="{ activeBtn: activeNum === 0 }"
+          class="routerBtn Btn_hover"
+          to="/lemming_admin/data_info"
+        >
           <div @click="isactive(0)" class="compBtn">
             <i class="iconfont icon-data"></i>
-            <h2> 数据信息</h2>
+            <h2>数据信息</h2>
           </div>
         </router-link>
         <span class="routerBtn">DATA</span>
-        <router-link :class="{activeBtn:activeNum===1}" class="routerBtn Btn_hover" to="/lemming_admin/users_admin">
-          <div @click="isactive(1)" class="compBtn"><i class="iconfont icon-users"></i>
-            <h2> 用户管理</h2></div>
+        <router-link
+          :class="{ activeBtn: activeNum === 1 }"
+          class="routerBtn Btn_hover"
+          to="/lemming_admin/users_admin"
+        >
+          <div @click="isactive(1)" class="compBtn">
+            <i class="iconfont icon-users"></i>
+            <h2>用户管理</h2>
+          </div>
         </router-link>
-        <router-link :class="{activeBtn:activeNum===2}" class="routerBtn Btn_hover" to="/lemming_admin/article_admin">
-          <div @click="isactive(2)" class="compBtn"><i class="iconfont icon-article"></i>
-            <h2> 文章管理</h2></div>
+        <router-link
+          :class="{ activeBtn: activeNum === 2 }"
+          class="routerBtn Btn_hover"
+          to="/lemming_admin/article_admin"
+        >
+          <div @click="isactive(2)" class="compBtn">
+            <i class="iconfont icon-article"></i>
+            <h2>文章管理</h2>
+          </div>
         </router-link>
-        <router-link :class="{activeBtn:activeNum===3}" class="routerBtn Btn_hover" to="/lemming_admin/userMsg_admin">
-          <div @click="isactive(3)" class="compBtn"><i class="iconfont icon-msgs"></i>
-            <h2> 留言管理</h2></div>
+        <router-link
+          :class="{ activeBtn: activeNum === 3 }"
+          class="routerBtn Btn_hover"
+          to="/lemming_admin/userMsg_admin"
+        >
+          <div @click="isactive(3)" class="compBtn">
+            <i class="iconfont icon-msgs"></i>
+            <h2>留言管理</h2>
+          </div>
         </router-link>
-        <router-link :class="{activeBtn:activeNum===4}" class="routerBtn Btn_hover" to="/lemming_admin/music_admin">
-          <div @click="isactive(4)" class="compBtn"><i class="iconfont icon-music"></i>
-            <h2> 音乐管理</h2></div>
+        <router-link
+          :class="{ activeBtn: activeNum === 4 }"
+          class="routerBtn Btn_hover"
+          to="/lemming_admin/music_admin"
+        >
+          <div @click="isactive(4)" class="compBtn">
+            <i class="iconfont icon-music"></i>
+            <h2>音乐管理</h2>
+          </div>
         </router-link>
-        <router-link :class="{activeBtn:activeNum===5}" class="routerBtn Btn_hover" to="/lemming_admin/video_admin">
-          <div @click="isactive(5)" class="compBtn"><i class="iconfont icon-video"></i>
-            <h2> 视频管理</h2></div>
+        <router-link
+          :class="{ activeBtn: activeNum === 5 }"
+          class="routerBtn Btn_hover"
+          to="/lemming_admin/video_admin"
+        >
+          <div @click="isactive(5)" class="compBtn">
+            <i class="iconfont icon-video"></i>
+            <h2>视频管理</h2>
+          </div>
         </router-link>
         <span class="routerBtn">OTHERS</span>
-        <router-link :class="{activeBtn:activeNum===6}" class="routerBtn Btn_hover" to="/lemming_admin/postInfo_admin">
-          <div @click="isactive(6)" class="compBtn"><i class="iconfont icon-earth"></i>
+        <router-link
+          :class="{ activeBtn: activeNum === 6 }"
+          class="routerBtn Btn_hover"
+          to="/lemming_admin/postInfo_admin"
+        >
+          <div @click="isactive(6)" class="compBtn">
+            <i class="iconfont icon-earth"></i>
             <h2>ip信息</h2>
           </div>
         </router-link>
@@ -46,51 +85,51 @@
     </div>
     <div class="center_right_info base_linear">
       <!--      // 局部刷新-->
-      <router-view v-if="isRouteAlive"/>
+      <router-view v-if="isRouteAlive" />
     </div>
   </div>
 </template>
 
 <script>
-import $ from 'jquery'
+import $ from "jquery";
 
 export default {
   name: "LCCenter",
   provide() {
     return {
       // 局部刷新
-      reload: this.reload
-    }
+      reload: this.reload,
+    };
   },
   data() {
     return {
       // 局部刷新
       activeNum: 0,
-      isRouteAlive: true
-    }
+      isRouteAlive: true,
+    };
   },
   methods: {
     isactive(num) {
-      $('.routerBtn').removeClass('active');
-      this.activeNum = num
+      $(".routerBtn").removeClass("active");
+      this.activeNum = num;
     },
     center_toback() {
-      this.$router.push('/')
+      this.$router.push("/");
     },
     // 局部刷新
     reload() {
-      this.isRouteAlive = false
+      this.isRouteAlive = false;
       this.$nextTick(() => {
-        this.isRouteAlive = true
-      })
-    }
-  }
-}
+        this.isRouteAlive = true;
+      });
+    },
+  },
+};
 </script>
 
 <style scoped>
 /*导入外部css ICON*/
-@import 'http://at.alicdn.com/t/font_2290624_blu3wxu5l5p.css';
+@import "http://at.alicdn.com/t/font_2290624_blu3wxu5l5p.css";
 @import "baseTable.css";
 
 #Lcenter {
@@ -109,10 +148,10 @@ export default {
 }
 
 .admin_toback span {
-  padding: .3rem;
+  padding: 0.3rem;
   border-radius: 10px;
   background-color: #50689a;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, .5);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 .showLeft {
@@ -123,7 +162,7 @@ export default {
   position: absolute;
   display: none;
   z-index: 889;
-  margin: .7rem;
+  margin: 0.7rem;
 }
 
 #showLeft_icon {
@@ -132,7 +171,7 @@ export default {
   pointer-events: none;
   position: absolute;
   z-index: 890;
-  margin: .8rem;
+  margin: 0.8rem;
   width: 3rem;
   border-radius: 10px;
   font-size: 3em;
@@ -147,7 +186,8 @@ export default {
   min-width: 12rem;
   border-radius: 10px;
   height: 98vh;
-  margin: .5rem;
+  margin: 0.5rem;
+  overflow-y: scroll;
 }
 
 .centerTitle {
@@ -164,8 +204,8 @@ export default {
 }
 
 .centerTitle:after {
-  content: 'Lemming';
-  font-size: .8em;
+  content: "Lemming";
+  font-size: 0.8em;
   position: absolute;
   opacity: 50%;
   bottom: 25%;
@@ -177,7 +217,7 @@ export default {
 }
 
 .routerBox span {
-  font-size: .8em;
+  font-size: 0.8em;
 }
 
 .iconfont {
@@ -190,7 +230,7 @@ export default {
   display: flex;
   flex-direction: column;
   margin: 1rem;
-  transition: all .3s ease;
+  transition: all 0.3s ease;
 }
 
 .Btn_hover:hover {
@@ -200,14 +240,13 @@ export default {
 
 .compBtn {
   align-self: center;
-  padding: .5rem 1rem .5rem 1rem;
+  padding: 0.5rem 1rem 0.5rem 1rem;
   display: flex;
 }
 
 .compBtn h2 {
   font-size: 1em;
   line-height: 1.5rem;
-
 }
 
 .activeBtn {
@@ -215,6 +254,7 @@ export default {
   color: #fff;
   border-radius: 6px;
 }
+
 
 /*================== water start ====================*/
 @keyframes move1 {
@@ -237,9 +277,10 @@ export default {
 
 .water {
   position: absolute;
+  pointer-events: none;
+  bottom: 0;
   display: flex;
   justify-content: center;
-  bottom: 0;
   width: 100%;
   height: 20%;
   font-size: 12px;
@@ -253,7 +294,7 @@ export default {
 
 .water::before,
 .water::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
@@ -261,69 +302,69 @@ export default {
   width: 320%;
   height: 50%;
   clip-path: polygon(
-      0% 20%,
-      2% 18%,
-      3% 16%,
-      5% 14%,
-      7% 13%,
-      8% 11%,
-      10% 10%,
-      12% 10%,
-      13% 10%,
-      15% 10%,
-      17% 11%,
-      18% 13%,
-      20% 14%,
-      22% 16%,
-      23% 18%,
-      25% 20%,
-      27% 22%,
-      28% 24%,
-      30% 26%,
-      32% 27%,
-      33% 29%,
-      35% 30%,
-      37% 30%,
-      38% 30%,
-      40% 30%,
-      42% 29%,
-      43% 27%,
-      45% 26%,
-      47% 24%,
-      48% 22%,
-      50% 20%,
-      52% 18%,
-      53% 16%,
-      55% 14%,
-      57% 13%,
-      58% 11%,
-      60% 10%,
-      62% 10%,
-      63% 10%,
-      65% 10%,
-      67% 11%,
-      68% 13%,
-      70% 14%,
-      72% 16%,
-      73% 18%,
-      75% 20%,
-      77% 22%,
-      78% 24%,
-      80% 26%,
-      82% 27%,
-      83% 29%,
-      85% 30%,
-      87% 30%,
-      88% 30%,
-      90% 30%,
-      92% 29%,
-      93% 27%,
-      95% 26%,
-      97% 24%,
-      98% 22%,
-      100% 20%,
-      100% 100%,
-      0% 100%
+    0% 20%,
+    2% 18%,
+    3% 16%,
+    5% 14%,
+    7% 13%,
+    8% 11%,
+    10% 10%,
+    12% 10%,
+    13% 10%,
+    15% 10%,
+    17% 11%,
+    18% 13%,
+    20% 14%,
+    22% 16%,
+    23% 18%,
+    25% 20%,
+    27% 22%,
+    28% 24%,
+    30% 26%,
+    32% 27%,
+    33% 29%,
+    35% 30%,
+    37% 30%,
+    38% 30%,
+    40% 30%,
+    42% 29%,
+    43% 27%,
+    45% 26%,
+    47% 24%,
+    48% 22%,
+    50% 20%,
+    52% 18%,
+    53% 16%,
+    55% 14%,
+    57% 13%,
+    58% 11%,
+    60% 10%,
+    62% 10%,
+    63% 10%,
+    65% 10%,
+    67% 11%,
+    68% 13%,
+    70% 14%,
+    72% 16%,
+    73% 18%,
+    75% 20%,
+    77% 22%,
+    78% 24%,
+    80% 26%,
+    82% 27%,
+    83% 29%,
+    85% 30%,
+    87% 30%,
+    88% 30%,
+    90% 30%,
+    92% 29%,
+    93% 27%,
+    95% 26%,
+    97% 24%,
+    98% 22%,
+    100% 20%,
+    100% 100%,
+    0% 100%
   );
 }
 
@@ -338,7 +379,6 @@ export default {
 }
 
 /*================= water end=====================*/
-
 
 .center_right_info {
   position: absolute;
@@ -355,7 +395,7 @@ export default {
 
   .center_right_info {
     width: 99%;
-    padding: .2rem;
+    padding: 0.2rem;
   }
 
   .showLeft {
@@ -369,7 +409,7 @@ export default {
 
   .center_left_box {
     display: none;
-    margin: .3rem;
+    margin: 0.3rem;
     text-align: center;
     width: 4rem;
     min-width: 4rem;
@@ -392,7 +432,7 @@ export default {
   }
 
   .centerTitle {
-    margin: 0.4rem 0.4rem 2rem .4rem;
+    margin: 0.4rem 0.4rem 2rem 0.4rem;
     top: 4rem;
   }
 
@@ -400,6 +440,4 @@ export default {
     display: none;
   }
 }
-
-
 </style>

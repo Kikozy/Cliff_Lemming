@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="User_comments">
     <h1 class="comment">
       用户评论({{ this.message.length }}条)
     </h1>
@@ -7,13 +7,13 @@
       <div class="write_message">
         <msgbox/>
       </div>
-      <ul v-for="item in this.message">
-        <li>
+      <ul>
+        <li v-for="item in this.message">
           <img :src="getHead(item.mail)" alt="">
           <div class="message_info">
             <p>{{ item.message_userid }}</p>
-            <p>{{ item.message }}</p>
             <p>{{ item.datetime }}</p>
+            <p>{{ item.message }}</p>
           </div>
           <p class="replay">回复</p>
         </li>
@@ -69,15 +69,18 @@ export default {
 </script>
 
 <style scoped>
-
+.User_comments{
+  background-color: #171b21;
+  border-radius: 10px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+}
 .comment {
+  padding: 1rem;
   margin-top: 2rem;
-  text-shadow: 0 0 20px #017ca5;
-  color: #017ca5;
+  color: #FFF;
 }
 
 .user_message {
-  margin-top: 1rem;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -85,22 +88,20 @@ export default {
 }
 
 .write_message {
-  border-radius: 10px;
-  box-shadow: 0 4px 4px #000;
   z-index: 2;
-  /*margin-bottom: 1rem;*/
-  width: 90%;
+  width: 95%;
 }
 
 .user_message ul {
-  width: 88%;
-  margin-bottom: .5rem;
+  width: 90%;
+  margin-top: 2rem;
 }
 
 .user_message ul li {
+  margin-top: .5rem;
   position: relative;
-  box-shadow: 1px 1px 3px #000;
-  background-color: #141b24;
+  /* box-shadow: 1px 1px 3px #000; */
+  /* background-color: #262b34; */
   border-radius: 10px;
   padding: .5rem;
   display: flex;
@@ -119,21 +120,34 @@ export default {
   color: #999999;
   align-self: center;
 }
-
+.message_info p:nth-child(1) {
+  color: #999;
+  padding-left: .4rem;
+  
+}
 .message_info p:nth-child(2) {
+  padding: .4rem;
+  font-size: .5em;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.message_info p:nth-child(3) {
   color: #fff;
   padding: .4rem;
+  font-weight: lighter;
 }
 
 .replay {
   opacity: 0;
-  color: #fff;
+  color: #cfcfcf;
   cursor: pointer;
   background-color: #0077aa;
   display: unset;
   position: absolute;
   padding: .3rem;
   border-radius: 5px;
+  font-weight: bold;
   right: 0;
   bottom: 0;
   margin: .5rem;
@@ -142,10 +156,10 @@ export default {
 }
 
 .user_message ul li:hover .replay {
-  opacity: 100%;
+  opacity:1;
 }
 
 .user_message ul li:hover {
-  background-color: #18212b;
+  background-color: #262b34;
 }
 </style>

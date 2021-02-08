@@ -6,8 +6,8 @@
     </div>
     <div class="articleInfo">
       <p class="articlePushDate">{{ this.pushDate }}</p>
-      <p class="clickNum iconfont icon-liulan">{{ this.clickNum }}</p>
-      <p class="author iconfont icon-zuozhe">Lemming</p>
+      <p class="clickNum  iconfont icon-liulan1">{{ this.clickNum }}</p>
+      <p class="author iconfont icon-zuozhe1">Lemming</p>
     </div>
     <p class="article" v-html="this.content"></p>
     <div>
@@ -187,7 +187,6 @@ export default {
   position: relative;
   font-family: "Microsoft JhengHei UI";
   width: 45vw;
-  float: right;
   padding: .5em;
   font-size: 3vw;
   color: white;
@@ -205,7 +204,7 @@ export default {
 }
 
 .articleInfo > * {
-  background-color: #0d1117;
+  background-color: #262b34;
   border-radius: 10px;
   margin: .2rem;
   padding: .5rem;
@@ -223,7 +222,7 @@ export default {
   color: white;
 }
 
-/deep/ pre {
+::v-deep pre {
   border-radius: 10px;
   background-color: #0c121a;
   text-shadow: 1px 1px 1px #000;
@@ -231,7 +230,7 @@ export default {
   color: #cfcfcf;
 }
 
-/deep/ pre .operator {
+::v-deep pre .operator {
   background: transparent;
 }
 

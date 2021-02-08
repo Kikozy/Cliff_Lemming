@@ -24,9 +24,6 @@
         </div>
       </div>
     </div>
-    <div class="end">
-      <end-banner/>
-    </div>
     <div class="JUMPTOP">
       <div class="jump">
         <jumpTop/>
@@ -38,7 +35,6 @@
 <script>
 import Header from "@/views/Header/Header";
 import jumpTop from "@/components/jumpTop/jumpTop";
-import endBanner from "@/components/EndFoot/endBanner";
 import Banner from '@/components/HomeBanner/Banner';
 import InfoMe from "@/components/HomeContent/InfoMe";
 import LoadCloud from "@/components/Loading/LoadCloud";
@@ -63,7 +59,7 @@ export default {
   components: {
     TEST,
     jumpTop,
-    endBanner,
+
     Banner,
     InfoMe,
     LoadCloud,
@@ -103,10 +99,10 @@ export default {
 
 .HomeContent {
   padding-top: 3rem;
-  border-radius: 20px 20px 0 0;
+  border-radius: 20px 20p6x 0 0;
   width: 100%;
-  background-image: linear-gradient(to bottom, #0c121a, #0d2b4d); /*对角渐变*/
-  box-shadow: -20px -20px 40px #000;
+  background-color: #101217; /*对角渐变*/
+  box-shadow: -20px -20px 60px #000;
   display: flex;
   justify-content: center;
   align-items: center;
